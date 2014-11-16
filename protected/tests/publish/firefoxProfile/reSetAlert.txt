@@ -70,4 +70,27 @@ npalicdo plugin
 
 
 
+http://www.go2.cn/product/publish/oagkig
+		
+http://www.go2.cn/user/login
+https://oauth.taobao.com/authorize?response_type=code&client_id=12462850&redirect_uri=http://eapi.ximgs.net/oauth/taobao/token/publish?view=web
+https://oauth.taobao.com/authorize?redirect_uri=http%3A%2F%2Feapi.ximgs.net%2Foauth%2Ftaobao%2Ftoken%2Fpublish%3Fview%3Dweb&client_id=12462850&response_type=code&timestamp=2014-11-15+08%3A20%3A26&sign=WeOZ38KTjmn7yNgUCzPBnA%3D%3D
+http://eapi.ximgs.net/oauth/taobao/publish?key=58f44bfd7fb17dc81363d36e02cc111b5c73b41aVFVUA1NQUgMHAQMHUFEAVQ1dDVBBEQ1YT0RHG1FWBBkBDUIXUFIEUFUBCVBHEV4BX10EAwpeVUVAHUgDCVNHFgUKHlJZC1IEVAZUUFpVCFJTVAUCVlJVUVNT
+
+
+
+关闭当前提示面板,按照错误提示,重新设置后发布!
+
+发布到淘宝失败
+
+
+
+840022444662177
+
+
+
+发布到淘宝失败: 发布超时,请减少图片重试
+
+
+
 
