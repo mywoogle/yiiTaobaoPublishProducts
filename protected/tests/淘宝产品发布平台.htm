@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html><head>
+<title>淘宝产品发布平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/common.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_005.js"></script>
+<script charset="utf-8" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/kindeditor-min.js"></script>
+<script charset="utf-8" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/zh_CN.js"></script>
+<link href="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/prompt.css" rel="stylesheet" media="all">
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_002.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_006.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_008.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_007.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_004.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_003.js"></script>
+<script type="text/javascript">
+	var req_url = 'www.go2.cn';
+</script>
+
+<script>
+	var editor;
+	KindEditor.ready(function(K) {
+		editor = K.create('textarea[id="ProductMemo"]', {
+			resizeType : 1,	
+			allowPreviewEmoticons : false,
+			allowImageUpload : false,
+			autoSetDataMode : false,
+			items : [
+				'source','|','forecolor', 'hilitecolor','fontname', 'fontsize', '|', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist',  'link']
+		});
+	});
+</script>
+<style>
+body{margin:0;padding:0;font-family:"微软雅黑";line-height:16px;background:#F5F5F5;}
+#publishbox{width:1008px;margin:10px auto;border:1px solid #E8E8E8;background:#fff;overflow:hidden;}
+h1{margin:0;height:auto!important;height:16px;padding:10px;padding-top:15px;font-size:16px;border-bottom:1px solid #e8e8e8;overflow:hidden;}
+h1 span{float:left;}
+h1 em{float:right;font-style:normal;}
+h1 em a{margin-left:10px;}
+form{float:left;margin:0;padding:0;}
+#proimg{float:left;font-size:14px;margin:0;padding:0;overflow:hidden;margin:8px 10px;display:inline;padding-bottom:5px;}
+#proimg label{float:left;padding-top:3px;text-align:right;width:120px;}
+#proimg ul{float:left;width:800px;display:block;margin:0;padding:0;line-height:25px;overflow:hidden;}
+#proimg ul li{float:left;white-space:nowrap; margin:0;margin-right:10px;list-style-type:none;}
+#imglist{float:left;width:794px;padding-bottom:5px;border:1px solid #e8e8e8;}
+#sinotes{float:left;padding:3px;padding-top:5px;font-size:12px;}
+#imglist .selectimg{float:left;margin:0;padding:0;width:794px;height:300px;overflow:auto;}
+#imglist .selectimg li{float:left;display:inline;margin:3px;margin-right:1px;margin-bottom:1px;padding:0;border:1px solid #fee;width:122px;height:122px;overflow:hidden;}
+#imglist .selectimg .hmeimg{margin-right:10px;background:url(/images/pubimgbg.gif);border:1px solid #999;}
+#imglist .selectimg li table{padding:0;border:0;width:122px;height:122px;text-align:center;}
+#imglist .selectimg .iselect{width:120px;height:120px;border:4px solid #f90;}
+#imglist .selectimg .iselect img{border:none;padding:0;margin-left:-6px;margin-top:-6px;}
+#imglist .selectimg img{max-width:120px;max-height:120px;_height:120px;}
+#shoesform{float:left;display:inline;width:988px;padding:0;list-style-type:none;font-size:14px;margin:0 10px;overflow:hidden;}
+#shoesform li{margin:5px 0;padding:0;overflow:hidden;padding-bottom:5px;}
+#shoesform li label{float:left;padding-top:3px;text-align:right;width:110px;}
+#shoesform li code{float:left;font-family:"微软雅黑";font-weight:bold;font-size:16px;color:#cc0000;padding-top:4px;}
+#shoesform li ul{float:left;width:800px;margin:0;padding:0;list-style-type:none;line-height:25px;}
+#shoesform li ul li{float:left;margin:2px;padding:2px;padding-right:3px;background:#fee;white-space:nowrap;border:1px solid #ddd;overflow:visible;}
+#shoesform li ul li label{float:none;}
+#shoesform li ul li label input{width:56px;margin-right:5px;}
+#shoesform li dl{float:left;margin:0;width:756px;height:180px;padding:1px 5px;border:1px solid #ccc;overflow-x:hidden;overflow-y:auto;}
+#shoesform li dt{font-weight:bold;}
+#shoesform li dd{margin-left:20px;}
+textarea{width:800px;height:500px;}
+#csvbutton{float:left;width:163px;height:42px;padding:0;margin:0;border:none;background:url(/images/csv_button.gif) no-repeat;}
+#TitleLen{font-style:normal;}
+#bbmsinfo h3 a{float:left;width:92px;height:21px!important;height:22px;text-align:center;padding-top:9px!important;padding-top:8px;font-size:13px;font-weight:normal;margin-right:1px;background:url(/images/menu_label_02.gif) #E60000;color:#AA1300;}
+#bbmsinfo h3 .plselect{font-weight:bold;background:url(/images/menu_label_01.gif) #E60000;height:23px!important;height:22px;padding-top:7px!important;padding-top:8px;color:#fff;}
+#bbmsform{float:left;width:800px;border:1px solid #ddd;border-top:0;border-left:0;overflow:hidden;}
+#bbmslist{float:left;width:762px;border:1px solid #ddd;border-top:0;border-left:0;overflow:hidden;}
+#bbmslist img{display:block;margin:0 auto;max-width:120px;max-height:120px;_height:120px;border:none;}
+#bbmslist b{float:left;width:120px;height:120px;padding:3px;border:1px solid #ddd;margin-right:-1px;margin-bottom:-1px;}
+#bbmslist table{background:#FFF;width:120px;height:120px;text-align:center;}
+#bbmslist .downselect{background:#E60000;}
+h5 a{float:left;margin-left:10px;height:26px;}
+h5 #selectall{width:41px;background:url(/images/dl_all_btn.gif) no-repeat;}
+h5 #otherall{width:41px;background:url(/images/dl_other_btn.gif) no-repeat;}
+#edit_attr{background:url(/images/edit_attr.gif) no-repeat;width:63px;height:24px;border:none;}
+#edit_color_size{background:url(/images/edit_color_size.gif) no-repeat;width:113px;height:24px;border:none;}
+.message-content-txt{font-size:12px;line-height:32px; padding-left:30px;}
+.message-content-txt p{ font-size:12px;background:url(/images/ajax-loader.gif) no-repeat;height:32px;line-height:32px; padding-left:45px;}
+</style>
+<script type="text/javascript">
+String.prototype.getBytesLength = function () {
+	return this.length + (escape(this).split("%u").length - 1);
+};
+var hmelists = new Array("","","","","");
+var messagebox;
+var countdown;
+var cdtime=600;
+$(document).ready(function() {
+	$(".imgsel").click(function() {
+		var vstr = this.innerHTML;
+		var vstr = $(this).find('img').attr('src');
+		v=vstr.match(/(.+)_[0-9x]+(\.[a-zA-Z]+)$/);
+		istr = v[1]+'_750x750'+v[2];
+		var hmevalue = true;
+		for(var i = 0;i<hmelists.length;i++){
+			if(hmelists[i]==""){
+				document.getElementById("hme"+i).innerHTML = "<img src=\""+vstr+"\" />";
+				hmelists[i]=istr;
+				hmevalue = false;
+				break;
+			}
+		}
+		getimgsvalue();
+		if(hmevalue){
+			alert("商品首图只能选择5张，不能再选择了！");
+		}
+	});
+	
+	$(".hmeimg").click(function() {
+		var idv = this.lang;
+		document.getElementById("hme"+idv).innerHTML = "";
+		hmelists[idv]="";
+		getimgsvalue();
+	});
+	$("#title").live('keyup focusout',function(){
+		var titlevalue = this.value;
+		var tlen = this.value.getBytesLength();
+		var lostlen = 60-tlen;
+		if(lostlen>=0){
+			lostlen = "还能输入<strong>"+Math.ceil(lostlen/2)+"</strong>个字！";
+		}else{
+			this.value = titlevalue.substr(0,titlevalue.length-1)
+			lostlen = "<font color=\"red\">已超出<strong>"+(lostlen*-1)+"</strong>个字！</font>";
+		}
+		$("#TitleLen").html(lostlen);
+	});
+	
+	$("#categories").change(function(){
+		var key = $.cookie('key');
+		if($(this).val()!=''){
+			window.location.href='/oauth/taobao/publish/'+$(this).val()+'?par='+$(this).attr('par')+'&key='+key;
+		}
+	});
+
+	$("#edit_attr").click(function(){
+		$("li").each(function(){
+			if($(this).attr('hidden_attr')==1){
+				$(this).toggle();
+			}
+		})
+	});
+
+	$("#edit_color_size").click(function(){
+		$("li").each(function(){
+			if($(this).attr('hidden_attr')==2){
+				$(this).toggle();
+			}
+		})
+	});
+
+	$('#taobaocsv').on('submit', function(e) {
+		editor.sync();
+        e.preventDefault(); 
+       	messagebox=new $.Message({
+    		title:'发布到淘宝',
+    		ismask:true,
+    		icon:'none',
+    		content:'<p>正在向淘宝发布本商品,请稍候...<span></span></p>',
+    		width:500,
+    		height:300,
+    		button:{ok:false,cancel:false}
+    	});
+       cdtime=600;
+       countdown=setInterval(cdown,1000);
+        $(this).ajaxSubmit({
+        	dataType:'text',
+        	success:function(data){
+        		clearInterval(countdown);
+        		if(!data.match(/^[\{\[]/)){
+        			$(".message-title-close").click();
+        			return;
+        		}else{
+        			data=$.parseJSON(data);
+        		}
+        		if(data.error!='0'){
+        			messagebox.set_title('发布失败');
+        			var st = data.reason;
+        			$(".message-content-txt").html(st);
+        		}else if(data.error=='0'){
+        			window.location.href='/oauth/taobao/post/'+data.product_id+'?up='+data.html.up+'&index='+data.html.index+'&num_iid='+data.html.num_iid+'&url='+req_url;
+        		}
+        	}
+        });
+    });
+
+	$(".message-title-close").click(function(){
+		clearInterval(countdown);
+	});
+
+	//获取有子属性的值
+	$(".stdprop").live('change click',function(){
+		if($(this).find('option:selected').attr('isparent') == '1'){
+			var child = $(this).find('option:selected').val();
+			var cid = $('#product_id').attr('cid');
+			var url = '/oauth/taobao/getchildpropos/'+cid+'?child='+child;
+			var p = $(this);
+			$.ajax({ url: url, dataType: 'json', success:function(data){
+				var str = '<select class="stdprop" name="'+data.item_props.item_prop[0].pid+'">';
+					str += '<option value="">- 请选择 -</option>';
+	        	$.each(data.item_props.item_prop[0].prop_values.prop_value, function(key, val){
+	               str += '<option isparent="" value="'+data.item_props.item_prop[0].pid+':'+val.vid+'">'+val.name+'</option>';         
+	        	});
+	        		str += '</select><span></span>';
+	        	p.next().html(str);
+		    }});
+		}else{
+			$(this).next().html('');
+		}
+	});
+
+	$('#freight_payer').live('change click',function() {
+		var v = $(this).find('option:selected').val();
+		if(v == 'seller'){
+			$('#postage_id').css({'display':'none'});
+		}else{
+			$('#postage_id').css({'display':''});
+		}
+	});
+
+});
+function getimgsvalue(){
+	var imgsvalue = "";
+	for(var i = 0;i<hmelists.length;i++){
+		if(hmelists[i]!=""){
+			imgsvalue += hmelists[i]+",";
+		}
+	}
+	document.forms["taobaocsv"].images.value = imgsvalue;
+	return(imgsvalue);
+}
+function cdown(){
+	if(cdtime>0){
+		$(".message-content-txt span").html(cdtime);
+		cdtime--;		
+	}else{
+		clearInterval(countdown);
+		messagebox.set_title('发布失败');
+		$(".message-content-txt").html('发布到淘宝失败:&nbsp;发布超时,请减少图片重试');
+	}
+}
+</script>
+
+
+<link rel="stylesheet" href="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/default.css"><style class="firebugResetStyles" type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+/** reset styling **/
+.firebugResetStyles {
+    z-index: 2147483646 !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    border: 0 none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    outline: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: fixed !important;
+    transform: rotate(0deg) !important;
+    transform-origin: 50% 50% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent none !important;
+    pointer-events: none !important;
+    white-space: normal !important;
+}
+style.firebugResetStyles {
+    display: none !important;
+}
+
+.firebugBlockBackgroundColor {
+    background-color: transparent !important;
+}
+
+.firebugResetStyles:before, .firebugResetStyles:after {
+    content: "" !important;
+}
+/**actual styling to be modified by firebug theme**/
+.firebugCanvas {
+    display: none !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBox {
+    width: auto !important;
+    position: static !important;
+}
+
+.firebugLayoutBoxOffset {
+    opacity: 0.8 !important;
+    position: fixed !important;
+}
+
+.firebugLayoutLine {
+    opacity: 0.4 !important;
+    background-color: #000000 !important;
+}
+
+.firebugLayoutLineLeft, .firebugLayoutLineRight {
+    width: 1px !important;
+    height: 100% !important;
+}
+
+.firebugLayoutLineTop, .firebugLayoutLineBottom {
+    width: 100% !important;
+    height: 1px !important;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px !important;
+    border-top: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999 !important;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px !important;
+    border-left: 1px solid #999999 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.firebugLayoutBoxParent {
+    border-top: 0 none !important;
+    border-right: 1px dashed #E00 !important;
+    border-bottom: 1px dashed #E00 !important;
+    border-left: 0 none !important;
+    position: fixed !important;
+    width: auto !important;
+}
+
+.firebugRuler{
+    position: absolute !important;
+}
+
+.firebugRulerH {
+    top: -15px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 14px !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%13%88%00%00%00%0E%08%02%00%00%00L%25a%0A%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%04%F8IDATx%DA%EC%DD%D1n%E2%3A%00E%D1%80%F8%FF%EF%E2%AF2%95%D0D4%0E%C1%14%B0%8Fa-%E9%3E%CC%9C%87n%B9%81%A6W0%1C%A6i%9A%E7y%0As8%1CT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AATE9%FE%FCw%3E%9F%AF%2B%2F%BA%97%FDT%1D~K(%5C%9D%D5%EA%1B%5C%86%B5%A9%BDU%B5y%80%ED%AB*%03%FAV9%AB%E1%CEj%E7%82%EF%FB%18%BC%AEJ8%AB%FA'%D2%BEU9%D7U%ECc0%E1%A2r%5DynwVi%CFW%7F%BB%17%7Dy%EACU%CD%0E%F0%FA%3BX%FEbV%FEM%9B%2B%AD%BE%AA%E5%95v%AB%AA%E3E5%DCu%15rV9%07%B5%7F%B5w%FCm%BA%BE%AA%FBY%3D%14%F0%EE%C7%60%0EU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5JU%88%D3%F5%1F%AE%DF%3B%1B%F2%3E%DAUCNa%F92%D02%AC%7Dm%F9%3A%D4%F2%8B6%AE*%BF%5C%C2Ym~9g5%D0Y%95%17%7C%C8c%B0%7C%18%26%9CU%CD%13i%F7%AA%90%B3Z%7D%95%B4%C7%60%E6E%B5%BC%05%B4%FBY%95U%9E%DB%FD%1C%FC%E0%9F%83%7F%BE%17%7DkjMU%E3%03%AC%7CWj%DF%83%9An%BCG%AE%F1%95%96yQ%0Dq%5Dy%00%3Et%B5'%FC6%5DS%95pV%95%01%81%FF'%07%00%00%00%00%00%00%00%00%00%F8x%C7%F0%BE%9COp%5D%C9%7C%AD%E7%E6%EBV%FB%1E%E0(%07%E5%AC%C6%3A%ABi%9C%8F%C6%0E9%AB%C0'%D2%8E%9F%F99%D0E%B5%99%14%F5%0D%CD%7F%24%C6%DEH%B8%E9rV%DFs%DB%D0%F7%00k%FE%1D%84%84%83J%B8%E3%BA%FB%EF%20%84%1C%D7%AD%B0%8E%D7U%C8Y%05%1E%D4t%EF%AD%95Q%BF8w%BF%E9%0A%BF%EB%03%00%00%00%00%00%00%00%00%00%B8vJ%8E%BB%F5%B1u%8Cx%80%E1o%5E%CA9%AB%CB%CB%8E%03%DF%1D%B7T%25%9C%D5(%EFJM8%AB%CC'%D2%B2*%A4s%E7c6%FB%3E%FA%A2%1E%80~%0E%3E%DA%10x%5D%95Uig%15u%15%ED%7C%14%B6%87%A1%3B%FCo8%A8%D8o%D3%ADO%01%EDx%83%1A~%1B%9FpP%A3%DC%C6'%9C%95gK%00%00%00%00%00%00%00%00%00%20%D9%C9%11%D0%C0%40%AF%3F%EE%EE%92%94%D6%16X%B5%BCMH%15%2F%BF%D4%A7%C87%F1%8E%F2%81%AE%AAvzr%DA2%ABV%17%7C%E63%83%E7I%DC%C6%0Bs%1B%EF6%1E%00%00%00%00%00%00%00%00%00%80cr%9CW%FF%7F%C6%01%0E%F1%CE%A5%84%B3%CA%BC%E0%CB%AA%84%CE%F9%BF)%EC%13%08WU%AE%AB%B1%AE%2BO%EC%8E%CBYe%FE%8CN%ABr%5Dy%60~%CFA%0D%F4%AE%D4%BE%C75%CA%EDVB%EA(%B7%F1%09g%E5%D9%12%00%00%00%00%00%00%00%00%00H%F6%EB%13S%E7y%5E%5E%FB%98%F0%22%D1%B2'%A7%F0%92%B1%BC%24z3%AC%7Dm%60%D5%92%B4%7CEUO%5E%F0%AA*%3BU%B9%AE%3E%A0j%94%07%A0%C7%A0%AB%FD%B5%3F%A0%F7%03T%3Dy%D7%F7%D6%D4%C0%AAU%D2%E6%DFt%3F%A8%CC%AA%F2%86%B9%D7%F5%1F%18%E6%01%F8%CC%D5%9E%F0%F3z%88%AA%90%EF%20%00%00%00%00%00%00%00%00%00%C0%A6%D3%EA%CFi%AFb%2C%7BB%0A%2B%C3%1A%D7%06V%D5%07%A8r%5D%3D%D9%A6%CAu%F5%25%CF%A2%99%97zNX%60%95%AB%5DUZ%D5%FBR%03%AB%1C%D4k%9F%3F%BB%5C%FF%81a%AE%AB'%7F%F3%EA%FE%F3z%94%AA%D8%DF%5B%01%00%00%00%00%00%00%00%00%00%8E%FB%F3%F2%B1%1B%8DWU%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*UiU%C7%BBe%E7%F3%B9%CB%AAJ%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5J%95*U%AAT%A9R%A5*%AAj%FD%C6%D4%5Eo%90%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5%86%AF%1B%9F%98%DA%EBm%BBV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%ADV%AB%D5j%B5Z%AD%D6%E4%F58%01%00%00%00%00%00%00%00%00%00%00%00%00%00%40%85%7F%02%0C%008%C2%D0H%16j%8FX%00%00%00%00IEND%AEB%60%82") repeat-x !important;
+    border-top: 1px solid #BBBBBB !important;
+    border-right: 1px dashed #BBBBBB !important;
+    border-bottom: 1px solid #000000 !important;
+}
+
+.firebugRulerV {
+    top: 0 !important;
+    left: -15px !important;
+    width: 14px !important;
+    height: 100% !important;
+    background: url("data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%0E%00%00%13%88%08%02%00%00%00%0E%F5%CB%10%00%00%00%04gAMA%00%00%D6%D8%D4OX2%00%00%00%19tEXtSoftware%00Adobe%20ImageReadyq%C9e%3C%00%00%06~IDATx%DA%EC%DD%D1v%A20%14%40Qt%F1%FF%FF%E4%97%D9%07%3BT%19%92%DC%40(%90%EEy%9A5%CB%B6%E8%F6%9Ac%A4%CC0%84%FF%DC%9E%CF%E7%E3%F1%88%DE4%F8%5D%C7%9F%2F%BA%DD%5E%7FI%7D%F18%DDn%BA%C5%FB%DF%97%BFk%F2%10%FF%FD%B4%F2M%A7%FB%FD%FD%B3%22%07p%8F%3F%AE%E3%F4S%8A%8F%40%EEq%9D%BE8D%F0%0EY%A1Uq%B7%EA%1F%81%88V%E8X%3F%B4%CEy%B7h%D1%A2E%EBohU%FC%D9%AF2fO%8BBeD%BE%F7X%0C%97%A4%D6b7%2Ck%A5%12%E3%9B%60v%B7r%C7%1AI%8C%BD%2B%23r%00c0%B2v%9B%AD%CA%26%0C%1Ek%05A%FD%93%D0%2B%A1u%8B%16-%95q%5Ce%DCSO%8E%E4M%23%8B%F7%C2%FE%40%BB%BD%8C%FC%8A%B5V%EBu%40%F9%3B%A72%FA%AE%8C%D4%01%CC%B5%DA%13%9CB%AB%E2I%18%24%B0n%A9%0CZ*Ce%9C%A22%8E%D8NJ%1E%EB%FF%8F%AE%CAP%19*%C3%BAEKe%AC%D1%AAX%8C*%DEH%8F%C5W%A1e%AD%D4%B7%5C%5B%19%C5%DB%0D%EF%9F%19%1D%7B%5E%86%BD%0C%95%A12%AC%5B*%83%96%CAP%19%F62T%86%CAP%19*%83%96%CA%B8Xe%BC%FE)T%19%A1%17xg%7F%DA%CBP%19*%C3%BA%A52T%86%CAP%19%F62T%86%CA%B0n%A9%0CZ%1DV%C6%3D%F3%FCH%DE%B4%B8~%7F%5CZc%F1%D6%1F%AF%84%F9%0F6%E6%EBVt9%0E~%BEr%AF%23%B0%97%A12T%86%CAP%19%B4T%86%CA%B8Re%D8%CBP%19*%C3%BA%A52huX%19%AE%CA%E5%BC%0C%7B%19*CeX%B7h%A9%0C%95%E1%BC%0C%7B%19*CeX%B7T%06%AD%CB%5E%95%2B%BF.%8F%C5%97%D5%E4%7B%EE%82%D6%FB%CF-%9C%FD%B9%CF%3By%7B%19%F62T%86%CA%B0n%D1R%19*%A3%D3%CA%B0%97%A12T%86uKe%D0%EA%B02*%3F1%99%5DB%2B%A4%B5%F8%3A%7C%BA%2B%8Co%7D%5C%EDe%A8%0C%95a%DDR%19%B4T%C66%82fA%B2%ED%DA%9FC%FC%17GZ%06%C9%E1%B3%E5%2C%1A%9FoiB%EB%96%CA%A0%D5qe4%7B%7D%FD%85%F7%5B%ED_%E0s%07%F0k%951%ECr%0D%B5C%D7-g%D1%A8%0C%EB%96%CA%A0%A52T%C6)*%C3%5E%86%CAP%19%D6-%95A%EB*%95q%F8%BB%E3%F9%AB%F6%E21%ACZ%B7%22%B7%9B%3F%02%85%CB%A2%5B%B7%BA%5E%B7%9C%97%E1%BC%0C%EB%16-%95%A12z%AC%0C%BFc%A22T%86uKe%D0%EA%B02V%DD%AD%8A%2B%8CWhe%5E%AF%CF%F5%3B%26%CE%CBh%5C%19%CE%CB%B0%F3%A4%095%A1%CAP%19*Ce%A8%0C%3BO*Ce%A8%0C%95%A12%3A%AD%8C%0A%82%7B%F0v%1F%2FD%A9%5B%9F%EE%EA%26%AF%03%CA%DF9%7B%19*Ce%A8%0C%95%A12T%86%CA%B8Ze%D8%CBP%19*Ce%A8%0C%95%D1ae%EC%F7%89I%E1%B4%D7M%D7P%8BjU%5C%BB%3E%F2%20%D8%CBP%19*Ce%A8%0C%95%A12T%C6%D5*%C3%5E%86%CAP%19*Ce%B4O%07%7B%F0W%7Bw%1C%7C%1A%8C%B3%3B%D1%EE%AA%5C%D6-%EBV%83%80%5E%D0%CA%10%5CU%2BD%E07YU%86%CAP%19*%E3%9A%95%91%D9%A0%C8%AD%5B%EDv%9E%82%FFKOee%E4%8FUe%A8%0C%95%A12T%C6%1F%A9%8C%C8%3D%5B%A5%15%FD%14%22r%E7B%9F%17l%F8%BF%ED%EAf%2B%7F%CF%ECe%D8%CBP%19*Ce%A8%0C%95%E1%93~%7B%19%F62T%86%CAP%19*Ce%A8%0C%E7%13%DA%CBP%19*Ce%A8%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4h%A9%0C%B3E%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%A9%0CZf%8B%16-Z%B4h%D1R%19f%8B%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1R%19%B4%CC%16-Z%B4h%D1%A2%A52%CC%16-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2%A52h%99-Z%B4h%D1%A2EKe%98-Z%B4h%D1%A2EKe%D02%5B%B4h%D1%A2EKe%D02%5B%B4h%D1%A2E%8B%96%CA0%5B%B4h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%96%CA%A0e%B6h%D1%A2E%8B%16-%95a%B6h%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-%95A%CBl%D1%A2E%8B%16-Z*%C3l%D1%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z*%83%96%D9%A2E%8B%16-Z%B4T%86%D9%A2E%8B%16-Z%B4T%06-%B3E%8B%16-Z%B4%AE%A4%F5%25%C0%00%DE%BF%5C'%0F%DA%B8q%00%00%00%00IEND%AEB%60%82") repeat-y !important;
+    border-left: 1px solid #BBBBBB !important;
+    border-right: 1px solid #000000 !important;
+    border-bottom: 1px dashed #BBBBBB !important;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0 !important;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0 !important;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.fbProxyElement {
+    position: fixed !important;
+    pointer-events: auto !important;
+}
+</style></head>
+	<body>
+	<div id="top">
+  <div id="topitemall">
+	<ul id="mainmenu">
+	  <li><a href="http://www.go2.cn/">返回首页</a></li>
+
+	</ul>
+	<ul id="loginbox">	<li><a>您好，woogle111！</a></li>
+    	<li><a href="http://www.go2.cn/user/logout">退出</a></li>
+	<li class="nostyle">
+					<a href="http://www.go2.cn/manage/seller/userindex">用户中心</a>
+			</li>
+    </ul>
+  </div>
+</div>
+<div style="height:43px!important;height:0px;overflow:hidden;"><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/span.gif"></div>
+
+<script language="javascript">
+function jwin(tstr,url){
+	new $.Message({
+		title:tstr,
+		ismask:true,
+		icon:'none',
+		content:'<iframe src="'+url+'" width="778" frameborder="0" height="500"></iframe>',
+		width:788,
+		height:537,
+		button:{ok:false,cancel:false}
+	});
+}
+</script>
+<input id="product_id" cid="50012028" value="csgsg" type="hidden">
+		<div id="publishbox">
+			<h1><span>淘宝产品发布平台</span>
+				<em>淘宝帐号：纤美诺一予你美丽承诺<a href="http://eapi.ximgs.net/oauth/taobao/logout/csgsg?url=www.go2.cn">退出</a>
+				<a href="http://eapi.ximgs.net/oauth/taobao/changelogin">切换淘宝帐号</a>
+				</em>
+			</h1>
+			<form method="post" name="taobaocsv" id="taobaocsv" action="http://eapi.ximgs.net/oauth/taobao/post/csgsg">
+			<input name="url" value="www.go2.cn" type="hidden">
+			<input name="seller_id" value="26624" type="hidden">
+            <input value="http://thumb.ximgs.net/446/201307251504154881_750x750.jpg,http://thumb.ximgs.net/446/201307251504156442_750x750.jpg,http://thumb.ximgs.net/446/201307251504157843_750x750.jpg,http://thumb.ximgs.net/446/201307251504158314_750x750.jpg,http://thumb.ximgs.net/446/201307251504159255_750x750.jpg," name="images" id="images" type="hidden">
+            	<ul id="shoesform">           	
+					<li hidden_attr="1">
+						<label>产品类型：</label>
+						<select name="cid" par="" id="categories" product_id="csgsg">	
+							<option value="">选择产品类型</option>												
+                                                        <option value="50012032">凉鞋</option>							
+                                                        <option value="50012033">拖鞋</option>							
+                                                        <option value="50012027">低帮鞋</option>							
+                                                        <option value="50012028" selected="selected">靴子</option>							
+                                                        <option value="50012825">高帮鞋</option>							
+                                                        <option value="50012042">帆布鞋</option>							
+                                                        <option value="50012047">雨鞋</option>							
+                            					
+						</select>
+					</li>
+                 </ul>
+				<div id="proimg">
+						<label>商品首图：</label>
+						<div id="imglist">
+							<ul class="selectimg">
+                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504154881_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504156442_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504157843_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504158314_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504159255_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504160036_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504160507_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504162068_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504163159_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041634610_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041648611_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041687612_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041693913_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041701714_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041712615_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041720416_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041728217_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041732918_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041736019_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041796823_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041804624_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041814025_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041818726_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041828027_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041842128_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041849929_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041870230_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041885831_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041902932_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041910733_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041913834_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041934135_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041938836_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041946637_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041954438_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041963839_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041971640_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041973141_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041982542_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041982543_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041984044_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041985645_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041985646_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041995047_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041998148_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                                                                <li class="imgsel"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515042007450_120x120.jpg"></td></tr></tbody></table></li>
+                                                                                  
+							</ul>
+							<div id="sinotes">请点击上面列表中的图片，选择产品首图！（如果选错了，可以点击下面的列表图片，取消选择，再重选！）</div>
+							<ul class="selectimg" style="height:auto;">
+								<li class="hmeimg" lang="0"><table cellpadding="0" cellspacing="0"><tbody><tr><td id="hme0"><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504154881_120x120.jpg"></td></tr></tbody></table></li>
+								<li class="hmeimg" lang="1"><table cellpadding="0" cellspacing="0"><tbody><tr><td id="hme1"><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504156442_120x120.jpg"></td></tr></tbody></table></li>
+								<li class="hmeimg" lang="2"><table cellpadding="0" cellspacing="0"><tbody><tr><td id="hme2"><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504157843_120x120.jpg"></td></tr></tbody></table></li>
+								<li class="hmeimg" lang="3"><table cellpadding="0" cellspacing="0"><tbody><tr><td id="hme3"><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504158314_120x120.jpg"></td></tr></tbody></table></li>
+								<li class="hmeimg" lang="4"><table cellpadding="0" cellspacing="0"><tbody><tr><td id="hme4"><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504159255_120x120.jpg"></td></tr></tbody></table></li>
+							</ul>
+						</div>
+				</div>
+				<ul id="shoesform">
+					<li>
+						<label></label>
+						<code>默认数据仅供参考，建议仔细核对相关属性，谨慎选择以防止属性错误导致被淘宝处罚！</code>
+					</li>
+                    <!-- 标准属性 -->
+                                                            <li hidden_attr="1">
+                    	<label>靴筒内里材质*：</label>
+                    	                    	<select class="stdprop" name="139002163">                                   
+                    		                                    
+                    		                    		<option isparent="" value="139002163:3323086">
+                    			PU
+                    		</option>
+                    		                    		<option isparent="" value="139002163:14465077" selected="selected">
+                    			人造短毛绒
+                    		</option>
+                    		                    		<option isparent="" value="139002163:14465078">
+                    			人造长毛绒
+                    		</option>
+                    		                    		<option isparent="" value="139002163:20213">
+                    			其他
+                    		</option>
+                    		                    		<option isparent="" value="139002163:3804702">
+                    			布
+                    		</option>
+                    		                    		<option isparent="" value="139002163:105255">
+                    			棉
+                    		</option>
+                    		                    		<option isparent="" value="139002163:44660">
+                    			真皮
+                    		</option>
+                    		                    		<option isparent="" value="139002163:9115784">
+                    			网纱
+                    		</option>
+                    		                    		<option isparent="" value="139002163:28352">
+                    			羊毛
+                    		</option>
+                    		                    		<option isparent="" value="139002163:7484237">
+                    			超细纤维
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>靴筒材质*：</label>
+                    	                    	<select class="stdprop" name="138956265">                                   
+                    		                                    
+                    		                    		<option isparent="" value="138956265:3323086" selected="selected">
+                    			PU
+                    		</option>
+                    		                    		<option isparent="" value="138956265:14461751">
+                    			亮片布
+                    		</option>
+                    		                    		<option isparent="" value="138956265:20213">
+                    			其他
+                    		</option>
+                    		                    		<option isparent="" value="138956265:30083">
+                    			呢子
+                    		</option>
+                    		                    		<option isparent="" value="138956265:20370">
+                    			塑胶
+                    		</option>
+                    		                    		<option isparent="" value="138956265:3880992">
+                    			头层牛皮
+                    		</option>
+                    		                    		<option isparent="" value="138956265:3804702">
+                    			布
+                    		</option>
+                    		                    		<option isparent="" value="138956265:29229">
+                    			树脂
+                    		</option>
+                    		                    		<option isparent="" value="138956265:53908">
+                    			棉布
+                    		</option>
+                    		                    		<option isparent="" value="138956265:28685">
+                    			毛线
+                    		</option>
+                    		                    		<option isparent="" value="138956265:28344">
+                    			灯芯绒
+                    		</option>
+                    		                    		<option isparent="" value="138956265:27389350">
+                    			牛二层皮
+                    		</option>
+                    		                    		<option isparent="" value="138956265:28343">
+                    			牛仔布
+                    		</option>
+                    		                    		<option isparent="" value="138956265:28399">
+                    			猪皮
+                    		</option>
+                    		                    		<option isparent="" value="138956265:45105914">
+                    			皮布拼接
+                    		</option>
+                    		                    		<option isparent="" value="138956265:3227901">
+                    			绒面
+                    		</option>
+                    		                    		<option isparent="" value="138956265:28354">
+                    			绸缎
+                    		</option>
+                    		                    		<option isparent="" value="138956265:3702871">
+                    			网布
+                    		</option>
+                    		                    		<option isparent="" value="138956265:28398">
+                    			羊皮
+                    		</option>
+                    		                    		<option isparent="" value="138956265:14461016">
+                    			羊皮毛一体
+                    		</option>
+                    		                    		<option isparent="" value="138956265:14461857">
+                    			藤草
+                    		</option>
+                    		                    		<option isparent="" value="138956265:14461873">
+                    			裘皮
+                    		</option>
+                    		                    		<option isparent="" value="138956265:25312910">
+                    			西施绒
+                    		</option>
+                    		                    		<option isparent="" value="138956265:7484237">
+                    			超细纤维
+                    		</option>
+                    		                    		<option isparent="" value="138956265:30162">
+                    			马毛
+                    		</option>
+                    		                    		<option isparent="" value="138956265:44858">
+                    			鳄鱼皮
+                    		</option>
+                    		                    		<option isparent="" value="138956265:11029301">
+                    			鸵鸟皮
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                        
+                                                                        
+                <li hidden_attr="1">
+                    	<label>上市年份季节：</label>
+                    	                    	<select class="stdprop" name="122216347">                                   
+                    		                                    
+                    		                    		<option isparent="" value="122216347:379886796">
+                    			2014年冬季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:379818839">
+                    			2014年夏季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:379930774">
+                    			2014年春季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:380120406">
+                    			2014年秋季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:96618832">
+                    			2011年冬季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:96618833">
+                    			2011年秋季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:96618834">
+                    			2011年夏季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:94386424">
+                    			2011年春季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:84365323">
+                    			2010年冬季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:72342494">
+                    			2010年秋季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:60480329">
+                    			2010年夏季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:47968558">
+                    			2010春季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:96618835">
+                    			2009年秋冬季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:96618836">
+                    			2009年春夏季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:29131329">
+                    			2009年以前
+                    		</option>
+                    		                    		<option isparent="" value="122216347:132721270">
+                    			2012年春季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:132721297">
+                    			2012年夏季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:132721317">
+                    			2012年秋季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:132721335">
+                    			2012年冬季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:199870733">
+                    			2013年春季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:209928863">
+                    			2013年冬季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:209928864" selected="selected">
+                    			2013年秋季
+                    		</option>
+                    		                    		<option isparent="" value="122216347:186026840">
+                    			2013年夏季
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>风格：</label>
+                    	                    	<select class="stdprop" name="20608">                                   
+                    		                                    
+                    		                    		<option isparent="" value="20608:3267776">
+                    			甜美
+                    		</option>
+                    		                    		<option isparent="" value="20608:3411108">
+                    			日系
+                    		</option>
+                    		                    		<option isparent="" value="20608:3267765">
+                    			学院
+                    		</option>
+                    		                    		<option isparent="" value="20608:3380267">
+                    			公主
+                    		</option>
+                    		                    		<option isparent="" value="20608:57738700">
+                    			森女
+                    		</option>
+                    		                    		<option isparent="" value="20608:29933">
+                    			田园
+                    		</option>
+                    		                    		<option isparent="" value="20608:3506815">
+                    			洛丽塔
+                    		</option>
+                    		                    		<option isparent="" value="20608:29934">
+                    			街头
+                    		</option>
+                    		                    		<option isparent="" value="20608:125200612">
+                    			欧美
+                    		</option>
+                    		                    		<option isparent="" value="20608:29535">
+                    			休闲
+                    		</option>
+                    		                    		<option isparent="" value="20608:29931">
+                    			朋克
+                    		</option>
+                    		                    		<option isparent="" value="20608:9402698">
+                    			军装
+                    		</option>
+                    		                    		<option isparent="" value="20608:3329741">
+                    			嘻哈
+                    		</option>
+                    		                    		<option isparent="" value="20608:29923">
+                    			中性
+                    		</option>
+                    		                    		<option isparent="" value="20608:3800111">
+                    			波普
+                    		</option>
+                    		                    		<option isparent="" value="20608:6384766">
+                    			通勤
+                    		</option>
+                    		                    		<option isparent="" value="20608:28105" selected="selected">
+                    			韩版
+                    		</option>
+                    		                    		<option isparent="" value="20608:109835873">
+                    			简约
+                    		</option>
+                    		                    		<option isparent="" value="20608:3291373">
+                    			英伦
+                    		</option>
+                    		                    		<option isparent="" value="20608:3268261">
+                    			优雅
+                    		</option>
+                    		                    		<option isparent="" value="20608:132483">
+                    			民族风
+                    		</option>
+                    		                    		<option isparent="" value="20608:3454719">
+                    			性感
+                    		</option>
+                    		                    		<option isparent="" value="20608:25491481">
+                    			舒适
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>帮面材质*：</label>
+                    	                    	<ul>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:20370" type="checkbox">
+                    			<label>塑胶</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:3880992" type="checkbox">
+                    			<label>头层牛皮</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:29229" type="checkbox">
+                    			<label>树脂</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:28685" type="checkbox">
+                    			<label>毛线</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:27389350" type="checkbox">
+                    			<label>牛二层皮</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:28343" type="checkbox">
+                    			<label>牛仔布</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:3702871" type="checkbox">
+                    			<label>网布</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:14461857" type="checkbox">
+                    			<label>藤草</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:14461873" type="checkbox">
+                    			<label>裘皮</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:25312910" type="checkbox">
+                    			<label>西施绒</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:7484237" type="checkbox">
+                    			<label>超细纤维</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:28399" type="checkbox">
+                    			<label>猪皮</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:28398" type="checkbox">
+                    			<label>羊皮</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:3323086" checked="checked" type="checkbox">
+                    			<label>PU</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:11029301" type="checkbox">
+                    			<label>鸵鸟皮</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:44858" type="checkbox">
+                    			<label>鳄鱼皮</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:14461016" type="checkbox">
+                    			<label>羊皮毛一体</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:3804702" type="checkbox">
+                    			<label>布</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:30162" type="checkbox">
+                    			<label>马毛</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:28354" type="checkbox">
+                    			<label>绸缎</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:3227901" type="checkbox">
+                    			<label>绒面</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:30083" type="checkbox">
+                    			<label>呢子</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:53908" type="checkbox">
+                    			<label>棉布</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:14461751" type="checkbox">
+                    			<label>亮片布</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:28344" type="checkbox">
+                    			<label>灯芯绒</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:20213" type="checkbox">
+                    			<label>其他</label>
+                    		</li>
+                    		                    		<li>
+                    			<input name="124128491[]" value="124128491:28855009" type="checkbox">
+                    			<label>混合材质</label>
+                    		</li>
+                    		                    	</ul>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>鞋面内里材质*：</label>
+                    	                    	<select class="stdprop" name="122216587">                                   
+                    		                                    
+                    		                    		<option isparent="" value="122216587:20213">
+                    			其他
+                    		</option>
+                    		                    		<option isparent="" value="122216587:105255">
+                    			棉
+                    		</option>
+                    		                    		<option isparent="" value="122216587:9115784">
+                    			网纱
+                    		</option>
+                    		                    		<option isparent="" value="122216587:28352">
+                    			羊毛
+                    		</option>
+                    		                    		<option isparent="" value="122216587:14465077" selected="selected">
+                    			人造短毛绒
+                    		</option>
+                    		                    		<option isparent="" value="122216587:14465078">
+                    			人造长毛绒
+                    		</option>
+                    		                    		<option isparent="" value="122216587:44660">
+                    			真皮
+                    		</option>
+                    		                    		<option isparent="" value="122216587:7484237">
+                    			超细纤维
+                    		</option>
+                    		                    		<option isparent="" value="122216587:3804702">
+                    			布
+                    		</option>
+                    		                    		<option isparent="" value="122216587:3323086">
+                    			PU
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>皮质特征：</label>
+                    	                    	<select class="stdprop" name="122216629">                                   
+                    		                                    
+                    		                    		<option isparent="" value="122216629:90765">
+                    			磨砂
+                    		</option>
+                    		                    		<option isparent="" value="122216629:15354885" selected="selected">
+                    			软面
+                    		</option>
+                    		                    		<option isparent="" value="122216629:14464883">
+                    			压花皮
+                    		</option>
+                    		                    		<option isparent="" value="122216629:28402">
+                    			漆皮
+                    		</option>
+                    		                    		<option isparent="" value="122216629:129555">
+                    			印花
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>鞋底材质：</label>
+                    	                    	<select class="stdprop" name="122216563">                                   
+                    		                                    
+                    		                    		<option isparent="" value="122216563:30161" selected="selected">
+                    			橡胶
+                    		</option>
+                    		                    		<option isparent="" value="122216563:20370">
+                    			塑胶
+                    		</option>
+                    		                    		<option isparent="" value="122216563:134281">
+                    			牛筋
+                    		</option>
+                    		                    		<option isparent="" value="122216563:4183442">
+                    			千层底
+                    		</option>
+                    		                    		<option isparent="" value="122216563:134280">
+                    			泡沫
+                    		</option>
+                    		                    		<option isparent="" value="122216563:3260684">
+                    			木
+                    		</option>
+                    		                    		<option isparent="" value="122216563:3268018">
+                    			复合底
+                    		</option>
+                    		                    		<option isparent="" value="122216563:44660">
+                    			真皮
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>靴款品名：</label>
+                    	                    	<select class="stdprop" name="3032757">                                   
+                    		                                    
+                    		                    		<option isparent="" value="3032757:3223389">
+                    			雪地靴
+                    		</option>
+                    		                    		<option isparent="" value="3032757:8505913">
+                    			流苏靴
+                    		</option>
+                    		                    		<option isparent="" value="3032757:8418201">
+                    			马丁靴
+                    		</option>
+                    		                    		<option isparent="" value="3032757:21942439" selected="selected">
+                    			骑士靴
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>筒高*：</label>
+                    	                    	<select class="stdprop" name="21888">                                   
+                    		                                    
+                    		                    		<option isparent="" value="21888:7489585">
+                    			短筒
+                    		</option>
+                    		                    		<option isparent="" value="21888:44627">
+                    			中筒靴
+                    		</option>
+                    		                    		<option isparent="" value="21888:112423">
+                    			高筒
+                    		</option>
+                    		                    		<option isparent="" value="21888:4305332" selected="selected">
+                    			长靴
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>鞋头款式*：</label>
+                    	                    	<select class="stdprop" name="122216351">                                   
+                    		                                    
+                    		                    		<option isparent="" value="122216351:20213">
+                    			其他
+                    		</option>
+                    		                    		<option isparent="" value="122216351:30233" selected="selected">
+                    			圆头
+                    		</option>
+                    		                    		<option isparent="" value="122216351:30232">
+                    			尖头
+                    		</option>
+                    		                    		<option isparent="" value="122216351:30234">
+                    			方头
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>跟高*：</label>
+                    	                    	<select class="stdprop" name="1626698">                                   
+                    		                                    
+                    		                    		<option isparent="" value="1626698:30228">
+                    			平跟
+                    		</option>
+                    		                    		<option isparent="" value="1626698:29069296">
+                    			低跟
+                    		</option>
+                    		                    		<option isparent="" value="1626698:24574746">
+                    			中跟
+                    		</option>
+                    		                    		<option isparent="" value="1626698:3673609">
+                    			高跟
+                    		</option>
+                    		                    		<option isparent="" value="1626698:29343421" selected="selected">
+                    			超高跟
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>鞋跟款式*：</label>
+                    	                    	<select class="stdprop" name="122216561">                                   
+                    		                                    
+                    		                    		<option isparent="" value="122216561:20213">
+                    			其他
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3994116">
+                    			内增高
+                    		</option>
+                    		                    		<option isparent="" value="122216561:30228">
+                    			平跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:115806">
+                    			坡跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3224772">
+                    			方跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3271050">
+                    			细跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:115807" selected="selected">
+                    			粗跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3224774">
+                    			酒杯跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3224775">
+                    			镂空跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3227903">
+                    			马蹄跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3224777">
+                    			异型跟
+                    		</option>
+                    		                    		<option isparent="" value="122216561:3224776">
+                    			锥形跟
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>闭合方式：</label>
+                    	                    	<select class="stdprop" name="20490">                                   
+                    		                                    
+                    		                    		<option isparent="" value="20490:14542522" selected="selected">
+                    			侧拉链
+                    		</option>
+                    		                    		<option isparent="" value="20490:14542528">
+                    			前拉链
+                    		</option>
+                    		                    		<option isparent="" value="20490:14542502">
+                    			前系带
+                    		</option>
+                    		                    		<option isparent="" value="20490:14542536">
+                    			后拉链
+                    		</option>
+                    		                    		<option isparent="" value="20490:14542513">
+                    			后系带
+                    		</option>
+                    		                    		<option isparent="" value="20490:3226327">
+                    			套筒
+                    		</option>
+                    		                    		<option isparent="" value="20490:9887404">
+                    			松紧带
+                    		</option>
+                    		                    		<option isparent="" value="20490:3227269">
+                    			魔术贴
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>流行元素：</label>
+                    	                    	<select class="stdprop" name="34272">                                   
+                    		                                    
+                    		                    		<option isparent="" value="34272:115771">
+                    			镂空
+                    		</option>
+                    		                    		<option isparent="" value="34272:115803">
+                    			丝带
+                    		</option>
+                    		                    		<option isparent="" value="34272:99819">
+                    			花朵
+                    		</option>
+                    		                    		<option isparent="" value="34272:115805">
+                    			亮片　
+                    		</option>
+                    		                    		<option isparent="" value="34272:115772">
+                    			蝴蝶结
+                    		</option>
+                    		                    		<option isparent="" value="34272:28209">
+                    			水钻
+                    		</option>
+                    		                    		<option isparent="" value="34272:115776">
+                    			铆钉
+                    		</option>
+                    		                    		<option isparent="" value="34272:115777">
+                    			流苏
+                    		</option>
+                    		                    		<option isparent="" value="34272:115804">
+                    			链子
+                    		</option>
+                    		                    		<option isparent="" value="34272:139181">
+                    			交叉绑带
+                    		</option>
+                    		                    		<option isparent="" value="34272:3222561">
+                    			拼色
+                    		</option>
+                    		                    		<option isparent="" value="34272:115806">
+                    			坡跟
+                    		</option>
+                    		                    		<option isparent="" value="34272:139184">
+                    			防水台
+                    		</option>
+                    		                    		<option isparent="" value="34272:139182">
+                    			网状
+                    		</option>
+                    		                    		<option isparent="" value="34272:29453">
+                    			格子
+                    		</option>
+                    		                    		<option isparent="" value="34272:3255041">
+                    			豹纹
+                    		</option>
+                    		                    		<option isparent="" value="34272:3267899" selected="selected">
+                    			金属装饰
+                    		</option>
+                    		                    		<option isparent="" value="34272:3271238">
+                    			皮带扣
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                                <li hidden_attr="1">
+                    	<label>制作工艺：</label>
+                    	                    	<select class="stdprop" name="122216632">                                   
+                    		                                    
+                    		                    		<option isparent="" value="122216632:14545463">
+                    			缝制鞋
+                    		</option>
+                    		                    		<option isparent="" value="122216632:14545464" selected="selected">
+                    			胶粘鞋
+                    		</option>
+                    		                    		<option isparent="" value="122216632:3272885">
+                    			硫化鞋
+                    		</option>
+                    		                    		<option isparent="" value="122216632:14545465">
+                    			注压鞋
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                        
+                                                                        
+                <li hidden_attr="1">
+                    	<label>图案：</label>
+                    	                    	<select class="stdprop" name="20603">                                   
+                    		                                    
+                    		                    		<option isparent="" value="20603:29454" selected="selected">
+                    			纯色
+                    		</option>
+                    		                    		<option isparent="" value="20603:104170033">
+                    			植物花卉
+                    		</option>
+                    		                    		<option isparent="" value="20603:29452">
+                    			条纹
+                    		</option>
+                    		                    		<option isparent="" value="20603:29453">
+                    			格子
+                    		</option>
+                    		                    		<option isparent="" value="20603:3222561">
+                    			拼色
+                    		</option>
+                    		                    		<option isparent="" value="20603:113019">
+                    			圆点
+                    		</option>
+                    		                    		<option isparent="" value="20603:14031880">
+                    			卡通动漫
+                    		</option>
+                    		                    		<option isparent="" value="20603:45571">
+                    			心形
+                    		</option>
+                    		                    		<option isparent="" value="20603:4258608">
+                    			涂鸦
+                    		</option>
+                    		                    		<option isparent="" value="20603:107622">
+                    			碎花
+                    		</option>
+                    		                    		<option isparent="" value="20603:29455">
+                    			手绘
+                    		</option>
+                    		                                    
+                    		<option value=""></option>
+                    	</select>
+                    	<span></span>
+                    	                    </li>
+                                                                        
+                                                                        
+                                                                        
+                                            					<li hidden_attr="1">
+						<label>卖家自编货号：</label>
+						<input name="input_str" maxlength="30" value="151158383110" type="text">
+						<em style="font-size:12px;font-style:normal;">默认货号最后2位是产品批发价格,方便你在经营中简单查询批发价格。</em>
+					</li>
+					<li hidden_attr="1">
+						<label>商家编码：</label>
+						<input name="outer_id" maxlength="40" value="金兰-1537791&amp;371" type="text">
+						<em style="font-size:12px;font-style:normal;">建议别修改此项，商家编码已加入干扰码，防止淘宝识别成同款。</em>
+					</li>
+					<li hidden_attr="1">
+						<label>上架时间：</label>
+						<ul>
+							<li><input name="approve_status" value="onsale" type="radio">立刻上架</li>
+							<li><input name="approve_status" value="schdule" type="radio">定时上架：
+							<select name="list_time_date">				
+                                								<option selected="selected" value="2014-11-15">2014年11月15日</option>												
+                                								<option value="2014-11-16">2014年11月16日</option>												
+                                								<option value="2014-11-17">2014年11月17日</option>												
+                                								<option value="2014-11-18">2014年11月18日</option>												
+                                								<option value="2014-11-19">2014年11月19日</option>												
+                                								<option value="2014-11-20">2014年11月20日</option>												
+                                								<option value="2014-11-21">2014年11月21日</option>												
+                                								<option value="2014-11-22">2014年11月22日</option>												
+                                								<option value="2014-11-23">2014年11月23日</option>												
+                                								<option value="2014-11-24">2014年11月24日</option>												
+                                								<option value="2014-11-25">2014年11月25日</option>												
+                                								<option value="2014-11-26">2014年11月26日</option>												
+                                								<option value="2014-11-27">2014年11月27日</option>												
+                                								<option value="2014-11-28">2014年11月28日</option>												
+                                								<option value="2014-11-29">2014年11月29日</option>												
+                                							</select>
+							<select name="list_time_hour">								
+                                								<option value="0">0</option>
+                                								<option value="1">1</option>
+                                								<option value="2">2</option>
+                                								<option value="3">3</option>
+                                								<option value="4">4</option>
+                                								<option value="5">5</option>
+                                								<option value="6">6</option>
+                                								<option value="7">7</option>
+                                								<option value="8">8</option>
+                                								<option value="9">9</option>
+                                								<option value="10">10</option>
+                                								<option value="11">11</option>
+                                								<option value="12">12</option>
+                                								<option value="13">13</option>
+                                								<option value="14" selected="selected">14</option>
+                                								<option value="15">15</option>
+                                								<option value="16">16</option>
+                                								<option value="17">17</option>
+                                								<option value="18">18</option>
+                                								<option value="19">19</option>
+                                								<option value="20">20</option>
+                                								<option value="21">21</option>
+                                								<option value="22">22</option>
+                                								<option value="23">23</option>
+                                							</select>时
+							<select name="list_time_minute">								
+                                								<option selected="selected" value="0">0</option>
+                                								<option value="5">5</option>
+                                								<option value="10">10</option>
+                                								<option value="15">15</option>
+                                								<option value="20">20</option>
+                                								<option value="25">25</option>
+                                								<option value="30">30</option>
+                                								<option value="35">35</option>
+                                								<option value="40">40</option>
+                                								<option value="45">45</option>
+                                								<option value="50">50</option>
+                                								<option value="55">55</option>
+                                							</select>分
+							</li>
+							<li><input checked="checked" name="approve_status" value="instock" type="radio">放入仓库中</li>
+						</ul>
+					</li>
+					<li>
+						<label>宝贝名称：</label>
+						<input value="1111111111111" name="title" size="80" maxlength="60" id="title" style="width:575px;" type="text">
+						<em id="TitleLen">还能输入<strong>24</strong>个字！</em>
+					</li>
+										<li>
+						<label>运费承担：</label>
+						<select name="freight_payer" id="freight_payer">
+							<option value="buyer" selected="selected">买家承担</option>
+							<option value="seller">卖家包邮</option>
+						</select>
+						<select name="postage_id" id="postage_id">	
+                            <option value="">-- 请选择运费模版：--</option>
+                            							<option selected="selected" value="849596360">靴子不包邮</option>
+                            							<option value="961297820">靴子超重</option>
+                            							<option value="420500610">不包邮</option>
+                            							<option value="1167322900">单鞋凉鞋不包邮</option>
+                            							<option value="827171640">特价包邮</option>
+                            							<option value="1075372400">部分地区包邮</option>
+                            							<option value="1271450970">靴子高帮鞋不包邮</option>
+                            							<option value="1047557300">靴子邮费10元起</option>
+                            						</select>
+						<a href="#" rel="delivery" class="cache" title="更新模板,会重新加载整个页面">刷新模板</a>  
+					</li>
+					<li>
+						<label>厂家批发价：</label>
+						<code>￥110元，系统默认加价30%，大码加价10到15元，此为发布产品的提示。</code>
+					</li>
+										<li>
+						<label>尺码提示：</label>
+						<code>34,35,36,37,38,39</code>
+					</li>
+										<li>
+						<label>颜色提示：</label>
+						<code>白色;黑色;棕色;</code>
+					</li>
+                    <!-- 颜色 -->
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                    <li hidden_attr="2">
+                            <label>颜色分类：</label>
+                            <ul>
+                                                                <li>
+                                    <input checked="checked" name="1627207[]" value="1627207:3232483" type="checkbox">
+                                    <label><input name="1627207:3232483_value" value="军绿色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:3232484" type="checkbox">
+                                    <label><input name="1627207:3232484_value" value="天蓝色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:3232481" type="checkbox">
+                                    <label><input name="1627207:3232481_value" value="巧克力色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:90554" type="checkbox">
+                                    <label><input name="1627207:90554_value" value="桔色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28332" type="checkbox">
+                                    <label><input name="1627207:28332_value" value="浅灰色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:30156" type="checkbox">
+                                    <label><input name="1627207:30156_value" value="浅绿色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:60092" type="checkbox">
+                                    <label><input name="1627207:60092_value" value="浅黄色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:3232482" type="checkbox">
+                                    <label><input name="1627207:3232482_value" value="深卡其布色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:3232478" type="checkbox">
+                                    <label><input name="1627207:3232478_value" value="深灰色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:3232479" type="checkbox">
+                                    <label><input name="1627207:3232479_value" value="深紫色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28340" type="checkbox">
+                                    <label><input name="1627207:28340_value" value="深蓝色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28320" type="checkbox">
+                                    <label><input name="1627207:28320_value" value="白色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:3232480" type="checkbox">
+                                    <label><input name="1627207:3232480_value" value="粉红色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:80882" type="checkbox">
+                                    <label><input name="1627207:80882_value" value="紫罗兰" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28329" type="checkbox">
+                                    <label><input name="1627207:28329_value" value="紫色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28326" type="checkbox">
+                                    <label><input name="1627207:28326_value" value="红色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28335" type="checkbox">
+                                    <label><input name="1627207:28335_value" value="绿色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:130164" type="checkbox">
+                                    <label><input name="1627207:130164_value" value="花色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28338" type="checkbox">
+                                    <label><input name="1627207:28338_value" value="蓝色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:132069" type="checkbox">
+                                    <label><input name="1627207:132069_value" value="褐色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:107121" type="checkbox">
+                                    <label><input name="1627207:107121_value" value="透明" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28327" type="checkbox">
+                                    <label><input name="1627207:28327_value" value="酒红色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28324" type="checkbox">
+                                    <label><input name="1627207:28324_value" value="黄色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                                <li>
+                                    <input name="1627207[]" value="1627207:28341" type="checkbox">
+                                    <label><input name="1627207:28341_value" value="黑色" title="填写颜色别名" type="text"></label>
+                                </li>
+                                                            </ul>
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                					
+                    </li><li>
+						<label>商家提示：</label>
+						<code>							<button type="button" id="promise" rel="446"> 查看服务承诺 </button>
+						</code>
+					</li>
+					
+					<input value="0" name="min_sale_price" type="hidden">
+                    <!-- 尺码&价格 -->
+										
+					
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                        <li hidden_attr="2">
+                            <label>*尺码：</label>
+                            <ul>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:33268" type="checkbox">
+                                    <label><input name="20549:33268_value" value="33" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:33268_price" value="153" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:30106" checked="checked" type="checkbox">
+                                    <label><input name="20549:30106_value" value="34" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:30106_price" value="143" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:670" checked="checked" type="checkbox">
+                                    <label><input name="20549:670_value" value="35" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:670_price" value="143" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:671" checked="checked" type="checkbox">
+                                    <label><input name="20549:671_value" value="36" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:671_price" value="143" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:29542" checked="checked" type="checkbox">
+                                    <label><input name="20549:29542_value" value="37" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:29542_price" value="143" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28388" checked="checked" type="checkbox">
+                                    <label><input name="20549:28388_value" value="38" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28388_price" value="143" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:672" checked="checked" type="checkbox">
+                                    <label><input name="20549:672_value" value="39" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:672_price" value="143" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28389" type="checkbox">
+                                    <label><input name="20549:28389_value" value="40" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28389_price" value="153" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28390" type="checkbox">
+                                    <label><input name="20549:28390_value" value="41" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28390_price" value="153" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28391" type="checkbox">
+                                    <label><input name="20549:28391_value" value="42" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28391_price" value="153" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28392" type="checkbox">
+                                    <label><input name="20549:28392_value" value="43" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28392_price" value="153" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28393" type="checkbox">
+                                    <label><input name="20549:28393_value" value="44" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28393_price" value="158" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28394" type="checkbox">
+                                    <label><input name="20549:28394_value" value="45" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28394_price" value="158" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28395" type="checkbox">
+                                    <label><input name="20549:28395_value" value="46" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28395_price" value="158" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                
+                                                                        
+                                                                        <li>
+                                    <input name="20549[]" value="20549:28396" type="checkbox">
+                                    <label><input name="20549:28396_value" value="47" title="填写尺码别名" type="text"></label>
+                                    <label><input name="20549:28396_price" value="158" title="填写产品价格" style="text-align:right;" type="text">元</label>
+                                </li>
+                                                            </ul>                                
+                        </li>
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                    		
+					<li>
+						<label>宝贝文字描述：</label>
+						<div id="bbmsinfo" style="float:left;width:800px;">
+							<div id="bbmsform"><div style="width: 800px;" class="ke-container ke-container-default"><div unselectable="on" class="ke-toolbar" style="display:block;"><span class="ke-outline" data-name="source" title="HTML代码" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-source" unselectable="on"></span></span><span class="ke-inline-block ke-separator"></span><span class="ke-outline" data-name="forecolor" title="文字颜色" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-forecolor" unselectable="on"></span></span><span class="ke-outline" data-name="hilitecolor" title="文字背景" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-hilitecolor" unselectable="on"></span></span><span class="ke-outline" data-name="fontname" title="字体" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-fontname" unselectable="on"></span></span><span class="ke-outline" data-name="fontsize" title="文字大小" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-fontsize" unselectable="on"></span></span><span class="ke-inline-block ke-separator"></span><span class="ke-outline" data-name="bold" title="粗体(Ctrl+B)" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-bold" unselectable="on"></span></span><span class="ke-outline" data-name="italic" title="斜体(Ctrl+I)" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-italic" unselectable="on"></span></span><span class="ke-outline" data-name="underline" title="下划线(Ctrl+U)" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-underline" unselectable="on"></span></span><span class="ke-outline" data-name="removeformat" title="删除格式" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-removeformat" unselectable="on"></span></span><span class="ke-inline-block ke-separator"></span><span class="ke-outline" data-name="justifyleft" title="左对齐" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-justifyleft" unselectable="on"></span></span><span class="ke-outline" data-name="justifycenter" title="居中" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-justifycenter" unselectable="on"></span></span><span class="ke-outline" data-name="justifyright" title="右对齐" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-justifyright" unselectable="on"></span></span><span class="ke-outline" data-name="insertorderedlist" title="编号" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-insertorderedlist" unselectable="on"></span></span><span class="ke-outline" data-name="insertunorderedlist" title="项目符号" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-insertunorderedlist" unselectable="on"></span></span><span class="ke-outline" data-name="link" title="超级链接" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-link" unselectable="on"></span></span></div><div class="ke-edit" style="display: block; height: 511px;"><iframe style="width: 100%; height: 511px;" class="ke-edit-iframe" hidefocus="true" frameborder="0"></iframe><textarea style="width: 100%; height: 511px; display: none;" class="ke-edit-textarea" hidefocus="true"></textarea></div><div class="ke-statusbar"><span class="ke-inline-block ke-statusbar-center-icon"></span><span style="visibility: hidden;" class="ke-inline-block ke-statusbar-right-icon"></span></div></div><textarea name="desc" id="ProductMemo" style="width: 800px; height: 550px; display: none;">&lt;p&gt;
+	品名；奇之恋&lt;br /&gt;
+&lt;br /&gt;
+货号；371&lt;br /&gt;
+&lt;br /&gt;
+颜色；黑色&amp;nbsp;.白色,棕色&lt;br /&gt;
+&lt;br /&gt;
+鞋面材质；优质&amp;nbsp; PU &amp;nbsp;&lt;br /&gt;
+&lt;br /&gt;
+内里材质；&lt;br /&gt;
+&lt;br /&gt;
+内里材质；绒毛里&lt;br /&gt;
+&lt;br /&gt;
+底材材质；防滑耐磨橡胶大底&lt;br /&gt;
+&lt;br /&gt;
+筒高；43.5厘米&lt;br /&gt;
+&lt;br /&gt;
+筒围；34厘米&lt;br /&gt;
+&lt;br /&gt;
+跟高；8,5厘米&lt;br /&gt;
+&lt;br /&gt;
+防水台：2厘米&lt;br /&gt;
+&lt;br /&gt;
+鞋楦；圆头&lt;br /&gt;
+&lt;br /&gt;
+价格；110元&lt;br /&gt;
+&lt;br /&gt;
+码号；34码----39码&lt;br /&gt;
+&lt;br /&gt;
+联系电话；15928052228&lt;br /&gt;
+&lt;br /&gt;
+联系地址;成都国际商贸城3区2楼1街&lt;br /&gt;
+&lt;br /&gt;
+22244号&lt;br /&gt;
+&lt;br /&gt;
+提示；本产品金花生产，质量保证
+&lt;/p&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504154260_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504154881_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504156442_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504157843_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504158314_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504159255_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041648611_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041634610_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504163159_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504162068_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504160507_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/201307251504160036_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041687612_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041693913_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041701714_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041712615_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041720416_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041728217_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041732918_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041736019_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/main!2013072515041742220_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041751621_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041779722_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041796823_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041849929_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041842128_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041804624_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041814025_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041818726_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041828027_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041870230_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041902932_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041885831_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041910733_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041913834_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041934135_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041938836_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041946637_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041954438_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041963839_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041971640_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041973141_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041995047_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041985646_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041985645_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041984044_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041982543_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041982542_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515041998148_550x550.jpg" /&gt;&lt;br /&gt;
+&lt;img src="http://static.ximgs.net/446/2013072515042007450_550x550.jpg" /&gt;&lt;br /&gt;</textarea></div>
+						</div>
+					</li>
+					<li>
+						<label></label>
+						<div style="font-size:16px;font-weight:bold;color:#f00;">从图片列表中选择图片，点击选择，再次点击取消，(图片将上传到您的淘宝图片空间，为节省容量，请谨慎选择)</div>
+					</li>
+					<li>
+						<label>选择图片尺寸：</label>
+						<ul>
+							<li><input value="false" name="imgsize" type="radio">图片尺寸（550*550，占用图片空间容量更少）&nbsp;</li>
+							<li><input value="true" name="imgsize" checked="checked" type="radio">图片尺寸（750*750，全尺寸图片）&nbsp;</li>
+						</ul>
+					</li>
+					
+					<li>
+						<label></label>
+						<div><span style="background:#f00;color:#ff0;">您的当前淘宝图片空间总容量：20.00G，剩余：16.38G</span></div>
+					</li>
+					<li>
+						<label>选择宝贝图片：</label>
+						<div id="bbmsinfo" style="float:left;width:800px;">
+							<div id="bbmslist"><script language="javascript">
+function initselect(){
+	var dds = document.getElementsByTagName("b");
+	for(var di = 0;di<dds.length;di++){
+		var dd = dds[di];
+		dd.id = di;
+		dd.onclick = ddclick;
+	}
+}
+
+function ddclick(){
+	var p = '';
+	var host = '';
+
+	if(req_url.indexOf("2mm.cn") >= 0){
+		p = 'http:\/\/thumb\.wl\.ximgs\.net(.*?)\.(jpg|png)';
+		host = 'http://static.wl.ximgs.net';
+	}else{
+		p = 'http:\/\/[thumb]+\.ximgs\.net(.*?)\.(jpg|png)';
+		host = 'http://static.ximgs.net';
+	}
+
+	if(this.className=="downselect"){
+		this.className="";
+		html=editor.html();
+		src=$(this).find('img').attr('src');
+		url=new RegExp(p,'i');
+		if(url.test(src)){
+			v = src.match(/(\/\d+\/.+)_[0-9x]+(\.[a-zA-Z]+)$/);
+			src = host + v[1] + '_550x550'+v[2];
+		}
+		re = new RegExp('<img src=\"'+src+'\" \/?>',"i");
+		editor.html(html.replace(re,''));
+	}else{
+		this.className="downselect";
+		src=$(this).find('img').attr('src');
+		url=new RegExp(p,'i');
+		if(url.test(src)){
+			v = src.match(/(\/\d+\/.+)_[0-9x]+(\.[a-zA-Z]+)$/);
+			src = host + v[1] + '_550x550'+v[2];
+		}
+		editor.html(editor.html()+'<img src="'+src+'"><br />');
+	}
+	//getproid();
+}
+
+function selectall(){
+	var dds = document.getElementsByTagName("b");
+	for(var di = 0;di<dds.length;di++){
+		var dd = dds[di];
+		if(dd.className!="downselect"){
+			dd.className="downselect";
+			editor.html(editor.html()+'<img src="'+$(dd).find('img').attr('src')+'">');
+		}
+	}
+	getproid();
+}
+
+function otherall(){
+	var dds = document.getElementsByTagName("b");
+	for(var di = 0;di<dds.length;di++){
+		var dd = dds[di];
+		if(dd.className=="downselect"){
+			dd.className="";
+			html=editor.html();
+			src=$(dd).find('img').attr('src');
+			re = new RegExp('<img src=\"'+src+'\" \/?>',"i");
+			editor.html(html.replace(re,''));
+		}else{
+			dd.className="downselect";
+			editor.html(editor.html()+'<img src="'+$(dd).find('img').attr('src')+'">');
+		}
+	}
+	getproid();
+}
+function getproid(){
+	var dds = document.getElementsByTagName("b");
+	var proidlist = ",";
+	for(var di = 0;di<dds.length;di++){
+		var dd = dds[di];
+		if(dd.className=="downselect"){
+			imgsrc = dd.innerHTML;
+			imgsrc = imgsrc.split("src=\"")[1];
+			imgsrc = imgsrc.split("\"")[0];
+			proidlist += "," + imgsrc;
+		}
+	}
+	if(proidlist.length<10){
+		document.taobaocsv.imglists.value = "";
+		alert("取消了所有的图片选择，将发布全部图片，注意选择编辑模式，修改文字说明。");
+		return false;
+	}
+	//document.taobaocsv.imglists.value = proidlist;
+}
+</script>
+ 
+    
+    <b class="downselect" id="0"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504154260_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="1"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504154881_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="2"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504156442_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="3"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504157843_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="4"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504158314_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="5"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504159255_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="6"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504160036_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="7"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504160507_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="8"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504162068_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="9"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/201307251504163159_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="10"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041634610_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="11"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041648611_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="12"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041687612_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="13"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041693913_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="14"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041701714_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="15"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041712615_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="16"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041720416_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="17"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041728217_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="18"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041732918_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="19"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041736019_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="20"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/main2013072515041742220_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="21"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041751621_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="22"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041779722_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="23"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041796823_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="24"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041804624_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="25"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041814025_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="26"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041818726_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="27"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041828027_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="28"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041842128_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="29"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041849929_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="30"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041870230_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="31"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041885831_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="32"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041902932_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="33"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041910733_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="34"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041913834_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="35"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041934135_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="36"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041938836_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="37"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041946637_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="38"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041954438_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="39"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041963839_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="40"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041971640_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="41"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041973141_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="42"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041982542_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="43"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041982543_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="44"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041984044_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="45"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041985645_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="46"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041985646_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="47"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041995047_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="48"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515041998148_120x120.jpg"></td></tr></tbody></table></b>
+    
+ 
+    
+    <b class="downselect" id="49"><table cellpadding="0" cellspacing="0"><tbody><tr><td><img src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/2013072515042007450_120x120.jpg"></td></tr></tbody></table></b>
+    
+     
+<script>initselect();</script></div>
+						</div>
+					</li>
+					<li>
+						<label>店铺分类：</label>
+						<dl class="seller_cat">
+                                                                                <dt><input disabled="disabled" name="seller_cids[]" value="787405235" type="checkbox"><span>靴子</span></dt>
+                                                                                                            <dd><input checked="checked" name="seller_cids[]" value="787405236" type="checkbox"><span>高跟靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="787405237" type="checkbox"><span>中跟靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="787405238" type="checkbox"><span>低跟靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="787405239" type="checkbox"><span>短筒靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="787405240" type="checkbox"><span>中筒靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="787405241" type="checkbox"><span>长筒靴</span></dd>
+                                                                                                            <dt><input disabled="disabled" name="seller_cids[]" value="822704679" type="checkbox"><span>特别推荐</span></dt>
+                                                                                                            <dd><input name="seller_cids[]" value="822704680" type="checkbox"><span>幸福婚靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="822704681" type="checkbox"><span>大筒围靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="825975890" type="checkbox"><span>时尚长靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="825975891" type="checkbox"><span>百搭短靴</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="825975892" type="checkbox"><span>平稳粗跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="825975893" type="checkbox"><span>洋气细跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="825975894" type="checkbox"><span>夜店之王</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="825975895" type="checkbox"><span>活动专供</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="825598688" type="checkbox"><span>潜力宝贝</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="832902768" type="checkbox"><span>潜力宝贝2</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="851929967" type="checkbox"><span>单鞋潜力宝贝</span></dd>
+                                                                                                            <dt><input disabled="disabled" name="seller_cids[]" value="708992083" type="checkbox"><span>店铺活动</span></dt>
+                                                                                                            <dd><input name="seller_cids[]" value="801492485" type="checkbox"><span>限时折扣</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="801492484" type="checkbox"><span>团购疯抢</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="801459719" type="checkbox"><span>靴子</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="805880454" type="checkbox"><span>精品推荐</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="805880455" type="checkbox"><span>超值疯抢</span></dd>
+                                                                                                            <dt><input disabled="disabled" name="seller_cids[]" value="705126811" type="checkbox"><span>单鞋</span></dt>
+                                                                                                            <dd><input name="seller_cids[]" value="705129871" type="checkbox"><span>超高(&gt;8cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705696939" type="checkbox"><span>超高细跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705696938" type="checkbox"><span>超高粗跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705696940" type="checkbox"><span>超高坡跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705129870" type="checkbox"><span>高跟（6-8cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705696941" type="checkbox"><span>高跟细跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705696942" type="checkbox"><span>高跟粗跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705696943" type="checkbox"><span>高跟坡跟</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705129869" type="checkbox"><span>中跟（3-5cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705129868" type="checkbox"><span>低跟（&lt;3cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705696937" type="checkbox"><span>平跟</span></dd>
+                                                                                                            <dt><input disabled="disabled" name="seller_cids[]" value="705126812" type="checkbox"><span>鱼嘴鞋</span></dt>
+                                                                                                            <dd><input name="seller_cids[]" value="705131495" type="checkbox"><span>低跟（&lt;3cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705131496" type="checkbox"><span>中跟（3-5cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705131497" type="checkbox"><span>高跟（6-8cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705131498" type="checkbox"><span>超高(&gt;8cm）</span></dd>
+                                                                                                            <dt><input disabled="disabled" name="seller_cids[]" value="705126813" type="checkbox"><span>凉鞋</span></dt>
+                                                                                                            <dd><input name="seller_cids[]" value="705131499" type="checkbox"><span>低跟（&lt;3cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705131500" type="checkbox"><span>中跟（3-5cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705131701" type="checkbox"><span>高跟（6-8cm）</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="705131702" type="checkbox"><span>超高(&gt;8cm）</span></dd>
+                                                                                                            <dt><input disabled="disabled" name="seller_cids[]" value="902172324" type="checkbox"><span>潜力宝贝一</span></dt>
+                                                                                                            <dd><input name="seller_cids[]" value="902172325" type="checkbox"><span>星期一上架</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="902172326" type="checkbox"><span>星期二上架</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="902172327" type="checkbox"><span>星期三上架</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="902172328" type="checkbox"><span>星期四上架</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="902172329" type="checkbox"><span>星期五上架</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="902172330" type="checkbox"><span>星期六上架</span></dd>
+                                                                                                            <dd><input name="seller_cids[]" value="902172331" type="checkbox"><span>星期日上架</span></dd>
+                                                                                                            <dt><input name="seller_cids[]" value="912280489" type="checkbox"><span>凉鞋精选1</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="915442527" type="checkbox"><span>凉鞋精选2</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="915444308" type="checkbox"><span>凉鞋精选3</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="932536765" type="checkbox"><span>靴子 要下架了吗？</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="932538483" type="checkbox"><span>凉鞋 要下架了吗？</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="932538484" type="checkbox"><span>拖鞋 要下架了吗？</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="932538485" type="checkbox"><span>高帮鞋 要下架了吗？</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="932538486" type="checkbox"><span>低帮鞋 要下架了吗？</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="945304015" type="checkbox"><span>靴子 2014正在热卖！</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="988479598" type="checkbox"><span>靴子精选1</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="988479599" type="checkbox"><span>靴子精选2</span></dt>
+                                                                                                            <dt><input name="seller_cids[]" value="988479600" type="checkbox"><span>靴子精选3</span></dt>
+                                                                            <a href="#" rel="delshopcache" class="cache" style="float:right" title="更新分类,会重新加载整个页面">刷新分类</a>                  
+						</dl>
+					</li>
+					<li>
+						<label></label>
+						<input id="csvbutton" value="　" type="submit">
+						<span style="float:left;padding-top:10px;padding-left:10px;">默认数据并不一定绝对正确，请尽量仔细检查核对！</span>
+					</li>
+				</ul>
+			</form>
+		</div>
+<div id="bottom"> 
+  <div id="bottom_box">
+<div style="float:right;bottom:0px;font-size:10px;color:#FFF">170</div>
+  </div>
+</div>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_002.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_006.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/jquery_008.js"></script>
+<script type="text/javascript" src="%E6%B7%98%E5%AE%9D%E4%BA%A7%E5%93%81%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0_files/a.js"></script>
+
+<script type="text/javascript">
+alert("亲，淘宝近期在严查标题关键词滥用及属性错误现象，请仔细检查属性和谨慎设置标题关键词，以免被淘宝处罚！");
+</script>
+<script type="text/javascript">
+	$('.cache').click(function(){
+		var rel = $(this).attr('rel');
+		$.get("/oauth/taobao/"+rel);
+		window.location.reload();
+	});
+
+	$('#promise').click(
+		function() {
+			var uid = $(this).attr('rel'); 
+			var messbox = new $.Message({
+	    		title:'服务承诺',
+	    		ismask:true,
+	    		icon:'none',
+	    		content: '',
+	    		width:500,
+	    		height:300,
+	    		button:{ ok:false,cancel:false }
+    		});
+
+        	$.get('/oauth/taobao/page_content/' + uid, 
+        		function(data){
+        			$(".message-content-txt").html(data);
+				}
+			);
+		}
+	);
+
+</script>
+
+
+<div style="z-index: 10000; left: 0px; top: 0px; opacity: 0.35; position: absolute; width: 1423px; height: 3906px; background: none repeat scroll 0% 0% rgb(0, 0, 0);" class="message-lay"></div><div style="z-index: 10001; left: 461.5px; top: 3383px; position: absolute; width: 500px; height: 300px;" class="message-box ui-draggable"><div class="message-title"><div class="message-title-txt">发布失败</div><a title="关闭" href="javascript:;" class="message-title-close"></a></div><table style="height: 273px;" class="message-content" height="100%" width="100%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="message-content-txt" align="left">发布到淘宝失败:&nbsp;发布超时,请减少图片重试</td></tr></tbody></table></div></body></html>

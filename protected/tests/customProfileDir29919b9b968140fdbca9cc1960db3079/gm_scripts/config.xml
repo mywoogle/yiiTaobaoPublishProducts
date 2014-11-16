@@ -1,0 +1,7 @@
+<UserScriptConfig>
+	<Script basedir="11" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="new alert" enabled="true" noframes="false" filename="11.user.js" installTime="1415534498054" modified="1415534557647" name="new alert" namespace="new alert" runAt="document-start" updateMetaStatus="unknown" uuid="34562fcc-3db0-4735-9ac8-f968f39bb1b2" version="1" installurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir29919b9b968140fdbca9cc1960db3079/gm_scripts/11/11.user.js" updateurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir29919b9b968140fdbca9cc1960db3079/gm_scripts/11/11.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+		<UserInclude>*</UserInclude>
+	</Script>
+</UserScriptConfig>

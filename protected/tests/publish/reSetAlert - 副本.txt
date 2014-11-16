@@ -1,0 +1,86 @@
+Greasemonkey
+scriptish
+reSetAlert
+
+// ==UserScript==
+// @name        new alert
+// @namespace   new alert
+// @description new alert
+// @version     1
+// @grant       none
+// @run-at document-start
+// ==/UserScript==
+
+var oldAlert = window.alert;
+window.alert = function(msg){
+  //oldAlert('it is ok!');
+  return true;
+}
+alert('111');
+
+
+
+
+纤美诺一予你美丽承诺
+pengjj&735$one
+
+
+
+java -jar s2.jar -firefoxProfilTemplate "C:\Users\Administrator\AppData\Local\Temp\customProfileDirf1b03e6872cd475793c62cead2b4818b"
+
+
+
+
+C:\Users\Administrator\AppData\Local\Temp\customProfileDirf1b03e6872cd475793c62cead2b4818b
+
+C:\Users\Administrator\AppData\Local\Temp\customProfileDir3e4a08a42ce4425296ac81053463a294
+
+
+
+
+
+
+
+java -jar s2.jar -firefoxProfileTemplate ""
+
+
+java -jar s2.jar -firefoxProfileTemplate "D:\e\selenium\firefoxProfile\publish5"
+
+
+
+
+在新的firefox中安装Greasemonkey
+并重启
+添加Greasemonkey脚本
+把所有的标签一个个的关闭
+复制tem下的firefoxProfile到其它目录下，会提示正在被使用，关闭s2.jar点击重试
+在默认的配置里面复制gm_scripts到刚刚复制的配置文件中
+用这个命令启动s2.jar      java -jar s2.jar -firefoxProfileTemplate "新配置文件的地址"
+
+
+java -jar s2.jar -firefoxProfileTemplate "D:\e\selenium\firefoxProfile\publish7"
+在登录前，首先要不相应的插件打开
+点击附件组件-》插件
+把下面几个改成总是激活
+Alipay security control
+Alipay Security Payment Client Suit
+Alipay webmod control
+npalicdo plugin
+
+
+
+
+http://www.go2.cn/product/publish/oagkig
+		
+http://www.go2.cn/user/login
+https://oauth.taobao.com/authorize?response_type=code&client_id=12462850&redirect_uri=http://eapi.ximgs.net/oauth/taobao/token/publish?view=web
+https://oauth.taobao.com/authorize?redirect_uri=http%3A%2F%2Feapi.ximgs.net%2Foauth%2Ftaobao%2Ftoken%2Fpublish%3Fview%3Dweb&client_id=12462850&response_type=code&timestamp=2014-11-15+08%3A20%3A26&sign=WeOZ38KTjmn7yNgUCzPBnA%3D%3D
+http://eapi.ximgs.net/oauth/taobao/publish?key=58f44bfd7fb17dc81363d36e02cc111b5c73b41aVFVUA1NQUgMHAQMHUFEAVQ1dDVBBEQ1YT0RHG1FWBBkBDUIXUFIEUFUBCVBHEV4BX10EAwpeVUVAHUgDCVNHFgUKHlJZC1IEVAZUUFpVCFJTVAUCVlJVUVNT
+
+
+
+
+
+
+
+

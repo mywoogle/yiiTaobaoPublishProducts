@@ -1,0 +1,300 @@
+m-server/driver/':
+PHP Warning:  include(PHPUnit_Extensions_Story_TestCase.php): failed to open str
+eam: No such file or directory in D:\wamp\www\yii\framework\YiiBase.php on line
+427
+PHP Stack trace:
+PHP   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+PHP   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4.3\phpunit:583
+PHP   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/php5.4.3/phpunit/p
+hpunit/TextUI/Command.php:132
+PHP   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin/php/php5.4.3/phpu
+nit/phpunit/TextUI/Command.php:179
+PHP   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+PHP   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+PHP   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+PHP   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+PHP   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar://D:/wamp/bin/php
+/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+PHP  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+PHP  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wamp/bin/php/php5.4.3
+/phpunit/phpunit/Util/Filter.php:105
+PHP  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/bin/php/php5.4.3/ph
+punit/phpunit/Util/Blacklist.php:74
+PHP  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Util/Bla
+cklist.php:91
+PHP  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Uti
+l/Blacklist.php:0
+
+Warning: include(PHPUnit_Extensions_Story_TestCase.php): failed to open stream:
+No such file or directory in D:\wamp\www\yii\framework\YiiBase.php on line 427
+
+Call Stack:
+    0.0129     225680   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+    0.0546     559200   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4
+.3\phpunit:583
+    0.0547     562784   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/
+php5.4.3/phpunit/phpunit/TextUI/Command.php:132
+    0.1736    3695032   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin
+/php/php5.4.3/phpunit/phpunit/TextUI/Command.php:179
+    0.2254    4096888   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+    0.2260    4097192   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+    0.2260    4097280   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+    0.2264    4097576   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+    0.2269    4097840   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar
+://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+    0.2282    4110280  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+    0.2291    4118976  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wam
+p/bin/php/php5.4.3/phpunit/phpunit/Util/Filter.php:105
+    0.2291    4119008  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/b
+in/php/php5.4.3/phpunit/phpunit/Util/Blacklist.php:74
+    0.2411    4673120  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpuni
+t/phpunit/Util/Blacklist.php:91
+    0.2411    4673424  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/p
+hpunit/phpunit/Util/Blacklist.php:0
+
+PHP Warning:  include(): Failed opening 'PHPUnit_Extensions_Story_TestCase.php'
+for inclusion (include_path='.;D:\wamp\www\blog\protected\components;D:\wamp\www
+\blog\protected\models;D:\wamp\bin\php\php5.4.3\pear') in D:\wamp\www\yii\framew
+ork\YiiBase.php on line 427
+PHP Stack trace:
+PHP   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+PHP   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4.3\phpunit:583
+PHP   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/php5.4.3/phpunit/p
+hpunit/TextUI/Command.php:132
+PHP   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin/php/php5.4.3/phpu
+nit/phpunit/TextUI/Command.php:179
+PHP   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+PHP   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+PHP   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+PHP   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+PHP   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar://D:/wamp/bin/php
+/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+PHP  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+PHP  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wamp/bin/php/php5.4.3
+/phpunit/phpunit/Util/Filter.php:105
+PHP  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/bin/php/php5.4.3/ph
+punit/phpunit/Util/Blacklist.php:74
+PHP  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Util/Bla
+cklist.php:91
+PHP  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Uti
+l/Blacklist.php:0
+
+Warning: include(): Failed opening 'PHPUnit_Extensions_Story_TestCase.php' for i
+nclusion (include_path='.;D:\wamp\www\blog\protected\components;D:\wamp\www\blog
+\protected\models;D:\wamp\bin\php\php5.4.3\pear') in D:\wamp\www\yii\framework\Y
+iiBase.php on line 427
+
+Call Stack:
+    0.0129     225680   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+    0.0546     559200   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4
+.3\phpunit:583
+    0.0547     562784   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/
+php5.4.3/phpunit/phpunit/TextUI/Command.php:132
+    0.1736    3695032   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin
+/php/php5.4.3/phpunit/phpunit/TextUI/Command.php:179
+    0.2254    4096888   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+    0.2260    4097192   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+    0.2260    4097280   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+    0.2264    4097576   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+    0.2269    4097840   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar
+://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+    0.2282    4110280  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+    0.2291    4118976  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wam
+p/bin/php/php5.4.3/phpunit/phpunit/Util/Filter.php:105
+    0.2291    4119008  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/b
+in/php/php5.4.3/phpunit/phpunit/Util/Blacklist.php:74
+    0.2411    4673120  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpuni
+t/phpunit/Util/Blacklist.php:91
+    0.2411    4673424  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/p
+hpunit/phpunit/Util/Blacklist.php:0
+
+
+Caused by
+RuntimeException: CURL error while accessing the Selenium Server at 'http://loca
+lhost:4444/selenium-server/driver/':
+
+
+FAILURES!
+Tests: 1, Assertions: 0, Errors: 1.
+
+D:\wamp\www\blog\protected\tests>d:/wamp/bin/php/php5.4.3/phpunit sp.php
+PHPUnit 4.0.17 by Sebastian Bergmann.
+
+You have installed PHPUnit via PEAR. This installation method is no longer
+supported and http://pear.phpunit.de/ will be shut down no later than
+December, 31 2014.
+
+Please read http://phpunit.de/manual/current/en/installation.html and
+learn how to use PHPUnit from a PHAR or install it via Composer.
+
+Configuration read from D:\wamp\www\blog\protected\tests\phpunit.xml
+
+E
+
+Time: 20.92 seconds, Memory: 4.25Mb
+
+There was 1 error:
+
+1) WebTest::testTitle
+
+CURL error while accessing the Selenium Server at 'http://localhost:4444/seleniu
+m-server/driver/':
+PHP Warning:  include(PHPUnit_Extensions_Story_TestCase.php): failed to open str
+eam: No such file or directory in D:\wamp\www\yii\framework\YiiBase.php on line
+427
+PHP Stack trace:
+PHP   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+PHP   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4.3\phpunit:583
+PHP   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/php5.4.3/phpunit/p
+hpunit/TextUI/Command.php:132
+PHP   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin/php/php5.4.3/phpu
+nit/phpunit/TextUI/Command.php:179
+PHP   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+PHP   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+PHP   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+PHP   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+PHP   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar://D:/wamp/bin/php
+/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+PHP  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+PHP  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wamp/bin/php/php5.4.3
+/phpunit/phpunit/Util/Filter.php:105
+PHP  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/bin/php/php5.4.3/ph
+punit/phpunit/Util/Blacklist.php:74
+PHP  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Util/Bla
+cklist.php:91
+PHP  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Uti
+l/Blacklist.php:0
+
+Warning: include(PHPUnit_Extensions_Story_TestCase.php): failed to open stream:
+No such file or directory in D:\wamp\www\yii\framework\YiiBase.php on line 427
+
+Call Stack:
+    0.0141     225680   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+    0.0544     559200   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4
+.3\phpunit:583
+    0.0544     562784   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/
+php5.4.3/phpunit/phpunit/TextUI/Command.php:132
+    0.1718    3695032   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin
+/php/php5.4.3/phpunit/phpunit/TextUI/Command.php:179
+   20.9258    4096904   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+   20.9269    4097208   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+   20.9270    4097296   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+   20.9277    4097592   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+   20.9285    4097856   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar
+://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+   20.9309    4110288  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+   20.9329    4119000  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wam
+p/bin/php/php5.4.3/phpunit/phpunit/Util/Filter.php:105
+   20.9329    4119032  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/b
+in/php/php5.4.3/phpunit/phpunit/Util/Blacklist.php:74
+   20.9533    4673144  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpuni
+t/phpunit/Util/Blacklist.php:91
+   20.9534    4673448  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/p
+hpunit/phpunit/Util/Blacklist.php:0
+
+PHP Warning:  include(): Failed opening 'PHPUnit_Extensions_Story_TestCase.php'
+for inclusion (include_path='.;D:\wamp\www\blog\protected\components;D:\wamp\www
+\blog\protected\models;D:\wamp\bin\php\php5.4.3\pear') in D:\wamp\www\yii\framew
+ork\YiiBase.php on line 427
+PHP Stack trace:
+PHP   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+PHP   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4.3\phpunit:583
+PHP   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/php5.4.3/phpunit/p
+hpunit/TextUI/Command.php:132
+PHP   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin/php/php5.4.3/phpu
+nit/phpunit/TextUI/Command.php:179
+PHP   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+PHP   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+PHP   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+PHP   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:/wamp/bin/php/php5
+.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+PHP   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar://D:/wamp/bin/php
+/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+PHP  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D:/wamp/bin/php/php
+5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+PHP  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wamp/bin/php/php5.4.3
+/phpunit/phpunit/Util/Filter.php:105
+PHP  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/bin/php/php5.4.3/ph
+punit/phpunit/Util/Blacklist.php:74
+PHP  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Util/Bla
+cklist.php:91
+PHP  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/Uti
+l/Blacklist.php:0
+
+Warning: include(): Failed opening 'PHPUnit_Extensions_Story_TestCase.php' for i
+nclusion (include_path='.;D:\wamp\www\blog\protected\components;D:\wamp\www\blog
+\protected\models;D:\wamp\bin\php\php5.4.3\pear') in D:\wamp\www\yii\framework\Y
+iiBase.php on line 427
+
+Call Stack:
+    0.0141     225680   1. {main}() D:\wamp\bin\php\php5.4.3\phpunit:0
+    0.0544     559200   2. PHPUnit_TextUI_Command::main() D:\wamp\bin\php\php5.4
+.3\phpunit:583
+    0.0544     562784   3. PHPUnit_TextUI_Command->run() phar://D:/wamp/bin/php/
+php5.4.3/phpunit/phpunit/TextUI/Command.php:132
+    0.1718    3695032   4. PHPUnit_TextUI_TestRunner->doRun() phar://D:/wamp/bin
+/php/php5.4.3/phpunit/phpunit/TextUI/Command.php:179
+   20.9258    4096904   5. PHPUnit_TextUI_ResultPrinter->printResult() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/TestRunner.php:427
+   20.9269    4097208   6. PHPUnit_TextUI_ResultPrinter->printErrors() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:169
+   20.9270    4097296   7. PHPUnit_TextUI_ResultPrinter->printDefects() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:314
+   20.9277    4097592   8. PHPUnit_TextUI_ResultPrinter->printDefect() phar://D:
+/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:243
+   20.9285    4097856   9. PHPUnit_TextUI_ResultPrinter->printDefectTrace() phar
+://D:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:254
+   20.9309    4110288  10. PHPUnit_Util_Filter::getFilteredStacktrace() phar://D
+:/wamp/bin/php/php5.4.3/phpunit/phpunit/TextUI/ResultPrinter.php:290
+   20.9329    4119000  11. PHPUnit_Util_Blacklist->isBlacklisted() phar://D:/wam
+p/bin/php/php5.4.3/phpunit/phpunit/Util/Filter.php:105
+   20.9329    4119032  12. PHPUnit_Util_Blacklist->initialize() phar://D:/wamp/b
+in/php/php5.4.3/phpunit/phpunit/Util/Blacklist.php:74
+   20.9533    4673144  13. class_exists() phar://D:/wamp/bin/php/php5.4.3/phpuni
+t/phpunit/Util/Blacklist.php:91
+   20.9534    4673448  14. YiiBase::autoload() phar://D:/wamp/bin/php/php5.4.3/p
+hpunit/phpunit/Util/Blacklist.php:0
+
+
+Caused by
+RuntimeException: CURL error while accessing the Selenium Server at 'http://loca
+lhost:4444/selenium-server/driver/':
+
+
+FAILURES!
+Tests: 1, Assertions: 0, Errors: 1.
+
+D:\wamp\www\blog\protected\tests>
