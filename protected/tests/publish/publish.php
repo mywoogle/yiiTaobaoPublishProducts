@@ -28,9 +28,10 @@ class newTest extends WebTestCase
 		
 		$productsList = array();
 		//在这里替换发布列表
-		$this->open("http://cxl.go2.cn/c4-1-0.go");
+		//$this->open("http://cxl.go2.cn/c4-1-0.go");
+		$this->open("http://dlqm.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/cxl.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/dlqm.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{
@@ -114,6 +115,25 @@ Eof;
 						$this->click("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input");
 					}
 				}
+				//$this->type("//div[@id='bbmsform']/div/div[2]/iframe/html/body", 'It is working!');
+				//$this->selectFrame("iframe");
+				/*
+selenium.selectFrame("//iframe[@class='ke-iframe']");
+
+selenium.type("//body[@class='ke-content']", "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十");
+
+selenium.selectFrame("relative=top");  //关键在于这一句了 selenium.selectFrame("relative=up");
+				*/
+				$this->selectFrame("//iframe[@class='ke-edit-iframe']");
+				$this->type("//body[@class='ke-content']", "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十");
+				$this->pause(30000);
+				$tem_detail_text = $this->getText("//body[@class='ke-content']");
+				file_put_contents('publish/reports/test.txt', $tem_detail_text);
+				$this->pause(30000);
+				$this->selectFrame("relative=top");
+				
+				
+				
 				//选择详情图片
 				$xiangTuCount = 0;
 				for($i=1; ;$i++)
