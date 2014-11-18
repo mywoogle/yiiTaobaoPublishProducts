@@ -124,11 +124,101 @@ selenium.type("//body[@class='ke-content']", "一二三四五六七八九十一�
 
 selenium.selectFrame("relative=top");  //关键在于这一句了 selenium.selectFrame("relative=up");
 				*/
+				$this->click("//div[@id='bbmsform']/div/div[1]/span[1]");
 				$this->selectFrame("//iframe[@class='ke-edit-iframe']");
-				$this->type("//body[@class='ke-content']", "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十");
-				$this->pause(30000);
-				$tem_detail_text = $this->getText("//body[@class='ke-content']");
-				file_put_contents('publish/reports/test.txt', $tem_detail_text);
+				//$this->type("//body[@class='ke-content']", "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十");
+				//$this->pause(30000);
+				$temText = $this->getText("//body[@class='ke-content']");
+				//file_put_contents('publish/reports/test.txt', $tem_detail_text);
+				
+		$finds=array(
+			'q',
+			'Q',
+			'电',
+			'话',
+			'地',
+			'址',
+			'厂',
+			'家',
+			"号",
+			'GO2',
+			'go2',
+			'代',
+			'传',
+			'真',
+			'联',
+			'系',
+			'手',
+			'机',
+			'品',
+			'牌',
+			'包装',
+			'鞋业',
+			'群',
+			'支付宝',
+			'商贸城',
+			'单',
+			'发',
+			'价',
+			);		
+				
+		$temTextArry  = explode("\n", $temText);
+		//file_put_contents('test.txt', $temText);
+		$temTextEnd = array();
+		foreach ($temTextArry as $item) 
+		{
+			if (trim($item) != '') 
+			{
+				foreach ($finds as $find) 
+				{
+					if (strpos($item, $find) !== false)
+					{
+						if (!in_array($item,$temTextEnd))
+						{
+							$temTextDel[] = trim($item)."\n";
+						}
+					}
+				}
+				if (!in_array($item,$temTextEnd))
+				{
+					$temTextAll[] = trim($item)."\n";
+				}
+			}
+		}
+		$temTextAll = array_flip($temTextAll);
+		$temTextAll = array_flip($temTextAll);
+		$temTextDel = array_flip($temTextDel);
+		$temTextDel = array_flip($temTextDel);
+		$temTextEnd = array_diff($temTextAll, $temTextDel);
+		$temTextEndNew = array();
+		foreach($temTextEnd as $item)
+		{
+			if(strpos($item,'加'))
+			{
+				preg_match_all('|(\d+)|',$item,$addPrices);
+				foreach ($addPrices[0] as $addPrice)
+				{
+					$temFlag = '加'.$addPrice.'元';
+					if (strpos($item,$temFlag)) 
+					{
+						$newTemFlag = '加'.$addPrice*2 .'元';
+						$item = str_replace($temFlag, $newTemFlag, $item);
+					}
+				}
+			}
+			if (!in_array($item,$temTextEndNew))
+			{
+				$temTextEndNew[] = trim($item)."<br>";
+			}
+		}
+		$typeContent = implode('',$temTextEndNew); 
+		//file_put_contents('test.txt', $temTextEndNew);
+		$this->type("//body[@class='ke-content']", $typeContent);	
+				
+
+				
+				
+				
 				$this->pause(30000);
 				$this->selectFrame("relative=top");
 				
@@ -150,6 +240,7 @@ selenium.selectFrame("relative=top");  //关键在于这一句了 selenium.selec
 					$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
 				}
 				//选择店铺分类
+				//$this->pause(3000000000000);
 				$this->click("//dl[@class='seller_cat']/dd[1]/input");
 				$this->click("//input [@id='csvbutton']");
 				
