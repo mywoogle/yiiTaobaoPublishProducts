@@ -115,21 +115,11 @@ Eof;
 						$this->click("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input");
 					}
 				}
-				//$this->type("//div[@id='bbmsform']/div/div[2]/iframe/html/body", 'It is working!');
-				//$this->selectFrame("iframe");
-				/*
-selenium.selectFrame("//iframe[@class='ke-iframe']");
+				
+				//过滤产品详情里面的文字内容
 
-selenium.type("//body[@class='ke-content']", "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十");
-
-selenium.selectFrame("relative=top");  //关键在于这一句了 selenium.selectFrame("relative=up");
-				*/
-				//$this->click("//div[@id='bbmsform']/div/div[1]/span[1]");
 				$this->selectFrame("//iframe[@class='ke-edit-iframe']");
-				//$this->type("//body[@class='ke-content']", "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十");
-				//$this->pause(30000);
 				$temText = $this->getText("//body[@class='ke-content']");
-				//file_put_contents('publish/reports/test.txt', $tem_detail_text);
 				
 		$finds=array(
 			'q',
@@ -163,7 +153,6 @@ selenium.selectFrame("relative=top");  //关键在于这一句了 selenium.selec
 			);		
 				
 		$temTextArry  = explode("\n", $temText);
-		//file_put_contents('test.txt', $temText);
 		$temTextEnd = array();
 		foreach ($temTextArry as $item) 
 		{
@@ -212,30 +201,13 @@ selenium.selectFrame("relative=top");  //关键在于这一句了 selenium.selec
 			}
 		}
 		$typeContent = implode('<br>',$temTextEndNew); 
-		//preg_replace("/(\d{4})(\d{3})/","$1***",$haoma);
-		//preg_match("/(?:1[3|4|5|8]d{1}|15[03689])d{8}$/",$str)
-		//preg_match('/[1-9]{1}[0-9]{5,12}/', $string)
-		//   $preg=preg_match('/^(d{3}-)(d{8})$|^(d{4}-)(d{7})$|^(d{4}-)(d{8})$/',$_POST['phone']);
-		//过滤座机号码
-		//$typeContent = preg_replace("/^(d{3}-)(d{8})$|^(d{4}-)(d{7})$|^(d{4}-)(d{8})$/","",$typeContent);
 		//过滤手机号码
 		$typeContent = preg_replace("/(?:1[3|4|5|8]d{1}|15[03689])d{8}$/","",$typeContent);
 		//过滤qq号码
 		$typeContent = preg_replace("/[1-9]{1}[0-9]{5,12}/","",$typeContent);
-		
-		//file_put_contents('test.txt', $typeContent);
-		//$this->type("//body[@class='ke-content']", "啊发生的发生的发发<br>adsfasdf啊速度发发");	
-		//$this->pause(30000);
 		$this->type("//body[@class='ke-content']", "$typeContent");	
-				
 
-				
-				$this->pause(30000);
 				$this->selectFrame("relative=top");
-				//$this->click("//div[@id='bbmsform']/div/div[1]/span[1]");
-				//$this->pause(300000000);
-				
-				
 				
 				//选择详情图片
 				$xiangTuCount = 0;
