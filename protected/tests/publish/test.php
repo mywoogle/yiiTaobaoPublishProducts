@@ -1,4 +1,5 @@
 <?php
+/*
 class newTest extends WebTestCase
 {
 	public function testSet()
@@ -15,3 +16,7 @@ class newTest extends WebTestCase
 		file_put_contents("publish/reports/test.txt",$tem);
 	}
 }
+*/
+$tem = '春兰鞋业-2237791&168-abc-123';
+$tem_end = preg_replace("/-[0-9]{5,12}&/is", "&", $tem); 
+echo $tem_end;

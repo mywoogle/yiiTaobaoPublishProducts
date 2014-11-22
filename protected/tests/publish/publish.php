@@ -292,7 +292,7 @@ Eof;
 				{
 					file_put_contents("$listReport","------确实发布成功了$target_taobao_id--", FILE_APPEND );
 					//添加到target数据库表里面
-					//$sellerTaobaoCode = $sellerCode
+					$sellerGo2Code = preg_replace("/-[0-9]{5,12}&/is", "&", $sellerCode); 
 					$myTarget = new Target();
 					$myTarget->target_taobao_id = $target_taobao_id;
 					$myTarget->target_taobao_attrs = '产品属性等待修改';
@@ -300,7 +300,7 @@ Eof;
 					$myTarget->target_taobao_title2 = '产品标题2等待修改';
 					$myTarget->target_taobao_title3 = '产品标题3等待修改';
 					$myTarget->target_taobao_sku = $sellerCode;
-					$myTarget->target_go2_sku = $sellerCode;
+					$myTarget->target_go2_sku = $sellerGo2Code;
 					$myTarget->target_title_search = 0;//target_title_search可以为0没有搜索,1,2，3标示进行了1,2,3次搜索
 					$myTarget->target_title_used = 0;//target_title_used只能是0:没有使用，1:已经使用
 					$myTarget->source_taobao_id1 = $target_taobao_id;
