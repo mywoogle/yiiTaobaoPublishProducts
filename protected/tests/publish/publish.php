@@ -29,9 +29,10 @@ class newTest extends WebTestCase
 		$productsList = array();
 		//在这里替换发布列表
 		//$this->open("http://cxl.go2.cn/c4-1-0.go");
-		$this->open("http://dlqm.go2.cn/c4-1-0.go");
+		//$this->open("http://dlqm.go2.cn/c4-1-0.go");
+		$this->open("http://chunlan.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/dlqm.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/chunlan.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{
@@ -91,12 +92,16 @@ Eof;
 				{
 					$this->click("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img");
 				}
+				//获取商家编码
+				$sellerCode = $this->getValue("//ul[@id='shoesform']/li[20]/input");
+				file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
 				//选择上架时间-
 				$this->click("//input[@value='instock']");
 				//输入宝贝名称-
 				$this->type("//input[@name='title']", "时尚女鞋");
 				//选择运费模板
 				$this->select("postage_id","value=1271450970");
+				
 				//选择颜色
 				$colors = $this->getText("//ul[@id='shoesform']/li[26]/code");
 				$colors = explode(";",$colors);
@@ -234,6 +239,7 @@ Eof;
 				
 				$giveUp = false;
 				$success = false;
+				$target_taobao_id = '';
 
 				while($giveUp == false && $success == false)
 				{
@@ -255,10 +261,17 @@ Eof;
 					{
 						//上传完成
 						$success = true;
+						//获取发布成功的淘宝Id
+						$js = 'window.location.search';
+						$tem = $this->getEval($js);
+						$tem = explode('&num_iid=', $tem );
+						$tem = $tem[1];
+						$tem = explode('&url=', $tem );
+						$target_taobao_id = $tem[0];
+						file_put_contents("publish/reports/test.txt",$target_taobao_id, FILE_APPEND );
 					}
 					$this->pause(10000);
 				}
-				
 				//----------------------------upload end------------------------------------------
 				//----------------------------Confirmation has been successfully posted,start-------------
 				
@@ -277,7 +290,26 @@ Eof;
 				$temTex = $this->getText("//dd[@id='productbtn']/a[1]");
 				if($temTex == "已发布到淘宝")
 				{
-					file_put_contents("$listReport","------确实发布成功了", FILE_APPEND );
+					file_put_contents("$listReport","------确实发布成功了$target_taobao_id--", FILE_APPEND );
+					//添加到target数据库表里面
+					//$sellerTaobaoCode = $sellerCode
+					$myTarget = new Target();
+					$myTarget->target_taobao_id = $target_taobao_id;
+					$myTarget->target_taobao_attrs = '产品属性等待修改';
+					$myTarget->target_taobao_title1 = '产品标题1等待修改';
+					$myTarget->target_taobao_title2 = '产品标题2等待修改';
+					$myTarget->target_taobao_title3 = '产品标题3等待修改';
+					$myTarget->target_taobao_sku = $sellerCode;
+					$myTarget->target_go2_sku = $sellerCode;
+					$myTarget->target_title_search = 0;//target_title_search可以为0没有搜索,1,2，3标示进行了1,2,3次搜索
+					$myTarget->target_title_used = 0;//target_title_used只能是0:没有使用，1:已经使用
+					$myTarget->source_taobao_id1 = $target_taobao_id;
+					$myTarget->source_taobao_id2 = $target_taobao_id;
+					$myTarget->source_taobao_id3 = $target_taobao_id;
+					$myTarget->source_taobao_keyword1 = '淘宝搜索关键词1等待修改';
+					$myTarget->source_taobao_keyword2 = '淘宝搜索关键词1等待修改';
+					$myTarget->source_taobao_keyword3 = '淘宝搜索关键词1等待修改';
+					$myTarget->save();
 				}else
 				{
 					file_put_contents("$listReport","------未知的发布失败原因", FILE_APPEND );

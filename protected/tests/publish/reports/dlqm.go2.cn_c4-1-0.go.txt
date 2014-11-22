@@ -29,3 +29,5 @@ http://www.go2.cn/product/ekmio.go?_page=home&_pos=1&_cat=all&_type=txt------已
 http://www.go2.cn/product/eecko.go?_page=home&_pos=2&_cat=all&_type=txt------必填属性不完整------未知的发布失败原因
 http://www.go2.cn/product/ekmio.go?_page=home&_pos=1&_cat=all&_type=txt------已经发布过了或者没有参数列表
 http://www.go2.cn/product/eecko.go?_page=home&_pos=2&_cat=all&_type=txt------已经等待了10min------未知的发布失败原因
+http://www.go2.cn/product/ekmio.go?_page=home&_pos=1&_cat=all&_type=txt------已经发布过了或者没有参数列表
+http://www.go2.cn/product/eecko.go?_page=home&_pos=2&_cat=all&_type=txt
