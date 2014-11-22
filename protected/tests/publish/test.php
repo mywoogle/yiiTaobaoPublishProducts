@@ -1,6 +1,17 @@
 <?php
-$typeContent = "aa15828270957bbbb917595913cc0731-88888888";
-$typeContent = preg_replace("/^(((d{3}))|(d{3}-))?((0d{2,3})|0d{2,3}-)?[1-9]d{6,8}$/","",$typeContent);
-		//$typeContent = preg_replace("/(?:1[3|4|5|8]d{1}|15[03689])d{8}$/","",$typeContent);
-		//$typeContent = preg_replace("/[1-9]{1}[0-9]{5,12}/","",$typeContent);
-		print $typeContent;
+class newTest extends WebTestCase
+{
+	public function testSet()
+	{
+		$this->open("http://eapi.ximgs.net/oauth/taobao/post/25142?up=4&index=1&num_iid=42538209807&url=www.go2.cn");
+		//$this->pause(5000);
+		$js = 'window.location.search';
+		//$js = 'location.search';
+		$tem = $this->getEval($js);
+		$tem = explode('&num_iid=', $tem );
+		$tem = $tem[1];
+		$tem = explode('&url=', $tem );
+		$tem = $tem[0];
+		file_put_contents("publish/reports/test.txt",$tem);
+	}
+}
