@@ -94,7 +94,7 @@ Eof;
 				}
 				//获取商家编码
 				$sellerCode = $this->getValue("//ul[@id='shoesform']/li[20]/input");
-				file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
+				//file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
 				//选择上架时间-
 				$this->click("//input[@value='instock']");
 				//输入宝贝名称-
@@ -268,7 +268,7 @@ Eof;
 						$tem = $tem[1];
 						$tem = explode('&url=', $tem );
 						$target_taobao_id = $tem[0];
-						file_put_contents("publish/reports/test.txt",$target_taobao_id, FILE_APPEND );
+						//file_put_contents("publish/reports/test.txt",$target_taobao_id, FILE_APPEND );
 					}
 					$this->pause(10000);
 				}
@@ -290,7 +290,7 @@ Eof;
 				$temTex = $this->getText("//dd[@id='productbtn']/a[1]");
 				if($temTex == "已发布到淘宝")
 				{
-					file_put_contents("$listReport","------确实发布成功了$target_taobao_id--", FILE_APPEND );
+					file_put_contents("$listReport","------确实发布成功了", FILE_APPEND );
 					//添加到target数据库表里面
 					$sellerGo2Code = preg_replace("/-[0-9]{5,12}&/is", "&", $sellerCode); 
 					$myTarget = new Target();
