@@ -55,7 +55,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=myblog',
+			'connectionString' => 'mysql:host=localhost;dbname=go2_publish_taobao',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
