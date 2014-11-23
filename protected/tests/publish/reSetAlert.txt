@@ -146,5 +146,13 @@ http://eapi.ximgs.net/oauth/taobao/post/25142?up=4&index=1&num_iid=42538209807&u
 	
 	
 	
+	http://s.taobao.com/search?sort=sale-desc&tab=all&q=%C5%AE%D1%A5&s=44
+	
+	http://s.taobao.com/search?sort=sale-desc&tab=all&q=Ůѥ&s=44
+	
+	
+	
+	
+	
 	
 
