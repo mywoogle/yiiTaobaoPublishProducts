@@ -10,45 +10,68 @@ class newTest extends WebTestCase
 		$criteria->params = array(':target_title_search'=>0);
 		$taobaoIds = Target::model()->findAll($criteria);
 		$taobaoIdsNew = array();
-		foreach ($taobaoIds as $taobaoId){  
+		foreach ($taobaoIds as $taobaoId)
+		{  
             $taobaoIdsNew[] = $taobaoId['target_taobao_id'];  
 		}
 		//print_r($taobaoIds);
 		//$this->pause(50000);
-		file_put_contents("publish/reports/test.txt",$taobaoIdsNew);
-		/*
-		$this->open("http://eapi.ximgs.net/oauth/taobao/post/25142?up=4&index=1&num_iid=42538209807&url=www.go2.cn");
-		//$this->pause(5000);
-		$js = 'window.location.search';
-		//$js = 'location.search';
-		$tem = $this->getEval($js);
-		$tem = explode('&num_iid=', $tem );
-		$tem = $tem[1];
-		$tem = explode('&url=', $tem );
-		$tem = $tem[0];
-		file_put_contents("publish/reports/test.txt",$tem);
-		*/
-	}
-}
-/*
-class newTest extends WebTestCase
-{
-	public function testSet()
-	{
-		$this->open("http://eapi.ximgs.net/oauth/taobao/post/25142?up=4&index=1&num_iid=42538209807&url=www.go2.cn");
-		//$this->pause(5000);
-		$js = 'window.location.search';
-		//$js = 'location.search';
-		$tem = $this->getEval($js);
-		$tem = explode('&num_iid=', $tem );
-		$tem = $tem[1];
-		$tem = explode('&url=', $tem );
-		$tem = $tem[0];
-		file_put_contents("publish/reports/test.txt",$tem);
+		//file_put_contents("publish/reports/test.txt",$taobaoIdsNew);
+		$taobaoAttrsTitles = array(
+			'帮面材质',
+			'内里材质',
+			'开口深度',
+			'鞋头款式',
+			'跟高',
+			'鞋跟款式',
+			'市年份季节',
+			'风格',
+			'皮质特征',
+			'鞋底材质',
+			'流行元素',
+			'闭合方式',
+			'图案'
+		);
+		$flag = 0;
+		foreach($taobaoIdsNew as $taobaoIdNew)
+		{
+$js = <<<Eof
+	var target=document.getElementById("lg");  
+	var a=document.createElement("a");  
+	a.id="myProduct"; 
+	a.href="http://item.taobao.com/item.htm?id=$taobaoIdNew";
+	a.innerHTML="Tem product";
+	target.appendChild(a);  
+Eof;
+			$this->open("http://www.baidu.com/");
+			$this->runScript($js);
+			$this->click("//a [@id='myProduct']");
+			$this->waitForElementPresent ("//div[@id='attributes']/ul");
+			//$this->isElementPresent("//ul[@id='propsul']/li[1]");
+			$taobaoAttrsTem = array();
+			for($i=1;$i<=30;$i++)
+			{
+				if($this->isElementPresent("//div[@id='attributes']/ul/li[$i]"))
+				{
+					$temAttr = $this->getText("//div[@id='attributes']/ul/li[$i]");
+					$temAttrItem = explode(':', $temAttr);
+					$temAttrTitle = $temAttrItem[0];
+					$temAttrValue = trim($temAttrItem[1]);
+					if(in_array($temAttrTitle, $taobaoAttrsTitles))
+					{
+						$taobaoAttrsTem[] = $temAttrTitle . ':' . $temAttrValue;
+						$flag++;
+					}
+				}else
+				{
+					$i = 100;
+				}
+			}
+			$taobaoAttrsTemString = implode("|woogle!@#$%^&*split|", $taobaoAttrsTem);
+			//file_put_contents("publish/reports/test.txt",$taobaoAttrsTemString."\n", FILE_APPEND);
+			
+			
+		}
 	}
 }
 
-$tem = '春兰鞋业-2237791&168-abc-123';
-$tem_end = preg_replace("/-[0-9]{5,12}&/is", "&", $tem); 
-echo $tem_end;
-*/
