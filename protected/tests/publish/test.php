@@ -5,7 +5,7 @@ class newTest extends WebTestCase
 	public function testSet()
 	{
 		//http://item.taobao.com/item.htm?id=36970792263
-		/*
+		
 		$criteria = new CDbCriteria;
 		$criteria->select = 'target_taobao_id';
 		$criteria->condition = 'target_title_search=:target_title_search';
@@ -70,19 +70,19 @@ Eof;
 				}
 			}
 			$taobaoAttrsTemString = implode("|woogle!@#$%^&*split|", $taobaoAttrsTem);
-			//file_put_contents("publish/reports/test.txt",$taobaoAttrsTemString."\n", FILE_APPEND);
+			file_put_contents("publish/reports/test.txt",$taobaoAttrsTemString."\n", FILE_APPEND);
 
 			
 			//$count =Admin::model()->updateAll(array('username'=>'11111','password'=>'11111'),'password=:pass',array(':pass'=>'1111a1')); 
 			//Post::model()->updateAll ($attributes,$condition,$params);
 			//target_title_search
-			Target::model()->updateAll(array('target_taobao_attrs'=>$taobaoAttrsTemString, 'target_title_search'=>1),'target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$taobaoIdNew)); 
+			Target::model()->updateAll(array('target_taobao_attrs'=>$taobaoAttrsTemString, 'target_title_search'=>0),'target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$taobaoIdNew)); 
 			
 			//file_put_contents("publish/reports/test.txt",$taobaoIdNew."\n", FILE_APPEND)
 
 
 		}
-		*/
+		
 		//---------------------search start.-----------------
 		//get all taobaoId in dataBase
 		$criteria = new CDbCriteria;
@@ -107,12 +107,12 @@ Eof;
 		$temSourceTaobaoIds = array();
 		$keys = array(
 			'女靴',
-			'靴子',
+			//'靴子',
 		);
 		foreach($keys as $key)
 		{
 			//http://s.taobao.com/search?sort=sale-desc&tab=all&q=女靴&s=44
-			for($i=0;$i<7;$i++)
+			for($i=0;$i<1;$i++)
 			{
 				$page = $i*44;
 				$taobaoUrl = "http://s.taobao.com/search?sort=sale-desc&tab=all&q=$key&s=$page";
@@ -128,23 +128,85 @@ Eof;
 				{
 					$temTBHref = $this->getAttribute("//div[@id='mainsrp-itemlist']/div/div/div/div[$j]/div[3]/a/@href");
 					//http://item.taobao.com/item.htm?spm=a230r.1.14.5.ISqJpL&id=41102878556&ns=1&abbucket=13#detail
-					preg_match('/id=[0-9]{10,12}/is', $temTBHref, $temTBId);
-					$temTBIdNew = str_replace('id=','',$temTBId[0]);
-					//file_put_contents("publish/reports/test.txt",$temTBIdNew ."\n", FILE_APPEND);
-					if(!in_array($temTBIdNew,$taobaoIdsDataBaseEnd))
+					//http://detail.tmall.com/item.htm?spm=a230r.1.14.9.ZobnxU&id=35052766274&abbucket=13
+					if(strpos($temTBHref,'http://item.taobao.com/item.htm') !== false)
 					{
-						$temSourceTaobaoIds[] = $temTBIdNew;
+						preg_match('/id=[0-9]{10,12}/is', $temTBHref, $temTBId);
+						$temTBIdNew = str_replace('id=','',$temTBId[0]);
+						//file_put_contents("publish/reports/test.txt",$temTBIdNew ."\n", FILE_APPEND);
+						if(!in_array($temTBIdNew,$taobaoIdsDataBaseEnd))
+						{
+							$temSourceTaobaoIds[] = $temTBIdNew;
+						
+						}
 					}
 				}
-				/*
-				$temSourceTaobaoIds1 = implode('-',$temSourceTaobaoIds);
+				
+				$temSourceTaobaoIds1 = implode('---',$temSourceTaobaoIds);
 				file_put_contents("publish/reports/test.txt",$temSourceTaobaoIds1 ."\n", FILE_APPEND);
-				$this->pause(50000000);
-				*/
+				//$this->pause(50000000);
+				
 			}
 		}
 		
 		//对比属性是否相等
+		//获取待搜索的对象
+		$criteria = new CDbCriteria;
+		$criteria->select = '*';
+		$criteria->condition = 'target_title_search=:target_title_search';
+		$criteria->params = array(':target_title_search'=>0);
+		$taobaoObjects = Target::model()->findAll($criteria);
+
+		
+		foreach($temSourceTaobaoIds as $temSourceTaobaoId)
+		{
+$js = <<<Eof
+	var target=document.getElementById("lg");  
+	var a=document.createElement("a");  
+	a.id="myProduct"; 
+	a.href="http://item.taobao.com/item.htm?id=$temSourceTaobaoId";
+	a.innerHTML="Tem product";
+	target.appendChild(a);  
+Eof;
+			$this->open("http://www.baidu.com/");
+			$this->runScript($js);
+			$this->click("//a [@id='myProduct']");
+			$this->waitForElementPresent ("//div[@id='attributes']/ul");
+			//$this->isElementPresent("//ul[@id='propsul']/li[1]");
+			$taobaoSourceAttrsTem = array();
+			for($i=1;$i<=30;$i++)
+			{
+				if($this->isElementPresent("//div[@id='attributes']/ul/li[$i]"))
+				{
+					$temAttr = $this->getText("//div[@id='attributes']/ul/li[$i]");
+					$temAttrItem = explode(':', $temAttr);
+					$temAttrTitle = $temAttrItem[0];
+					$temAttrValue = trim($temAttrItem[1]);
+					if(in_array($temAttrTitle, $taobaoAttrsTitles))
+					{
+						$taobaoSourceAttrsTem[] = $temAttrTitle . ':' . $temAttrValue;
+						$flag++;
+					}
+				}else
+				{
+					$i = 100;
+				}
+			}
+			$taobaoSourceAttrsTemString = implode("|woogle!@#$%^&*split|", $taobaoSourceAttrsTem);
+			file_put_contents("publish/reports/test.txt",$taobaoSourceAttrsTemString ."\n", FILE_APPEND);
+			foreach($taobaoObjects as $taobaoObject)
+			{
+				$taobaoObjectAttrsTem = explode('|woogle!@#$%^&*split|',$taobaoObject['target_taobao_attrs']);
+				//array_diff($a1,$a2)
+				file_put_contents("publish/reports/test.txt",'-----------------------------------' ."\n", FILE_APPEND);
+				//if(count($taobaoSourceAttrsTem)==count($taobaoObjectAttrsTem)&&array_diff($taobaoSourceAttrsTem,$taobaoObjectAttrsTem)==array_diff($taobaoObjectAttrsTem,$taobaoSourceAttrsTem))
+				if(count($taobaoSourceAttrsTem)==count($taobaoObjectAttrsTem))
+				{
+					file_put_contents("publish/reports/test.txt",$temSourceTaobaoId ."\n", FILE_APPEND);
+				}
+			}
+			
+		}
 		
 			
 			

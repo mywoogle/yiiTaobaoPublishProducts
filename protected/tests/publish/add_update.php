@@ -74,7 +74,7 @@ Eof;
 			//$count =Admin::model()->updateAll(array('username'=>'11111','password'=>'11111'),'password=:pass',array(':pass'=>'1111a1')); 
 			//Post::model()->updateAll ($attributes,$condition,$params);
 			//target_title_search
-			Target::model()->updateAll(array('target_taobao_attrs'=>$taobaoAttrsTemString, 'target_title_search'=>1),'target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$taobaoIdNew)); 
+			Target::model()->updateAll(array('target_taobao_attrs'=>$taobaoAttrsTemString, 'target_title_search'=>0),'target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$taobaoIdNew)); 
 			
 			//file_put_contents("publish/reports/test.txt",$taobaoIdNew."\n", FILE_APPEND);
 			
