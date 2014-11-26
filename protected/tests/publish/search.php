@@ -1,8 +1,7 @@
 <?php
-include 'phpQuery.php';  
-class newTest extends WebTestCase
+class go2PublishTaobao extends WebTestCase
 {
-	public function testSet()
+	public function testPublish()
 	{
 		$taobaoAttrsTitles = array(
 			'靴筒内里材质',
@@ -30,9 +29,9 @@ class newTest extends WebTestCase
 			'女靴',
 			//'靴子',
 		);
+		
 		foreach($keys as $key)
 		{
-			//http://s.taobao.com/search?sort=sale-desc&tab=all&q=女靴&s=44
 			for($i=0;$i<1;$i++)
 			{
 				$page = $i*44;
@@ -41,34 +40,22 @@ class newTest extends WebTestCase
 				for($j=1;$j<=44;$j++)
 				{
 					$temTBHref = $this->getAttribute("//div[@id='mainsrp-itemlist']/div/div/div/div[$j]/div[3]/a/@href");
-					//http://item.taobao.com/item.htm?spm=a230r.1.14.5.ISqJpL&id=41102878556&ns=1&abbucket=13#detail
-					//http://detail.tmall.com/item.htm?spm=a230r.1.14.9.ZobnxU&id=35052766274&abbucket=13
 					if(strpos($temTBHref,'http://item.taobao.com/item.htm') !== false)
 					{
 						preg_match('/id=[0-9]{10,12}/is', $temTBHref, $temTBId);
 						$temTBIdNew = str_replace('id=','',$temTBId[0]);
-						//file_put_contents("publish/reports/test.txt",$temTBIdNew ."\n", FILE_APPEND);
 						$temSourceTaobaoIds[] = $temTBIdNew;
 					}
 				}
-				
-				$temSourceTaobaoIds1 = implode('---',$temSourceTaobaoIds);
-				file_put_contents("publish/reports/test.txt",$temSourceTaobaoIds1 ."\n", FILE_APPEND);
-				//$this->pause(50000000);
-				
 			}
 		}
 		
-		//对比属性是否相等
-		//获取待搜索的对象
+		//获取淘宝属性并存入数据库
 		foreach($temSourceTaobaoIds as $temSourceTaobaoId)
 		{
-		$tem = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$temSourceTaobaoId));
-file_put_contents("publish/reports/test.txt",$tem['taobao_source_taobao_id'] ."\n", FILE_APPEND);
-			if(!$tem['taobao_source_taobao_id'])
+			$temResult = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$temSourceTaobaoId));
+			if(!$temResult['taobao_source_taobao_id'])
 			{
-			
-			
 $js = <<<Eof
 	var target=document.getElementById("lg");  
 	var a=document.createElement("a");  
@@ -81,7 +68,6 @@ Eof;
 				$this->runScript($js);
 				$this->click("//a [@id='myProduct']");
 				$this->waitForElementPresent ("//div[@id='attributes']/ul");
-				//$this->isElementPresent("//ul[@id='propsul']/li[1]");
 				$taobaoSourceAttrsTem = array();
 				$taobao_source_taobao_id = $temSourceTaobaoId;
 				$xuetongneilicaizhi=$xuetongcaizhi=$shangshinianfenjijie=$fengge=$bangmiancaizhi=$xuemianneilicaizhi=$pizhitezhi=$xiedicaizhi=$xuekuanpingming=$tonggao=$xietongkuanshi=$genggao=$xiegengkuanshi=$bihefangshi=$liuxingyuansu=$zhizhuogongyi=$tuan=$shehejijie='等待修改';
@@ -153,17 +139,15 @@ Eof;
 									$shehejijie = $temAttrValue;
 									break; 
 							}
-							
 						}
 					}else
 					{
 						$i = 100;
 					}
 				}
-				
+				//把淘宝属性存入数据库
 				$taobaoSource = new TaobaoSource();
 				$taobaoSource->taobao_source_taobao_id = $taobao_source_taobao_id;
-				//$this->pause(1000000000);
 				$taobao_source_taobao_title = $this->getText("//div[@id='J_Title']/h3");
 				$taobaoSource->taobao_source_taobao_title = $taobao_source_taobao_title;
 				$taobaoSource->xuetongneilicaizhi = $xuetongneilicaizhi;
@@ -185,17 +169,8 @@ Eof;
 				$taobaoSource->tuan = $tuan;
 				$taobaoSource->shehejijie = $shehejijie;
 				$taobaoSource->save();
-				$taobaoSourceAttrsTemString = implode("|woogle!@#$%^&*split|", $taobaoSourceAttrsTem);
 				//file_put_contents("publish/reports/test.txt",$taobaoSourceAttrsTemString ."\n", FILE_APPEND);
 			}
 		}
-		
-			
-			
-			
-			
-		//---------------------search end.-----------------           
-
 	}
 }
-
