@@ -87,6 +87,68 @@ http://eapi.ximgs.net/oauth/taobao/post/25142?up=4&index=1&num_iid=42538209807&u
     价格区间: 101-200元
     图案: 纯色
 
+	
+	
+	
+				'靴筒内里材质',
+			'靴筒材质',
+			'上市年份季节',
+			'风格',
+			'帮面材质',
+			'鞋面内里材质',
+			'皮质特征',
+			'鞋底材质',
+			'靴款品名',
+			'筒高',
+			'鞋头款式',
+			'跟高',
+			'鞋跟款式',
+			'闭合方式',
+			'流行元素',
+			'制作工艺',
+			'图案',
+			'适合季节',
+			
+$xuetongneilicaizhi=$xuetongcaizhi=$shangshinianfenjijie=$fengge=$bangmiancaizhi=$xuemianneilicaizhi=$pizhitezhi=$xiedicaizhi=$xuekuanpingming=$tonggao=$xietongkuanshi=$genggao=$xiegengkuanshi=$bihefangshi=$liuxingyuansu=$zhizhuogongyi=$tuan=$shehejijie='等待修改';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$xuetongneilicaizhi
+=$xuetongcaizhi=
+$shangshinianfenjijie=
+$fengge=
+$bangmiancaizhi
+=$xuemianneilicaizhi=
+$pizhitezhi=
+$xiedicaizhi
+=$xuekuanpingming
+=$tonggao=
+$xietongkuanshi=
+$genggao=
+$xiegengkuanshi=
+$bihefangshi
+=$liuxingyuansu
+=$zhizhuogongyi=
+$tuan=$
+shehejijie=
+'等待修改';
+
+
 
 
 

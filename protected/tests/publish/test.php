@@ -107,12 +107,12 @@ Eof;
 		$temSourceTaobaoIds = array();
 		$keys = array(
 			'女靴',
-			//'靴子',
+			'靴子',
 		);
 		foreach($keys as $key)
 		{
 			//http://s.taobao.com/search?sort=sale-desc&tab=all&q=女靴&s=44
-			for($i=0;$i<1;$i++)
+			for($i=0;$i<7;$i++)
 			{
 				$page = $i*44;
 				$taobaoUrl = "http://s.taobao.com/search?sort=sale-desc&tab=all&q=$key&s=$page";
@@ -199,8 +199,8 @@ Eof;
 				$taobaoObjectAttrsTem = explode('|woogle!@#$%^&*split|',$taobaoObject['target_taobao_attrs']);
 				//array_diff($a1,$a2)
 				file_put_contents("publish/reports/test.txt",'-----------------------------------' ."\n", FILE_APPEND);
-				//if(count($taobaoSourceAttrsTem)==count($taobaoObjectAttrsTem)&&array_diff($taobaoSourceAttrsTem,$taobaoObjectAttrsTem)==array_diff($taobaoObjectAttrsTem,$taobaoSourceAttrsTem))
-				if(count($taobaoSourceAttrsTem)==count($taobaoObjectAttrsTem))
+				if(count($taobaoSourceAttrsTem)==count($taobaoObjectAttrsTem)&&$taobaoObjectAttrsTem==$taobaoSourceAttrsTem)
+				//if(count($taobaoSourceAttrsTem)==count($taobaoObjectAttrsTem))
 				{
 					file_put_contents("publish/reports/test.txt",$temSourceTaobaoId ."\n", FILE_APPEND);
 				}
