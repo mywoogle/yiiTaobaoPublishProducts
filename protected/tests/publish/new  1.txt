@@ -1,0 +1,50 @@
+UPDATE `target`
+SET 
+`target_id` =a,
+ `target_taobao_id` =a, 
+`xuetongneilicaizhi` =a, 
+`xuetongcaizhi` =a, 
+`shangshinianfenjijie` =a, 
+`fengge` =a, 
+`bangmiancaizhi` =a, 
+`xuemianneilicaizhi` =a, 
+`pizhitezhi` =a, 
+`xiedicaizhi` =a, 
+`xuekuanpingming` =a, 
+`tonggao` =a, 
+`xietongkuanshi` =a, 
+`genggao` =a, 
+`xiegengkuanshi` =a, 
+`bihefangshi` =a, 
+`liuxingyuansu` =a,
+`zhizhuogongyi` =a,
+ `tuan` =a,
+ `shehejijie` =a
+WHERE
+	1
+	
+	
+	-------------------
+	
+	
+UPDATE `target`
+SET `xuetongneilicaizhi` = a,
+ `xuetongcaizhi` = a,
+ `shangshinianfenjijie` = a,
+ `fengge` = a,
+ `bangmiancaizhi` = a,
+ `xuemianneilicaizhi` = a,
+ `pizhitezhi` = a,
+ `xiedicaizhi` = a,
+ `xuekuanpingming` = a,
+ `tonggao` = a,
+ `xietongkuanshi` = a,
+ `genggao` = a,
+ `xiegengkuanshi` = a,
+ `bihefangshi` = a,
+ `liuxingyuansu` = a,
+ `zhizhuogongyi` = a,
+ `tuan` = a,
+ `shehejijie` = a
+WHERE
+	`target_taobao_id` = a

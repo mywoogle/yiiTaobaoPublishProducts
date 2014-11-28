@@ -34,7 +34,7 @@ class go2PublishTaobao extends WebTestCase
 		$sql = "SELECT `target_taobao_id` FROM `target` ORDER BY `target_id` DESC";
 		$command = $connection->createCommand($sql);  
 		$TargetIds = $command->queryColumn();  
-		file_put_contents("publish/reports/test.txt",implode("\n", $TargetIds) ."\n", FILE_APPEND);
+		//file_put_contents("publish/reports/test.txt",implode("\n", $TargetIds) ."\n", FILE_APPEND);
 		
 			//获取淘宝属性并存入数据库
 			foreach($TargetIds as $TargetId)
@@ -68,58 +68,58 @@ Eof;
 								switch ($temAttrTitle)
 								{
 									case '靴筒内里材质':
-										$xuetongneilicaizhi = $temAttrValue;
+										$xuetongneilicaizhi = $temAttrValue?:'等待修改';
 										break;  
 									case '靴筒材质':
-										$xuetongcaizhi = $temAttrValue;
+										$xuetongcaizhi = $temAttrValue?:'等待修改';
 										break;  							
 									case '上市年份季节':
-										$shangshinianfenjijie = $temAttrValue;
+										$shangshinianfenjijie = $temAttrValue?:'等待修改';
 										break;  
 									case '风格':
-										$fengge = $temAttrValue;
+										$fengge = $temAttrValue?:'等待修改';
 										break;  
 									case '帮面材质':
-										$bangmiancaizhi = $temAttrValue;
+										$bangmiancaizhi = $temAttrValue?:'等待修改';
 										break;  
 									case '鞋面内里材质':
-										$xuemianneilicaizhi = $temAttrValue;
+										$xuemianneilicaizhi = $temAttrValue?:'等待修改';
 										break;  
 									case '皮质特征':
-										$pizhitezhi = $temAttrValue;
+										$pizhitezhi = $temAttrValue?:'等待修改';
 										break;  
 									case '鞋底材质':
-										$xiedicaizhi = $temAttrValue;
+										$xiedicaizhi = $temAttrValue?:'等待修改';
 										break;  
 									case '靴款品名':
-										$xuekuanpingming = $temAttrValue;
+										$xuekuanpingming = $temAttrValue?:'等待修改';
 										break;  
 									case '筒高':
-										$tonggao = $temAttrValue;
+										$tonggao = $temAttrValue?:'等待修改';
 										break;  
 									case '鞋头款式':
-										$xietongkuanshi = $temAttrValue;
+										$xietongkuanshi = $temAttrValue?:'等待修改';
 										break;  
 									case '跟高':
-										$genggao = $temAttrValue;
+										$genggao = $temAttrValue?:'等待修改';
 										break;  
 									case '鞋跟款式':
-										$xiegengkuanshi = $temAttrValue;
+										$xiegengkuanshi = $temAttrValue?:'等待修改';
 										break;  
 									case '闭合方式':
-										$bihefangshi = $temAttrValue;
+										$bihefangshi = $temAttrValue?:'等待修改';
 										break;  
 									case '流行元素':
-										$liuxingyuansu = $temAttrValue;
+										$liuxingyuansu = $temAttrValue?:'等待修改';
 										break;  
 									case '制作工艺':
-										$zhizhuogongyi = $temAttrValue;
+										$zhizhuogongyi = $temAttrValue?:'等待修改';
 										break;  
 									case '图案':
-										$tuan = $temAttrValue;
+										$tuan = $temAttrValue?:'等待修改';
 										break;  
 									case '适合季节':
-										$shehejijie = $temAttrValue;
+										$shehejijie = $temAttrValue?:'等待修改';
 										break; 
 								}
 							}
@@ -130,55 +130,39 @@ Eof;
 					}
 					
 					//把淘宝属性存入数据库
-					Target::model()->updateAll(
-						array(
-							'target_taobao_id'=>$TargetId
-						),
-						'
-						xuetongneilicaizhi=:xuetongneilicaizhi,
-						xuetongcaizhi=:xuetongcaizhi,
-						shangshinianfenjijie=:shangshinianfenjijie,
-						fengge=:fengge,
-						bangmiancaizhi=:bangmiancaizhi,
-						xuemianneilicaizhi=:xuemianneilicaizhi,
-						pizhitezhi=:pizhitezhi,
-						xiedicaizhi=:xiedicaizhi,
-						xuekuanpingming=:xuekuanpingming,
-						tonggao=:tonggao,
-						xietongkuanshi=:xietongkuanshi,
-						genggao=:genggao,
-						xiegengkuanshi=:xiegengkuanshi,
-						bihefangshi=:bihefangshi,
-						liuxingyuansu=:liuxingyuansu,
-						zhizhuogongyi=:zhizhuogongyi,
-						tuan=:tuan,
-						shehejijie=:shehejijie,
-						target_title_search=:target_title_search
-						',
-						array(
-							':xuetongneilicaizhi'=>$xuetongneilicaizhi,
-							':xuetongcaizhi'=>$xuetongcaizhi,
-							':shangshinianfenjijie'=>$shangshinianfenjijie,
-							':fengge'=>$fengge,
-							':bangmiancaizhi'=>$bangmiancaizhi,
-							':xuemianneilicaizhi'=>$xuemianneilicaizhi,
-							':pizhitezhi'=>$pizhitezhi,
-							':xiedicaizhi'=>$xiedicaizhi,
-							':xuekuanpingming'=>$xuekuanpingming,
-							':tonggao'=>$tonggao,
-							':xietongkuanshi'=>$xietongkuanshi,
-							':genggao'=>$genggao,
-							':xiegengkuanshi'=>$xiegengkuanshi,
-							':bihefangshi'=>$bihefangshi,
-							':liuxingyuansu'=>$liuxingyuansu,
-							':zhizhuogongyi'=>$zhizhuogongyi,
-							':tuan'=>$tuan,
-							':shehejijie'=>$shehejijie,
-							':target_title_search'=> 1
-						)
-					);
-
-					file_put_contents("publish/reports/test.txt",'+++++++++++++++' ."\n", FILE_APPEND);
+					$temResult = Target::model()->find('target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$TargetId));
+					
+					
+					
+					
+					
+					
+					
+					$temResult->xuetongneilicaizhi = $xuetongneilicaizhi;
+					$temResult->xuetongcaizhi = $xuetongcaizhi;
+					$temResult->shangshinianfenjijie = $shangshinianfenjijie;
+					$temResult->fengge = $fengge;
+					$temResult->bangmiancaizhi = $bangmiancaizhi;
+					$temResult->xuemianneilicaizhi = $xuemianneilicaizhi;
+					$temResult->pizhitezhi = $pizhitezhi;
+					$temResult->xiedicaizhi = $xiedicaizhi;
+					$temResult->xuekuanpingming = $xuekuanpingming;
+					$temResult->tonggao = $tonggao;
+					$temResult->xietongkuanshi = $xietongkuanshi;
+					$temResult->genggao = $genggao;
+					$temResult->xiegengkuanshi = $xiegengkuanshi;
+					$temResult->bihefangshi = $bihefangshi;
+					$temResult->liuxingyuansu = $liuxingyuansu;
+					$temResult->zhizhuogongyi = $zhizhuogongyi;
+					$temResult->tuan = $tuan;
+					$temResult->shehejijie = $shehejijie;
+					
+					$temResult->save();
+					
+					
+					
+					file_put_contents("publish/reports/test.txt",$temResult['xuetongcaizhi'] ."\n", FILE_APPEND);
+	
 				
 			
 			}

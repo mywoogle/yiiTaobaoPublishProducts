@@ -26,9 +26,111 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'target_taobao_attrs'); ?>
-		<?php echo $form->textField($model,'target_taobao_attrs',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'target_taobao_attrs'); ?>
+		<?php echo $form->labelEx($model,'xuetongneilicaizhi'); ?>
+		<?php echo $form->textField($model,'xuetongneilicaizhi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'xuetongneilicaizhi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'xuetongcaizhi'); ?>
+		<?php echo $form->textField($model,'xuetongcaizhi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'xuetongcaizhi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'shangshinianfenjijie'); ?>
+		<?php echo $form->textField($model,'shangshinianfenjijie',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'shangshinianfenjijie'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'fengge'); ?>
+		<?php echo $form->textField($model,'fengge',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'fengge'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'bangmiancaizhi'); ?>
+		<?php echo $form->textField($model,'bangmiancaizhi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'bangmiancaizhi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'xuemianneilicaizhi'); ?>
+		<?php echo $form->textField($model,'xuemianneilicaizhi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'xuemianneilicaizhi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'pizhitezhi'); ?>
+		<?php echo $form->textField($model,'pizhitezhi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'pizhitezhi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'xiedicaizhi'); ?>
+		<?php echo $form->textField($model,'xiedicaizhi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'xiedicaizhi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'xuekuanpingming'); ?>
+		<?php echo $form->textField($model,'xuekuanpingming',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'xuekuanpingming'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'tonggao'); ?>
+		<?php echo $form->textField($model,'tonggao',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'tonggao'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'xietongkuanshi'); ?>
+		<?php echo $form->textField($model,'xietongkuanshi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'xietongkuanshi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'genggao'); ?>
+		<?php echo $form->textField($model,'genggao',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'genggao'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'xiegengkuanshi'); ?>
+		<?php echo $form->textField($model,'xiegengkuanshi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'xiegengkuanshi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'bihefangshi'); ?>
+		<?php echo $form->textField($model,'bihefangshi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'bihefangshi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'liuxingyuansu'); ?>
+		<?php echo $form->textField($model,'liuxingyuansu',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'liuxingyuansu'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'zhizhuogongyi'); ?>
+		<?php echo $form->textField($model,'zhizhuogongyi',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'zhizhuogongyi'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'tuan'); ?>
+		<?php echo $form->textField($model,'tuan',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'tuan'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'shehejijie'); ?>
+		<?php echo $form->textField($model,'shehejijie',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'shehejijie'); ?>
 	</div>
 
 	<div class="row">

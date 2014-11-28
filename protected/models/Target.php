@@ -6,7 +6,24 @@
  * The followings are the available columns in table 'target':
  * @property integer $target_id
  * @property string $target_taobao_id
- * @property string $target_taobao_attrs
+ * @property string $xuetongneilicaizhi
+ * @property string $xuetongcaizhi
+ * @property string $shangshinianfenjijie
+ * @property string $fengge
+ * @property string $bangmiancaizhi
+ * @property string $xuemianneilicaizhi
+ * @property string $pizhitezhi
+ * @property string $xiedicaizhi
+ * @property string $xuekuanpingming
+ * @property string $tonggao
+ * @property string $xietongkuanshi
+ * @property string $genggao
+ * @property string $xiegengkuanshi
+ * @property string $bihefangshi
+ * @property string $liuxingyuansu
+ * @property string $zhizhuogongyi
+ * @property string $tuan
+ * @property string $shehejijie
  * @property string $target_taobao_title1
  * @property string $target_taobao_title2
  * @property string $target_taobao_title3
@@ -39,14 +56,13 @@ class Target extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('target_taobao_id, target_taobao_attrs, target_taobao_title1, target_taobao_title2, target_taobao_title3, target_taobao_sku, target_go2_sku, target_title_search, target_title_used, source_taobao_id1, source_taobao_id2, source_taobao_id3, source_taobao_keyword1, source_taobao_keyword2, source_taobao_keyword3', 'required'),
+			array('target_taobao_id, xuetongneilicaizhi, xuetongcaizhi, shangshinianfenjijie, fengge, bangmiancaizhi, xuemianneilicaizhi, pizhitezhi, xiedicaizhi, xuekuanpingming, tonggao, xietongkuanshi, genggao, xiegengkuanshi, bihefangshi, liuxingyuansu, zhizhuogongyi, tuan, shehejijie, target_taobao_title1, target_taobao_title2, target_taobao_title3, target_taobao_sku, target_go2_sku, target_title_search, target_title_used, source_taobao_id1, source_taobao_id2, source_taobao_id3, source_taobao_keyword1, source_taobao_keyword2, source_taobao_keyword3', 'required'),
 			array('target_title_search, target_title_used', 'numerical', 'integerOnly'=>true),
-			array('target_taobao_id, target_taobao_sku, target_go2_sku, source_taobao_id1, source_taobao_id2, source_taobao_id3, source_taobao_keyword1, source_taobao_keyword2, source_taobao_keyword3', 'length', 'max'=>32),
-			array('target_taobao_attrs', 'length', 'max'=>256),
+			array('target_taobao_id, xuetongneilicaizhi, xuetongcaizhi, shangshinianfenjijie, fengge, bangmiancaizhi, xuemianneilicaizhi, pizhitezhi, xiedicaizhi, xuekuanpingming, tonggao, xietongkuanshi, genggao, xiegengkuanshi, bihefangshi, liuxingyuansu, zhizhuogongyi, tuan, shehejijie, target_taobao_sku, target_go2_sku, source_taobao_id1, source_taobao_id2, source_taobao_id3, source_taobao_keyword1, source_taobao_keyword2, source_taobao_keyword3', 'length', 'max'=>32),
 			array('target_taobao_title1, target_taobao_title2, target_taobao_title3', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('target_id, target_taobao_id, target_taobao_attrs, target_taobao_title1, target_taobao_title2, target_taobao_title3, target_taobao_sku, target_go2_sku, target_title_search, target_title_used, source_taobao_id1, source_taobao_id2, source_taobao_id3, source_taobao_keyword1, source_taobao_keyword2, source_taobao_keyword3', 'safe', 'on'=>'search'),
+			array('target_id, target_taobao_id, xuetongneilicaizhi, xuetongcaizhi, shangshinianfenjijie, fengge, bangmiancaizhi, xuemianneilicaizhi, pizhitezhi, xiedicaizhi, xuekuanpingming, tonggao, xietongkuanshi, genggao, xiegengkuanshi, bihefangshi, liuxingyuansu, zhizhuogongyi, tuan, shehejijie, target_taobao_title1, target_taobao_title2, target_taobao_title3, target_taobao_sku, target_go2_sku, target_title_search, target_title_used, source_taobao_id1, source_taobao_id2, source_taobao_id3, source_taobao_keyword1, source_taobao_keyword2, source_taobao_keyword3', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,7 +85,24 @@ class Target extends CActiveRecord
 		return array(
 			'target_id' => 'Target',
 			'target_taobao_id' => 'Target Taobao',
-			'target_taobao_attrs' => 'Target Taobao Attrs',
+			'xuetongneilicaizhi' => 'Xuetongneilicaizhi',
+			'xuetongcaizhi' => 'Xuetongcaizhi',
+			'shangshinianfenjijie' => 'Shangshinianfenjijie',
+			'fengge' => 'Fengge',
+			'bangmiancaizhi' => 'Bangmiancaizhi',
+			'xuemianneilicaizhi' => 'Xuemianneilicaizhi',
+			'pizhitezhi' => 'Pizhitezhi',
+			'xiedicaizhi' => 'Xiedicaizhi',
+			'xuekuanpingming' => 'Xuekuanpingming',
+			'tonggao' => 'Tonggao',
+			'xietongkuanshi' => 'Xietongkuanshi',
+			'genggao' => 'Genggao',
+			'xiegengkuanshi' => 'Xiegengkuanshi',
+			'bihefangshi' => 'Bihefangshi',
+			'liuxingyuansu' => 'Liuxingyuansu',
+			'zhizhuogongyi' => 'Zhizhuogongyi',
+			'tuan' => 'Tuan',
+			'shehejijie' => 'Shehejijie',
 			'target_taobao_title1' => 'Target Taobao Title1',
 			'target_taobao_title2' => 'Target Taobao Title2',
 			'target_taobao_title3' => 'Target Taobao Title3',
@@ -106,7 +139,24 @@ class Target extends CActiveRecord
 
 		$criteria->compare('target_id',$this->target_id);
 		$criteria->compare('target_taobao_id',$this->target_taobao_id,true);
-		$criteria->compare('target_taobao_attrs',$this->target_taobao_attrs,true);
+		$criteria->compare('xuetongneilicaizhi',$this->xuetongneilicaizhi,true);
+		$criteria->compare('xuetongcaizhi',$this->xuetongcaizhi,true);
+		$criteria->compare('shangshinianfenjijie',$this->shangshinianfenjijie,true);
+		$criteria->compare('fengge',$this->fengge,true);
+		$criteria->compare('bangmiancaizhi',$this->bangmiancaizhi,true);
+		$criteria->compare('xuemianneilicaizhi',$this->xuemianneilicaizhi,true);
+		$criteria->compare('pizhitezhi',$this->pizhitezhi,true);
+		$criteria->compare('xiedicaizhi',$this->xiedicaizhi,true);
+		$criteria->compare('xuekuanpingming',$this->xuekuanpingming,true);
+		$criteria->compare('tonggao',$this->tonggao,true);
+		$criteria->compare('xietongkuanshi',$this->xietongkuanshi,true);
+		$criteria->compare('genggao',$this->genggao,true);
+		$criteria->compare('xiegengkuanshi',$this->xiegengkuanshi,true);
+		$criteria->compare('bihefangshi',$this->bihefangshi,true);
+		$criteria->compare('liuxingyuansu',$this->liuxingyuansu,true);
+		$criteria->compare('zhizhuogongyi',$this->zhizhuogongyi,true);
+		$criteria->compare('tuan',$this->tuan,true);
+		$criteria->compare('shehejijie',$this->shehejijie,true);
 		$criteria->compare('target_taobao_title1',$this->target_taobao_title1,true);
 		$criteria->compare('target_taobao_title2',$this->target_taobao_title2,true);
 		$criteria->compare('target_taobao_title3',$this->target_taobao_title3,true);
