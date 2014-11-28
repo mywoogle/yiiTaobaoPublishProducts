@@ -29,11 +29,9 @@ class go2PublishTaobao extends WebTestCase
 			'女靴',
 			'靴子',
 		);
-		
-		$connection = Yii::app()->db;  
+		 
 		$sql = "SELECT `target_taobao_id` FROM `target` ORDER BY `target_id` DESC";
-		$command = $connection->createCommand($sql);  
-		$TargetIds = $command->queryColumn();  
+		$TargetIds = Yii::app()->db->createCommand($sql)->queryColumn();  
 		//file_put_contents("publish/reports/test.txt",implode("\n", $TargetIds) ."\n", FILE_APPEND);
 		
 			//获取淘宝属性并存入数据库
@@ -51,8 +49,6 @@ Eof;
 					$this->runScript($js);
 					$this->click("//a [@id='myProduct']");
 					$this->waitForElementPresent ("//div[@id='attributes']/ul");
-					//$taobaoSourceAttrsTem = array();
-					//$taobao_source_taobao_id = $temSourceTaobaoId;
 					$xuetongneilicaizhi=$xuetongcaizhi=$shangshinianfenjijie=$fengge=$bangmiancaizhi=$xuemianneilicaizhi=$pizhitezhi=$xiedicaizhi=$xuekuanpingming=$tonggao=$xietongkuanshi=$genggao=$xiegengkuanshi=$bihefangshi=$liuxingyuansu=$zhizhuogongyi=$tuan=$shehejijie='等待修改';
 					for($i=1;$i<=30;$i++)
 					{
@@ -131,13 +127,6 @@ Eof;
 					
 					//把淘宝属性存入数据库
 					$temResult = Target::model()->find('target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$TargetId));
-					
-					
-					
-					
-					
-					
-					
 					$temResult->xuetongneilicaizhi = $xuetongneilicaizhi;
 					$temResult->xuetongcaizhi = $xuetongcaizhi;
 					$temResult->shangshinianfenjijie = $shangshinianfenjijie;
@@ -156,15 +145,8 @@ Eof;
 					$temResult->zhizhuogongyi = $zhizhuogongyi;
 					$temResult->tuan = $tuan;
 					$temResult->shehejijie = $shehejijie;
-					
 					$temResult->save();
-					
-					
-					
-					file_put_contents("publish/reports/test.txt",$temResult['xuetongcaizhi'] ."\n", FILE_APPEND);
-	
-				
-			
+					//file_put_contents("publish/reports/test.txt",$temResult['xuetongcaizhi'] ."\n", FILE_APPEND);
 			}
 	}
 }
