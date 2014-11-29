@@ -30,9 +30,11 @@ class newTest extends WebTestCase
 		//在这里替换发布列表
 		//$this->open("http://cxl.go2.cn/c4-1-0.go");
 		//$this->open("http://dlqm.go2.cn/c4-1-0.go");
-		$this->open("http://chunlan.go2.cn/c4-1-0.go");
+		//$this->open("http://chunlan.go2.cn/c4-1-0.go");
+		//http://hongfulai.go2.cn/c4-1-0.go
+		$this->open("http://hongfulai.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/chunlan.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/hongfulai.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{

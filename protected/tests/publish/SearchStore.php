@@ -145,6 +145,7 @@ Eof;
 					$temResult->zhizhuogongyi = $zhizhuogongyi;
 					$temResult->tuan = $tuan;
 					$temResult->shehejijie = $shehejijie;
+					$temResult->target_title_search = 1;
 					$temResult->save();
 					//file_put_contents("publish/reports/test.txt",$temResult['xuetongcaizhi'] ."\n", FILE_APPEND);
 			}
