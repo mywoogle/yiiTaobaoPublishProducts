@@ -27,12 +27,12 @@ class go2PublishTaobao extends WebTestCase
 		$temSourceTaobaoIds = array();
 		$keys = array(
 			'女靴',
-			'靴子',
+			//'靴子',
 		);
 		
 		foreach($keys as $key)
 		{
-			for($i=0;$i<10;$i++)
+			for($i=50;$i<100;$i++)
 			{
 				$page = $i*44;
 				$taobaoUrl = "http://s.taobao.com/search?sort=sale-desc&tab=all&q=$key&s=$page";
