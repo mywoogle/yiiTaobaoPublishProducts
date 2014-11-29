@@ -26,12 +26,13 @@ class go2PublishTaobao extends WebTestCase
 
 		$temSourceTaobaoIds = array();
 		$temSourceTaobaoIdsAll = array();
+		$serched = 0;
 		$keys = array(
-			'女靴',
-			//'靴子',
+			//'女靴',
+			'靴子 女',
 		);
-		$fromPage = 70;
-		$endPage = 80;
+		$fromPage = 62;
+		$endPage = 100;
 		foreach($keys as $key)
 		{
 			for($i=$fromPage;$i<$endPage;$i++)
@@ -60,17 +61,18 @@ class go2PublishTaobao extends WebTestCase
 				$temResult = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$temSourceTaobaoId));
 				if(!$temResult['taobao_source_taobao_id'])
 				{
+					$serched++;
 $js = <<<Eof
 	var target=document.getElementById("lg");  
 	var a=document.createElement("a");  
 	a.id="myProduct"; 
 	a.href="http://item.taobao.com/item.htm?id=$temSourceTaobaoId";
-	a.innerHTML="$status";
+	a.innerHTML="$status ---有效的搜索数目：$serched";
 	target.appendChild(a);  
 Eof;
 					$this->open("http://www.baidu.com/");
 					$this->runScript($js);
-					$this->pause(10000);
+					$this->pause(3000);
 					$this->click("//a [@id='myProduct']");
 					$this->waitForElementPresent ("//div[@id='attributes']/ul");
 					$taobaoSourceAttrsTem = array();
