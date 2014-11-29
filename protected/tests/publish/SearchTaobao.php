@@ -25,14 +25,16 @@ class go2PublishTaobao extends WebTestCase
 		);
 
 		$temSourceTaobaoIds = array();
+		$temSourceTaobaoIdsAll = array();
 		$keys = array(
 			'女靴',
 			//'靴子',
 		);
-		
+		$fromPage = 70;
+		$endPage = 80;
 		foreach($keys as $key)
 		{
-			for($i=50;$i<100;$i++)
+			for($i=$fromPage;$i<$endPage;$i++)
 			{
 				$page = $i*44;
 				$taobaoUrl = "http://s.taobao.com/search?sort=sale-desc&tab=all&q=$key&s=$page";
@@ -40,18 +42,21 @@ class go2PublishTaobao extends WebTestCase
 				for($j=1;$j<=44;$j++)
 				{
 					$temTBHref = $this->getAttribute("//div[@id='mainsrp-itemlist']/div/div/div/div[$j]/div[3]/a/@href");
+					preg_match('/id=[0-9]{10,12}/is', $temTBHref, $temTBId);
+					$temTBIdNew = str_replace('id=','',$temTBId[0]);
+					$temSourceTaobaoIdsAll[] = $temTBIdNew;
 					if(strpos($temTBHref,'http://item.taobao.com/item.htm') !== false)
 					{
-						preg_match('/id=[0-9]{10,12}/is', $temTBHref, $temTBId);
-						$temTBIdNew = str_replace('id=','',$temTBId[0]);
 						$temSourceTaobaoIds[] = $temTBIdNew;
 					}
 				}
 			}
 		
 			//获取淘宝属性并存入数据库
-			foreach($temSourceTaobaoIds as $temSourceTaobaoId)
+			foreach($temSourceTaobaoIds as $array_key => $temSourceTaobaoId)
 			{
+				$array_key_all = array_search($temSourceTaobaoId,$temSourceTaobaoIdsAll);
+				$status = '当前关键词：'.$key.'---当前任务进度：'.($array_key+1 .'/'. count($temSourceTaobaoIds)).'---当前页面进度：'.($fromPage+intval(($array_key_all+1)/44)).'/'.$endPage.'('.($array_key_all+1)%44 .')';
 				$temResult = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$temSourceTaobaoId));
 				if(!$temResult['taobao_source_taobao_id'])
 				{
@@ -60,11 +65,12 @@ $js = <<<Eof
 	var a=document.createElement("a");  
 	a.id="myProduct"; 
 	a.href="http://item.taobao.com/item.htm?id=$temSourceTaobaoId";
-	a.innerHTML="Tem product";
+	a.innerHTML="$status";
 	target.appendChild(a);  
 Eof;
 					$this->open("http://www.baidu.com/");
 					$this->runScript($js);
+					$this->pause(10000);
 					$this->click("//a [@id='myProduct']");
 					$this->waitForElementPresent ("//div[@id='attributes']/ul");
 					$taobaoSourceAttrsTem = array();
