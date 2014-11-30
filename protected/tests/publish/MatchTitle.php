@@ -22,7 +22,7 @@ class go2PublishTaobao extends WebTestCase
 					genggao=:genggao and
 					xiegengkuanshi=:xiegengkuanshi
 				';		
-			
+			/*
 			if($targetResult['shangshinianfenjijie'] == '等待修改')
 			{
 				$whereStrint .= ' and shangshinianfenjijie!=:shangshinianfenjijie';
@@ -112,7 +112,7 @@ class go2PublishTaobao extends WebTestCase
 				$whereStrint .= ' and shehejijie=:shehejijie';
 				$shehejijie = $targetResult['shehejijie'];
 			}
-			
+			*/
 			//file_put_contents("$reportsName",$whereStrint."\n", FILE_APPEND);
 			//get all match TaobaoSource
 			$TaobaoSources = TaobaoSource::model()->findAll(
@@ -127,7 +127,7 @@ class go2PublishTaobao extends WebTestCase
 					':xietongkuanshi'=>$targetResult['xietongkuanshi'],
 					':genggao'=>$targetResult['genggao'],
 					':xiegengkuanshi'=>$targetResult['xiegengkuanshi'],
-					':shangshinianfenjijie'=>$shangshinianfenjijie,
+				/*	':shangshinianfenjijie'=>$shangshinianfenjijie,
 					':fengge'=>$fengge,
 					':pizhitezhi'=>$pizhitezhi,
 					':xiedicaizhi'=>$xiedicaizhi,
@@ -136,7 +136,7 @@ class go2PublishTaobao extends WebTestCase
 					':liuxingyuansu'=>$liuxingyuansu,
 					':zhizhuogongyi'=>$zhizhuogongyi,
 					':tuan'=>$tuan,
-					':shehejijie'=>$shehejijie
+					':shehejijie'=>$shehejijie, */
 				)
 			);
 
@@ -166,15 +166,30 @@ class go2PublishTaobao extends WebTestCase
 				{
 					//modify the TaobaoSource
 					$temResult->target_title_search = $flagFrom + 1;
+					switch($flagFrom)
+					{
+						case 1;
+							$temResult->target_taobao_title1 = $TaobaoSources[$i]->taobao_source_taobao_title;
+							$temResult->source_taobao_id1 = $TaobaoSources[$i]->taobao_source_taobao_id;
+							$temResult->source_taobao_keyword1 = $TaobaoSources[$i]->key;
+							break;
+						case 2;
+							$temResult->target_taobao_title2 = $TaobaoSources[$i]->taobao_source_taobao_title;
+							$temResult->source_taobao_id2 = $TaobaoSources[$i]->taobao_source_taobao_id;
+							$temResult->source_taobao_keyword2 = $TaobaoSources[$i]->key;
+							break;
+						case 3;
+							$temResult->target_taobao_title3 = $TaobaoSources[$i]->taobao_source_taobao_title;
+							$temResult->source_taobao_id3 = $TaobaoSources[$i]->taobao_source_taobao_id;
+							$temResult->source_taobao_keyword3 = $TaobaoSources[$i]->key;
+							break;
+					}
 					$flagFrom++;
-					$temResult->target_taobao_title1 = $TaobaoSources[$i]->taobao_source_taobao_title;
-					$temResult->source_taobao_id1 = $TaobaoSources[$i]->taobao_source_taobao_id;
-					$temResult->source_taobao_keyword1 = $TaobaoSources[$i]->key;
-					//$temResult->save();
+					$temResult->save();
 					//modify the TaobaoSource
 					$TaobaoSourceTem = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$TaobaoSources[$i]->taobao_source_taobao_id));
 					$TaobaoSourceTem->used = 1;
-					//$TaobaoSourceTem->save();
+					$TaobaoSourceTem->save();
 					$flag = $flagFrom - 1;
 					file_put_contents("$reportsName",$flag.'、', FILE_APPEND);
 				}
