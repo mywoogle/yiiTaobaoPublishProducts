@@ -1,5 +1,5 @@
 <?php
-class mytestController extends Controller
+class TestController extends Controller
 {
 	public function test()
 	{
