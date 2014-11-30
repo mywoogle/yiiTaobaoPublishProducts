@@ -89,9 +89,36 @@ class go2PublishTaobao extends WebTestCase
 					$TaobaoSource2 = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$TaobaoSources[2]['taobao_source_taobao_id']));
 					$TaobaoSource2->used = 1;
 					$TaobaoSource2->save();
-			}else
+			}elseif($count = 2)
 			{
-				
+					$temResult = Target::model()->find('target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$targetResult['target_taobao_id']));
+					$temResult->target_title_search = 3;
+					$temResult->target_taobao_title1 = $TaobaoSources[0]['taobao_source_taobao_title'];
+					$temResult->target_taobao_title2 = $TaobaoSources[1]['taobao_source_taobao_title'];
+					$temResult->source_taobao_id1 = $TaobaoSources[0]['taobao_source_taobao_id'];
+					$temResult->source_taobao_id2 = $TaobaoSources[1]['taobao_source_taobao_id'];
+					$temResult->source_taobao_keyword1 = $TaobaoSources[0]['key'];
+					$temResult->source_taobao_keyword2 = $TaobaoSources[1]['key'];
+					$temResult->save();
+					
+					$TaobaoSource0 = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$TaobaoSources[0]['taobao_source_taobao_id']));
+					$TaobaoSource0->used = 1;
+					$TaobaoSource0->save();
+					$TaobaoSource1 = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$TaobaoSources[1]['taobao_source_taobao_id']));
+					$TaobaoSource1->used = 1;
+					$TaobaoSource1->save();
+			}elseif($count = 1)
+			{
+					$temResult = Target::model()->find('target_taobao_id=:target_taobao_id',array(':target_taobao_id'=>$targetResult['target_taobao_id']));
+					$temResult->target_title_search = 2;
+					$temResult->target_taobao_title1 = $TaobaoSources[0]['taobao_source_taobao_title'];
+					$temResult->source_taobao_id1 = $TaobaoSources[0]['taobao_source_taobao_id'];
+					$temResult->source_taobao_keyword1 = $TaobaoSources[0]['key'];
+					$temResult->save();
+					
+					$TaobaoSource0 = TaobaoSource::model()->find('taobao_source_taobao_id=:taobao_source_taobao_id',array(':taobao_source_taobao_id'=>$TaobaoSources[0]['taobao_source_taobao_id']));
+					$TaobaoSource0->used = 1;
+					$TaobaoSource0->save();
 			}
 				
 			foreach($TaobaoSources as $TaobaoSource)
