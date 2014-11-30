@@ -269,8 +269,12 @@ Eof;
 						$tem = explode('&num_iid=', $tem );
 						if(isset($tem[1]))
 						{
+							$tem = $tem[1];
 							$tem = explode('&url=', $tem );
 							$target_taobao_id = $tem[0];
+						}else
+						{
+							$target_taobao_id = '获取返回的产品id失败';
 						}
 						//file_put_contents("publish/reports/test.txt",$target_taobao_id, FILE_APPEND );
 					}
