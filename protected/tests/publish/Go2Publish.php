@@ -267,9 +267,11 @@ Eof;
 						$js = 'window.location.search';
 						$tem = $this->getEval($js);
 						$tem = explode('&num_iid=', $tem );
-						$tem = $tem[1];
-						$tem = explode('&url=', $tem );
-						$target_taobao_id = $tem[0];
+						if(isset($tem[1]))
+						{
+							$tem = explode('&url=', $tem );
+							$target_taobao_id = $tem[0];
+						}
 						//file_put_contents("publish/reports/test.txt",$target_taobao_id, FILE_APPEND );
 					}
 					$this->pause(10000);
