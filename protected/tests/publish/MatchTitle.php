@@ -22,7 +22,7 @@ class go2PublishTaobao extends WebTestCase
 					genggao=:genggao and
 					xiegengkuanshi=:xiegengkuanshi
 				';		
-			/*
+			
 			if($targetResult['shangshinianfenjijie'] == '等待修改')
 			{
 				$whereStrint .= ' and shangshinianfenjijie!=:shangshinianfenjijie';
@@ -112,7 +112,7 @@ class go2PublishTaobao extends WebTestCase
 				$whereStrint .= ' and shehejijie=:shehejijie';
 				$shehejijie = $targetResult['shehejijie'];
 			}
-			*/
+			
 			//file_put_contents("$reportsName",$whereStrint."\n", FILE_APPEND);
 			//get all match TaobaoSource
 			$TaobaoSources = TaobaoSource::model()->findAll(
@@ -127,7 +127,7 @@ class go2PublishTaobao extends WebTestCase
 					':xietongkuanshi'=>$targetResult['xietongkuanshi'],
 					':genggao'=>$targetResult['genggao'],
 					':xiegengkuanshi'=>$targetResult['xiegengkuanshi'],
-				/*	':shangshinianfenjijie'=>$shangshinianfenjijie,
+					':shangshinianfenjijie'=>$shangshinianfenjijie,
 					':fengge'=>$fengge,
 					':pizhitezhi'=>$pizhitezhi,
 					':xiedicaizhi'=>$xiedicaizhi,
@@ -136,7 +136,7 @@ class go2PublishTaobao extends WebTestCase
 					':liuxingyuansu'=>$liuxingyuansu,
 					':zhizhuogongyi'=>$zhizhuogongyi,
 					':tuan'=>$tuan,
-					':shehejijie'=>$shehejijie, */
+					':shehejijie'=>$shehejijie,
 				)
 			);
 
