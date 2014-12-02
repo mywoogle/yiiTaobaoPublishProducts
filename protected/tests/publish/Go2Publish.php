@@ -32,9 +32,11 @@ class newTest extends WebTestCase
 		//$this->open("http://dlqm.go2.cn/c4-1-0.go");
 		//$this->open("http://chunlan.go2.cn/c4-1-0.go");
 		//http://hongfulai.go2.cn/c4-1-0.go
-		$this->open("http://hongfulai.go2.cn/c4-1-0.go");
+		//$this->open("http://hongfulai.go2.cn/c4-1-0.go");
+		
+		$this->open("http://fufa.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/hongfulai.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/fufa.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{
@@ -50,8 +52,11 @@ class newTest extends WebTestCase
 			$tem_Product = $this->getAttribute("//ul[@id='products']/li[$i]/strong/a/@href");
 			$productsList[] = $tem_Product;
 		}
+		$productsListCount = count($productsList);
+		$productFlag = 0;
 		foreach($productsList as $product)
 		{
+			$productFlag++;
 			$temProduct = str_replace('product', 'product/publish', $product);
 			$temProduct = explode('.go?', $temProduct);
 			$temPublish = $temProduct[0];
@@ -63,7 +68,7 @@ $js = <<<Eof
 	var a=document.createElement("a");  
 	a.id="myProduct"; 
 	a.href="$product";
-	a.innerHTML="Tem product";
+	a.innerHTML="------发布进度：$productFlag/$productsListCount ------";
 	target.appendChild(a);  
 Eof;
 			$this->runScript($js);
@@ -74,8 +79,29 @@ Eof;
 			$new_required = $this->isElementPresent("//ul[@id='propsul']/li[1]");
 			if(($new_text == "发布到淘宝") && $new_required)
 			{
-				$this->open($temPublish);
+				//$this->open($temPublish);
 			
+				while(true)
+				{
+					$this->open("http://www.baidu.com/");
+$js = <<<Eof
+	var target=document.getElementById("lg");  
+	var a=document.createElement("a");  
+	a.id="myProduct"; 
+	a.href="$temPublish";
+	a.innerHTML="------发布进度：$productFlag/$productsListCount ------";
+	target.appendChild(a);  
+Eof;
+					$this->runScript($js);
+					$this->click("//a [@id='myProduct']");
+					//file_put_contents("tesList.data",$currentPathname);
+					$this->pause(10000);
+					if($this->isElementPresent("//input [@id='csvbutton']"))
+					{
+						break;
+					}
+				}
+				
 				//----------------------------detail start------------------------------------------
 				
 				//选择首图-
@@ -94,6 +120,7 @@ Eof;
 				{
 					$this->click("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img");
 				}
+				//$this->pause(150000000);
 				//获取商家编码
 				$sellerCode = $this->getValue("//ul[@id='shoesform']/li[20]/input");
 				//file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
