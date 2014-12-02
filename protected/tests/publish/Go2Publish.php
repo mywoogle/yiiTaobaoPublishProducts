@@ -54,6 +54,7 @@ class newTest extends WebTestCase
 		}
 		$productsListCount = count($productsList);
 		$productFlag = 0;
+		$productsCountGod = 0;
 		foreach($productsList as $product)
 		{
 			$productFlag++;
@@ -68,7 +69,7 @@ $js = <<<Eof
 	var a=document.createElement("a");  
 	a.id="myProduct"; 
 	a.href="$product";
-	a.innerHTML="------发布进度：$productFlag/$productsListCount ------";
+	a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
 	target.appendChild(a);  
 Eof;
 			$this->runScript($js);
@@ -89,7 +90,7 @@ $js = <<<Eof
 	var a=document.createElement("a");  
 	a.id="myProduct"; 
 	a.href="$temPublish";
-	a.innerHTML="------发布进度：$productFlag/$productsListCount ------";
+	a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
 	target.appendChild(a);  
 Eof;
 					$this->runScript($js);
@@ -326,6 +327,7 @@ Eof;
 				if($temTex == "已发布到淘宝")
 				{
 					file_put_contents("$listReport","------确实发布成功了", FILE_APPEND );
+					$productsCountGod++;
 					//添加到target数据库表里面
 					$sellerGo2Code = preg_replace("/-[0-9]{5,12}&/is", "&", $sellerCode); 
 					$myTarget = new Target();
@@ -376,7 +378,8 @@ Eof;
 			//暂停10s发布下一个产品
 			$this->pause(10000);
 		}
-
+		//------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------
+		file_put_contents("$listReport","------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------", FILE_APPEND );
 		//----------------------------list end------------------------------------------
 		
 	}
