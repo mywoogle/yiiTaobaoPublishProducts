@@ -317,7 +317,7 @@ $js = <<<Eof
 	var a=document.createElement("a");  
 	a.id="myProduct"; 
 	a.href="$product";
-	a.innerHTML="Tem product";
+	a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
 	target.appendChild(a);  
 Eof;
 				$this->runScript($js);
@@ -363,6 +363,8 @@ Eof;
 					$myTarget->source_taobao_keyword1 = '等待修改';
 					$myTarget->source_taobao_keyword2 = '等待修改';
 					$myTarget->source_taobao_keyword3 = '等待修改';
+					//2014-12-03 21:43:57   H时i分s秒
+					//$myTarget->create_date = date('Y-m-d H:i:s',time());
 					$myTarget->save();
 				}else
 				{
