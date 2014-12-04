@@ -228,7 +228,7 @@ Eof;
 					$temFlag = '加'.$addPrice.'元';
 					if (strpos($item,$temFlag)) 
 					{
-						$newTemFlag = '加'.$addPrice*2 .'元';
+						$newTemFlag = '加'.$addPrice*2 .'元，定做不退换，';
 						$item = str_replace($temFlag, $newTemFlag, $item);
 					}
 				}
