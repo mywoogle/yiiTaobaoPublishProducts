@@ -33,10 +33,10 @@ class newTest extends WebTestCase
 		//$this->open("http://chunlan.go2.cn/c4-1-0.go");
 		//http://hongfulai.go2.cn/c4-1-0.go
 		//$this->open("http://hongfulai.go2.cn/c4-1-0.go");
-		
-		$this->open("http://fufa.go2.cn/c4-1-0.go");
+		//$this->open("http://fufa.go2.cn/c4-1-0.go");
+		$this->open("http://xintianyu.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/fufa.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/xintianyu.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{
@@ -273,7 +273,7 @@ Eof;
 
 				while($giveUp == false && $success == false)
 				{
-
+					$this->pause(10000);
 					if($this->isTextPresent("按照错误提示"))
 					{
 						//必填属性不完整
@@ -306,7 +306,6 @@ Eof;
 						}
 						//file_put_contents("publish/reports/test.txt",$target_taobao_id, FILE_APPEND );
 					}
-					$this->pause(10000);
 				}
 				//----------------------------upload end------------------------------------------
 				//----------------------------Confirmation has been successfully posted,start-------------
