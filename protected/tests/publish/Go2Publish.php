@@ -233,6 +233,21 @@ Eof;
 					}
 				}
 			}
+	
+			if(strpos($item,'＋'))
+			{
+				preg_match_all('|(\d+)|',$item,$addPrices);
+				foreach ($addPrices[0] as $addPrice)
+				{
+					$temFlag = '＋'.$addPrice.'元';
+					if (strpos($item,$temFlag)) 
+					{
+						$newTemFlag = '＋'.$addPrice*2 .'元，定做不退换，';
+						$item = str_replace($temFlag, $newTemFlag, $item);
+					}
+				}
+			}
+	
 			if (!in_array($item,$temTextEndNew))
 			{
 				$temTextEndNew[] = trim($item);
