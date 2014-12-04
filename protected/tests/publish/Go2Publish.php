@@ -128,7 +128,7 @@ Eof;
 				//选择上架时间-
 				$this->click("//input[@value='instock']");
 				//输入宝贝名称-
-				$this->type("//input[@name='title']", "时尚女鞋");
+				$this->type("//input[@name='title']", "$sellerCode");
 				//选择运费模板
 				$this->select("postage_id","value=1271450970");
 				
