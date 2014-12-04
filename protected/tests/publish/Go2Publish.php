@@ -34,7 +34,8 @@ class newTest extends WebTestCase
 		//http://hongfulai.go2.cn/c4-1-0.go
 		//$this->open("http://hongfulai.go2.cn/c4-1-0.go");
 		//$this->open("http://fufa.go2.cn/c4-1-0.go");
-		$this->open("http://xintianyu.go2.cn/c4-1-0.go");
+		//$this->open("http://xintianyu.go2.cn/c4-1-0.go");
+		$this->open("http://zsqy.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
 		$listReport = 'publish/reports/xintianyu.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
@@ -189,6 +190,8 @@ Eof;
 				
 		$temTextArry  = explode("\n", $temText);
 		$temTextEnd = array();
+		$temTextDel = array();
+		$temTextAll = array();
 		foreach ($temTextArry as $item) 
 		{
 			if (trim($item) != '') 
