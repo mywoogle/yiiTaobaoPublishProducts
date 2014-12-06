@@ -313,7 +313,81 @@ Eof;
 				}
 				//选择店铺分类
 				//$this->pause(1000000);
-				$this->click("//dl[@class='seller_cat']/dd[1]/input");
+				//$this->click("//dl[@class='seller_cat']/dd[1]/input");
+				//选择小分类
+				$temProductFenLei = 0;
+				$temProductDaFenLei = 0;
+				for($i=1; ;$i++)
+				{
+					if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input"))
+					{
+						$temFenLei = $this->getText("//dl[@class='seller_cat']/dd[$i]/span");
+						$temDateFenLei = date('Y-m-d',time());
+						if($temFenLei == $temDateFenLei)
+						{
+							$this->click("//dl[@class='seller_cat']/dd[$i]/input");
+							$temProductFenLei++;
+						}
+					}else{
+						break;
+					}
+				}
+				//如果没找到小分类，就用分到“星期日上架”；
+				if($temProductFenLei == 0)
+				{
+					for($i=1; ;$i++)
+					{
+						if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input"))
+						{
+							$temFenLei = $this->getText("//dl[@class='seller_cat']/dd[$i]/span");
+							$temDateFenLei = '星期日上架';
+							if($temFenLei == $temDateFenLei)
+							{
+								$this->click("//dl[@class='seller_cat']/dd[$i]/input");
+							}
+						}else{
+							break;
+						}
+					}
+				}
+				
+				//选择大分类
+				for($i=1; ;$i++)
+				{
+					if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input"))
+					{
+						$temFenLei = $this->getText("//dl[@class='seller_cat']/dt[$i]/span");
+						$temDaFenLei = '最新靴子';
+						if($temFenLei == $temDaFenLei)
+						{
+							$this->click("//dl[@class='seller_cat']/dt[$i]/input");
+							$temProductDaFenLei++;
+						}
+					}else{
+						break;
+					}
+				}
+				//如果没找到大分类，就用分到“靴子精选3”；
+				if($temProductDaFenLei == 0)
+				{
+					for($i=1; ;$i++)
+					{
+						if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input"))
+						{
+							$temFenLei = $this->getText("//dl[@class='seller_cat']/dt[$i]/span");
+							$temDaFenLei = '靴子精选3';
+							if($temFenLei == $temDaFenLei)
+							{
+								$this->click("//dl[@class='seller_cat']/dt[$i]/input");
+							}
+						}else{
+							break;
+						}
+					}
+				}
+				
+				//$this->pause(1000000);
+				//提交发布
 				$this->click("//input [@id='csvbutton']");
 				
 				//----------------------------detail end------------------------------------------
