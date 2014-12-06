@@ -37,8 +37,8 @@ class newTest extends WebTestCase
 		//$this->open("http://xintianyu.go2.cn/c4-1-0.go");
 		//$this->open("http://yayale.go2.cn/c4-1-0.go");
 		//$this->open("http://yida.go2.cn/c4-1-0.go");
-		$this->open("http://hcxy.go2.cn/c4-1-0.go");
-		//$this->open("http://xiangcheng.go2.cn/c4-1-0.go");
+		//$this->open("http://hcxy.go2.cn/c4-1-0.go");
+		$this->open("http://xiangcheng.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
 		$listReport = 'publish/reports/xiangcheng.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
@@ -129,9 +129,10 @@ Eof;
 				//----------------------------detail start------------------------------------------
 				
 				//选择首图-$shouTus
+				$shouTusCount = 0;
 				for($i=1; ;$i++)
 				{
-					if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]"))
+					if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]") && $shouTusCount<5)
 					{
 						foreach($shouTus as $shouTu)
 						{
@@ -139,6 +140,7 @@ Eof;
 							if($temTargetImgUrl == $shouTu)
 							{
 								$this->click("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img");
+								$shouTusCount++;
 							}
 						}
 					}else{
@@ -319,7 +321,7 @@ Eof;
 				$temProductDaFenLei = 0;
 				for($i=1; ;$i++)
 				{
-					if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input"))
+					if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input") && $temProductFenLei == 0)
 					{
 						$temFenLei = $this->getText("//dl[@class='seller_cat']/dd[$i]/span");
 						$temDateFenLei = date('Y-m-d',time());
@@ -354,7 +356,7 @@ Eof;
 				//选择大分类
 				for($i=1; ;$i++)
 				{
-					if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input"))
+					if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input") && $temProductDaFenLei==0)
 					{
 						$temFenLei = $this->getText("//dl[@class='seller_cat']/dt[$i]/span");
 						$temDaFenLei = '最新靴子';
