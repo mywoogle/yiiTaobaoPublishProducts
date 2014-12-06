@@ -131,7 +131,7 @@ Eof;
 				
 				//选择首图-$shouTus
 				$shouTusCountEnd = 0;
-				$shouTusIndexs = 0;
+				$shouTusIndexs = array();
 				for($i=1; ;$i++)
 				{
 					if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]") && $shouTusCountEnd<5)
@@ -143,7 +143,7 @@ Eof;
 							{
 								//$this->click("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img");
 								$shouTusCountEnd++;
-								$shouTusIndexs[$shouTu] = $i;
+								$shouTusIndexs[$temTargetImgUrl] = $i;
 							}
 						}
 					}else{
