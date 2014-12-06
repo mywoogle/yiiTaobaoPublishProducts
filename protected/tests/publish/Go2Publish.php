@@ -36,9 +36,10 @@ class newTest extends WebTestCase
 		//$this->open("http://fufa.go2.cn/c4-1-0.go");
 		//$this->open("http://xintianyu.go2.cn/c4-1-0.go");
 		//$this->open("http://yayale.go2.cn/c4-1-0.go");
-		$this->open("http://yida.go2.cn/c4-1-0.go");
+		//$this->open("http://yida.go2.cn/c4-1-0.go");
+		$this->open("http://hcxy.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/yida.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/hcxy.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{
@@ -83,7 +84,26 @@ Eof;
 			if(($new_text == "发布到淘宝") && $new_required)
 			{
 				//$this->open($temPublish);
-			
+				//搜集首图
+				$shouTus = array();
+				$shouTusCount = 0;
+				for($i=1; ;$i++)
+				{
+					if($this->isElementPresent("//div[@id='smallimg']/a[$i]"))
+					{
+						$shouTusCount++;
+					}else{
+						break;
+					}
+				}
+				for($i=1;$i<=$shouTusCount;$i++)
+				{
+					$shouTuUrlTem = $this->getAttribute("//div[@id='smallimg']/a[$i]/img/@src");
+					$shouTuUrl = str_replace('50x50','120x120',$shouTuUrlTem);
+					$shouTus[] = $shouTuUrl;
+					//file_put_contents("publish/reports/test.txt",$shouTuUrl, FILE_APPEND );
+					//$this->pause(1000000000);
+				}
 				while(true)
 				{
 					$this->open("http://www.baidu.com/");
@@ -107,21 +127,22 @@ Eof;
 				
 				//----------------------------detail start------------------------------------------
 				
-				//选择首图-
-				$shouTuCount = 0;
+				//选择首图-$shouTus
 				for($i=1; ;$i++)
 				{
 					if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]"))
 					{
-						$shouTuCount++;
+						foreach($shouTus as $shouTu)
+						{
+							$temTargetImgUrl = $this->getAttribute("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img/@src");
+							if($temTargetImgUrl == $shouTu)
+							{
+								$this->click("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img");
+							}
+						}
 					}else{
 						break;
 					}
-				}
-				if($shouTuCount >5)$shouTuCount = 5;
-				for($i=1;$i<=$shouTuCount;$i++)
-				{
-					$this->click("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img");
 				}
 				//$this->pause(150000000);
 				//获取商家编码
@@ -143,13 +164,26 @@ Eof;
 					$this->type("//ul[@id='shoesform']/li[27]/ul/li[$j]/label/input", $colors[$j-1]);
 				}
 				//选择尺码
+				for($i=1; ;$i++)
+				{
+					if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$i]/input"))
+					{
+						$this->uncheck("//ul[@id='shoesform']/li[29]/ul/li[$i]/input");
+					}else{
+						break;
+					}
+				}
+				
 				$chicuns = $this->getText("//ul[@id='shoesform']/li[25]/code");
 				$chicuns = explode(",",$chicuns);
 				for($j=1;$j<=count($chicuns);$j++)
 				{
 					$tem = intval($chicuns[$j-1])-32;
 					if($tem==1 || $tem>7){
-						$this->click("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input");
+						if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input"))
+						{
+							$this->click("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input");
+						}
 					}
 				}
 				
@@ -264,22 +298,17 @@ Eof;
 				$this->selectFrame("relative=top");
 				
 				//选择详情图片
-				$xiangTuCount = 0;
 				for($i=1; ;$i++)
 				{
 					if($this->isElementPresent("//div[@id='bbmslist']/b[$i]"))
 					{
-						$xiangTuCount++;
+						$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
 					}else{
 						break;
 					}
 				}
-				for($i=1;$i<=$xiangTuCount;$i++)
-				{
-					$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
-				}
 				//选择店铺分类
-				//$this->pause(3000000000000);
+				//$this->pause(1000000);
 				$this->click("//dl[@class='seller_cat']/dd[1]/input");
 				$this->click("//input [@id='csvbutton']");
 				
