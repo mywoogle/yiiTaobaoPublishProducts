@@ -35,9 +35,10 @@ class newTest extends WebTestCase
 		//$this->open("http://hongfulai.go2.cn/c4-1-0.go");
 		//$this->open("http://fufa.go2.cn/c4-1-0.go");
 		//$this->open("http://xintianyu.go2.cn/c4-1-0.go");
-		$this->open("http://zsqy.go2.cn/c4-1-0.go");
+		//$this->open("http://yayale.go2.cn/c4-1-0.go");
+		$this->open("http://yida.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/xintianyu.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/yida.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{
@@ -398,7 +399,7 @@ Eof;
 			$this->pause(10000);
 		}
 		//------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------
-		file_put_contents("$listReport","------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------", FILE_APPEND );
+		file_put_contents("$listReport","\n------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------", FILE_APPEND );
 		//----------------------------list end------------------------------------------
 		
 	}
