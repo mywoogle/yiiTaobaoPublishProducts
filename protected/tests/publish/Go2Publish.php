@@ -25,7 +25,7 @@ class newTest extends WebTestCase
 		
 		//----------------------------login end------------------------------------------
 		
-		//----------------------------chang jia------------------------------------------
+		//----------------------------chang jia loop,start.------------------------------------------
 		$changJiasList = array(
 			'wanliyun',//2014-12-06
 			'xiangcheng',//2014-12-06
@@ -37,17 +37,6 @@ class newTest extends WebTestCase
 			//----------------------------list start------------------------------------------	
 			$productsList = array();
 			//在这里替换发布列表
-			//$this->open("http://cxl.go2.cn/c4-1-0.go");
-			//$this->open("http://dlqm.go2.cn/c4-1-0.go");
-			//$this->open("http://chunlan.go2.cn/c4-1-0.go");
-			//http://hongfulai.go2.cn/c4-1-0.go
-			//$this->open("http://hongfulai.go2.cn/c4-1-0.go");
-			//$this->open("http://fufa.go2.cn/c4-1-0.go");
-			//$this->open("http://xintianyu.go2.cn/c4-1-0.go");
-			//$this->open("http://yayale.go2.cn/c4-1-0.go");
-			//$this->open("http://yida.go2.cn/c4-1-0.go");
-			//$this->open("http://hcxy.go2.cn/c4-1-0.go");
-			//$this->open("http://xiangcheng.go2.cn/c4-1-0.go");
 			$this->open("http://$changJia.go2.cn/c4-1-0.go");
 			//必须在这里替换报告名
 			$listReport = "publish/reports/$changJia.go2.cn_c4-1-0.go.txt";
@@ -78,13 +67,13 @@ class newTest extends WebTestCase
 				file_put_contents("$listReport","\n$product", FILE_APPEND );
 				//判断是否已经发布过了和是否有属性列表
 				$this->open("http://www.baidu.com/");
-	$js = <<<Eof
-		var target=document.getElementById("lg");  
-		var a=document.createElement("a");  
-		a.id="myProduct"; 
-		a.href="$product";
-		a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
-		target.appendChild(a);  
+				$js = <<<Eof
+					var target=document.getElementById("lg");  
+					var a=document.createElement("a");  
+					a.id="myProduct"; 
+					a.href="$product";
+					a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
+					target.appendChild(a);  
 Eof;
 				$this->runScript($js);
 				$this->click("//a [@id='myProduct']");
@@ -112,23 +101,20 @@ Eof;
 						$shouTuUrlTem = $this->getAttribute("//div[@id='smallimg']/a[$i]/img/@src");
 						$shouTuUrl = str_replace('50x50','120x120',$shouTuUrlTem);
 						$shouTus[] = $shouTuUrl;
-						//file_put_contents("publish/reports/test.txt",$shouTuUrl, FILE_APPEND );
-						//$this->pause(1000000000);
 					}
 					while(true)
 					{
 						$this->open("http://www.baidu.com/");
-	$js = <<<Eof
-		var target=document.getElementById("lg");  
-		var a=document.createElement("a");  
-		a.id="myProduct"; 
-		a.href="$temPublish";
-		a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
-		target.appendChild(a);  
+						$js = <<<Eof
+							var target=document.getElementById("lg");  
+							var a=document.createElement("a");  
+							a.id="myProduct"; 
+							a.href="$temPublish";
+							a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
+							target.appendChild(a);  
 Eof;
 						$this->runScript($js);
 						$this->click("//a [@id='myProduct']");
-						//file_put_contents("tesList.data",$currentPathname);
 						$this->pause(10000);
 						if($this->isElementPresent("//input [@id='csvbutton']"))
 						{
@@ -150,7 +136,6 @@ Eof;
 								$temTargetImgUrl = $this->getAttribute("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img/@src");
 								if($temTargetImgUrl == $shouTu)
 								{
-									//$this->click("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img");
 									$shouTusCountEnd++;
 									$shouTusIndexs[$temTargetImgUrl] = $i;
 								}
@@ -169,7 +154,6 @@ Eof;
 						}
 					}
 					
-					//$this->pause(1000000);
 					//获取商家编码
 					$sellerCode = $this->getValue("//ul[@id='shoesform']/li[20]/input");
 					//file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
@@ -179,7 +163,6 @@ Eof;
 					$this->type("//input[@name='title']", "$sellerCode");
 					//选择运费模板
 					$this->select("postage_id","value=1271450970");
-					
 					//选择颜色
 					$colors = $this->getText("//ul[@id='shoesform']/li[26]/code");
 					$colors = explode(";",$colors);
@@ -216,112 +199,111 @@ Eof;
 					}
 					
 					//过滤产品详情里面的文字内容
-
 					$this->selectFrame("//iframe[@class='ke-edit-iframe']");
 					$temText = $this->getText("//body[@class='ke-content']");
 					
-			$finds=array(
-				'q',
-				'Q',
-				'电',
-				'话',
-				'地',
-				'址',
-				'厂',
-				'家',
-				"号",
-				'GO2',
-				'go2',
-				'代',
-				'传',
-				'真',
-				'联',
-				'系',
-				'手',
-				'机',
-				'品',
-				'牌',
-				'包装',
-				'鞋业',
-				'群',
-				'支付宝',
-				'商贸城',
-				'单',
-				'发',
-				'价'
-				);		
-					
-			$temTextArry  = explode("\n", $temText);
-			$temTextEnd = array();
-			$temTextDel = array();
-			$temTextAll = array();
-			foreach ($temTextArry as $item) 
-			{
-				if (trim($item) != '') 
-				{
-					foreach ($finds as $find) 
+					$finds=array(
+						'q',
+						'Q',
+						'电',
+						'话',
+						'地',
+						'址',
+						'厂',
+						'家',
+						"号",
+						'GO2',
+						'go2',
+						'代',
+						'传',
+						'真',
+						'联',
+						'系',
+						'手',
+						'机',
+						'品',
+						'牌',
+						'包装',
+						'鞋业',
+						'群',
+						'支付宝',
+						'商贸城',
+						'单',
+						'发',
+						'价'
+					);
+							
+					$temTextArry  = explode("\n", $temText);
+					$temTextEnd = array();
+					$temTextDel = array();
+					$temTextAll = array();
+					foreach ($temTextArry as $item) 
 					{
-						if (strpos($item, $find) !== false)
+						if (trim($item) != '') 
 						{
+							foreach ($finds as $find) 
+							{
+								if (strpos($item, $find) !== false)
+								{
+									if (!in_array($item,$temTextEnd))
+									{
+										$temTextDel[] = trim($item)."\n";
+									}
+								}
+							}
 							if (!in_array($item,$temTextEnd))
 							{
-								$temTextDel[] = trim($item)."\n";
+								$temTextAll[] = trim($item)."\n";
 							}
 						}
 					}
-					if (!in_array($item,$temTextEnd))
+					$temTextAll = array_flip($temTextAll);
+					$temTextAll = array_flip($temTextAll);
+					$temTextDel = array_flip($temTextDel);
+					$temTextDel = array_flip($temTextDel);
+					$temTextEnd = array_diff($temTextAll, $temTextDel);
+					$temTextEndNew = array();
+					foreach($temTextEnd as $item)
 					{
-						$temTextAll[] = trim($item)."\n";
-					}
-				}
-			}
-			$temTextAll = array_flip($temTextAll);
-			$temTextAll = array_flip($temTextAll);
-			$temTextDel = array_flip($temTextDel);
-			$temTextDel = array_flip($temTextDel);
-			$temTextEnd = array_diff($temTextAll, $temTextDel);
-			$temTextEndNew = array();
-			foreach($temTextEnd as $item)
-			{
-				if(strpos($item,'加'))
-				{
-					preg_match_all('|(\d+)|',$item,$addPrices);
-					foreach ($addPrices[0] as $addPrice)
-					{
-						$temFlag = '加'.$addPrice.'元';
-						if (strpos($item,$temFlag)) 
+						if(strpos($item,'加'))
 						{
-							$newTemFlag = '加'.$addPrice*2 .'元，定做不退换，';
-							$item = str_replace($temFlag, $newTemFlag, $item);
+							preg_match_all('|(\d+)|',$item,$addPrices);
+							foreach ($addPrices[0] as $addPrice)
+							{
+								$temFlag = '加'.$addPrice.'元';
+								if (strpos($item,$temFlag)) 
+								{
+									$newTemFlag = '加'.$addPrice*2 .'元，定做不退换，';
+									$item = str_replace($temFlag, $newTemFlag, $item);
+								}
+							}
+						}
+				
+						if(strpos($item,'＋'))
+						{
+							preg_match_all('|(\d+)|',$item,$addPrices);
+							foreach ($addPrices[0] as $addPrice)
+							{
+								$temFlag = '＋'.$addPrice.'元';
+								if (strpos($item,$temFlag)) 
+								{
+									$newTemFlag = '＋'.$addPrice*2 .'元，定做不退换，';
+									$item = str_replace($temFlag, $newTemFlag, $item);
+								}
+							}
+						}
+				
+						if (!in_array($item,$temTextEndNew))
+						{
+							$temTextEndNew[] = trim($item);
 						}
 					}
-				}
-		
-				if(strpos($item,'＋'))
-				{
-					preg_match_all('|(\d+)|',$item,$addPrices);
-					foreach ($addPrices[0] as $addPrice)
-					{
-						$temFlag = '＋'.$addPrice.'元';
-						if (strpos($item,$temFlag)) 
-						{
-							$newTemFlag = '＋'.$addPrice*2 .'元，定做不退换，';
-							$item = str_replace($temFlag, $newTemFlag, $item);
-						}
-					}
-				}
-		
-				if (!in_array($item,$temTextEndNew))
-				{
-					$temTextEndNew[] = trim($item);
-				}
-			}
-			$typeContent = implode('<br>',$temTextEndNew); 
-			//过滤手机号码
-			$typeContent = preg_replace("/(?:1[3|4|5|8]d{1}|15[03689])d{8}$/","",$typeContent);
-			//过滤qq号码
-			$typeContent = preg_replace("/[1-9]{1}[0-9]{5,12}/","",$typeContent);
-			$this->type("//body[@class='ke-content']", "$typeContent");	
+					$typeContent = implode('<br>',$temTextEndNew); 
+					//过滤手机号码
+					$typeContent = preg_replace("/(?:1[3|4|5|8]d{1}|15[03689])d{8}$/","",$typeContent);
+					//过滤qq号码
+					$typeContent = preg_replace("/[1-9]{1}[0-9]{5,12}/","",$typeContent);
+					$this->type("//body[@class='ke-content']", "$typeContent");	
 
 					$this->selectFrame("relative=top");
 					
@@ -336,8 +318,6 @@ Eof;
 						}
 					}
 					//选择店铺分类
-					//$this->pause(1000000);
-					//$this->click("//dl[@class='seller_cat']/dd[1]/input");
 					//选择小分类
 					$temProductFenLei = 0;
 					$temProductDaFenLei = 0;
@@ -409,8 +389,7 @@ Eof;
 							}
 						}
 					}
-					
-					//$this->pause(1000000);
+
 					//提交发布
 					$this->click("//input [@id='csvbutton']");
 					
@@ -454,20 +433,21 @@ Eof;
 							{
 								$target_taobao_id = '获取返回的产品id失败';
 							}
-							//file_put_contents("publish/reports/test.txt",$target_taobao_id, FILE_APPEND );
 						}
 					}
+					
 					//----------------------------upload end------------------------------------------
+					
 					//----------------------------Confirmation has been successfully posted,start-------------
 					
 					$this->open("http://www.baidu.com/");
-	$js = <<<Eof
-		var target=document.getElementById("lg");  
-		var a=document.createElement("a");  
-		a.id="myProduct"; 
-		a.href="$product";
-		a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
-		target.appendChild(a);  
+					$js = <<<Eof
+						var target=document.getElementById("lg");  
+						var a=document.createElement("a");  
+						a.id="myProduct"; 
+						a.href="$product";
+						a.innerHTML="------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------";
+						target.appendChild(a);  
 Eof;
 					$this->runScript($js);
 					$this->click("//a [@id='myProduct']");
@@ -512,8 +492,6 @@ Eof;
 						$myTarget->source_taobao_keyword1 = '等待修改';
 						$myTarget->source_taobao_keyword2 = '等待修改';
 						$myTarget->source_taobao_keyword3 = '等待修改';
-						//2014-12-03 21:43:57   H时i分s秒
-						//$myTarget->create_date = date('Y-m-d H:i:s',time());
 						$myTarget->save();
 					}else
 					{
@@ -529,14 +507,10 @@ Eof;
 				//暂停10s发布下一个产品
 				$this->pause(10000);
 			}
-			//------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------
 			file_put_contents("$listReport","\n------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------", FILE_APPEND );
-			//----------------------------list end------------------------------------------
 			
-		
-		
+			//----------------------------list end------------------------------------------
 		}
-		
-
+		//----------------------------chang jia loop,end.------------------------------------------
 	}
 }
