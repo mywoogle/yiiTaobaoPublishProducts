@@ -38,8 +38,9 @@ class newTest extends WebTestCase
 		//$this->open("http://yayale.go2.cn/c4-1-0.go");
 		//$this->open("http://yida.go2.cn/c4-1-0.go");
 		$this->open("http://hcxy.go2.cn/c4-1-0.go");
+		//$this->open("http://xiangcheng.go2.cn/c4-1-0.go");
 		//必须在这里替换报告名
-		$listReport = 'publish/reports/hcxy.go2.cn_c4-1-0.go.txt';
+		$listReport = 'publish/reports/xiangcheng.go2.cn_c4-1-0.go.txt';
 		$productsCount = 0;
 		for($i=1; ;$i++)
 		{
@@ -164,17 +165,20 @@ Eof;
 					$this->type("//ul[@id='shoesform']/li[27]/ul/li[$j]/label/input", $colors[$j-1]);
 				}
 				//选择尺码
-				for($i=1; ;$i++)
+				$chicuns = $this->getText("//ul[@id='shoesform']/li[25]/code");
+				if(preg_match("/^[\d,]+$/",$chicuns) == 0)
 				{
-					if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$i]/input"))
+					for($i=1; ;$i++)
 					{
-						$this->uncheck("//ul[@id='shoesform']/li[29]/ul/li[$i]/input");
-					}else{
-						break;
+						if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$i]/input"))
+						{
+							$this->uncheck("//ul[@id='shoesform']/li[29]/ul/li[$i]/input");
+						}else{
+							break;
+						}
 					}
 				}
 				
-				$chicuns = $this->getText("//ul[@id='shoesform']/li[25]/code");
 				$chicuns = explode(",",$chicuns);
 				for($j=1;$j<=count($chicuns);$j++)
 				{
