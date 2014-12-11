@@ -313,6 +313,7 @@ Eof;
 
 					$this->selectFrame("relative=top");
 					
+					$tem_images = array();
 					//选择详情图片
 					for($i=1; ;$i++)
 					{
@@ -334,7 +335,8 @@ Eof;
 							}
 							if($img_size_tem < 512000)
 							{
-								$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
+								$tem_images[$i] = $img_size_tem;
+								//$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
 								file_put_contents("publish/reports/test.txt",$img_url."\n", FILE_APPEND );
 								file_put_contents("publish/reports/test.txt",$img_size[0]."\n", FILE_APPEND );
 								file_put_contents("publish/reports/test.txt",$img_size_tem."\n", FILE_APPEND );
@@ -343,6 +345,12 @@ Eof;
 						}else{
 							break;
 						}
+					}
+					$tem_images_new = array_flip($tem_images);
+					//$img_size_tem_new = array_flip($img_size_tem_new);
+					foreach($tem_images_new as $tem_images_new_item)
+					{
+						$this->click("//div[@id='bbmslist']/b[$tem_images_new_item]/table/tbody/tr/td/img");
 					}
 					$this->pause(20000000);
 					//选择店铺分类

@@ -7,3 +7,7 @@ print_r($img_size);
 //echo $img_size['Content-Length'];
 
 
+$tem[1] = 11;
+$tem[2] = 22;
+$tem_a = array_flip($tem);
+print_r($tem_a);
