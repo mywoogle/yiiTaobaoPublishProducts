@@ -27,8 +27,14 @@ class newTest extends WebTestCase
 		
 		//----------------------------chang jia loop,start.------------------------------------------
 		$changJiasList = array(
-			'wanliyun',//2014-12-06
-			'xiangcheng',//2014-12-06
+			//'wanliyun',//2014-12-06
+			//'xiangcheng',//2014-12-06
+			//'lly',//2014-12-09
+			//'jqlld',//2014-12-09
+			//'skmy',//2014-12-09
+			//'oudi',//2014-12-09
+			'miqier',//2014-12-09 
+			//'hongfulai',//2014-12-10
 		);
 		
 		//厂家循环
@@ -312,11 +318,33 @@ Eof;
 					{
 						if($this->isElementPresent("//div[@id='bbmslist']/b[$i]"))
 						{
-							$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
+							$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
+							$img_url = str_replace('120x120','750x750',$img_url);
+							$img_size = get_headers($img_url);
+							$img_size_tem = 10240000;
+							if($img_size[0] == 'HTTP/1.1 200 OK')
+							{
+								foreach($img_size as $img_size_item)
+								{
+									if(strpos($img_size_item,'Content-Length: ') !== false)
+									{
+										$img_size_tem = floatval(str_replace('Content-Length: ','',$img_size_item));
+									}
+								}
+							}
+							if($img_size_tem < 512000)
+							{
+								$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
+								file_put_contents("publish/reports/test.txt",$img_url."\n", FILE_APPEND );
+								file_put_contents("publish/reports/test.txt",$img_size[0]."\n", FILE_APPEND );
+								file_put_contents("publish/reports/test.txt",$img_size_tem."\n", FILE_APPEND );
+								
+							}
 						}else{
 							break;
 						}
 					}
+					$this->pause(20000000);
 					//选择店铺分类
 					//选择小分类
 					$temProductFenLei = 0;
@@ -402,7 +430,7 @@ Eof;
 
 					while($giveUp == false && $success == false)
 					{
-						$this->pause(10000);
+						$this->pause(20000);
 						if($this->isTextPresent("按照错误提示"))
 						{
 							//必填属性不完整
