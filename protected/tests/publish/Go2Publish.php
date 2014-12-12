@@ -6,6 +6,17 @@ class newTest extends WebTestCase
 		//----------------------------login start------------------------------------------
 		
 		$this->open("http://www.go2.cn/product/publish/cicsq");
+		$this->click("//div[@id='fast_login']/div/a/div");
+		$this->open("http://www.go2.cn/product/publish/cicsq");
+		
+		$this->pause(10000);
+		$this->selectFrame("//iframe");
+		$this->type("//input[@id='TPL_username_1']", "纤美诺一予你美丽承诺");
+		$this->type("//input[@id='TPL_password_1']", 'pengjj&735$one');	
+		$this->click("//button[@id='J_SubmitStatic']");		
+		
+		
+		/*
 		while(true)
 		{
 			if($this->isElementPresent("//input [@id='csvbutton']"))
@@ -22,7 +33,8 @@ class newTest extends WebTestCase
 			//file_put_contents("tesList.data",$currentPathname);
 			$this->pause(10000);
 		}
-		
+		*/
+		$this->pause(100000000);
 		//----------------------------login end------------------------------------------
 		
 		//----------------------------chang jia loop,start.------------------------------------------
