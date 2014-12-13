@@ -1,8 +1,8 @@
 <?php
-	$times = 2;
+	$times = 1;
 	for($i=1;$i<=$times;$i++)
 	{
-		exec("d:/wamp/bin/php/php5.4.3/phpunit publish/gpt.php",$out);
+		exec("d:/wamp/bin/php/php5.4.3/phpunit publish/Go2Publish.php",$out);
 		if(isset($out[count($out)-1]))
 		{
 			if(strpos($out[count($out)-3],'Errors') !== false)
