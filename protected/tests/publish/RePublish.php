@@ -1,5 +1,5 @@
 <?php
-	$times = 1;
+	$times = 3;
 	for($i=1;$i<=$times;$i++)
 	{
 		exec("d:/wamp/bin/php/php5.4.3/phpunit publish/Go2Publish.php",$out);
@@ -8,6 +8,10 @@
 			if(strpos($out[count($out)-3],'Errors') !== false)
 			{
 				exec("d:/wamp/bin/php/php5.4.3/phpunit publish/Go2Publish.php",$out);
+			}else
+			{
+				$times = $i;
+				break;
 			}
 		}
 	}
