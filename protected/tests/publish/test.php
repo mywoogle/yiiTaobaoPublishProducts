@@ -1,4 +1,5 @@
 <?php
+/*
 $img_info = getimagesize('http://z5.static.ximgs.net/thumbs/750x750/1/101391/20141103/2014110310456602524289.jpg1');
 print_r($img_info);
 echo '------------------';
@@ -11,3 +12,6 @@ $tem[1] = 11;
 $tem[2] = 22;
 $tem_a = array_flip($tem);
 print_r($tem_a);
+*/
+exec("java -jar D:\wamp\www\yiiTaobaoPublishProducts/s2.jar -firefoxProfileTemplate publish/firefoxProfile/publish7",$out);
+print_r($out);
