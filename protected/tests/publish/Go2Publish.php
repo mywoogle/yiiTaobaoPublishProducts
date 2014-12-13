@@ -4,37 +4,28 @@ class newTest extends WebTestCase
 	public function testSet()
 	{
 		//----------------------------login start------------------------------------------
+		$init_url = 'http://www.go2.cn/product/publish/cicsq';
 		
-		$this->open("http://www.go2.cn/product/publish/cicsq");
-		$this->click("//div[@id='fast_login']/div/a/div");
-		$this->open("http://www.go2.cn/product/publish/cicsq");
-		
-		$this->pause(10000);
-		$this->selectFrame("//iframe");
-		$this->type("//input[@id='TPL_username_1']", "纤美诺一予你美丽承诺");
-		$this->type("//input[@id='TPL_password_1']", 'pengjj&735$one');	
-		$this->click("//button[@id='J_SubmitStatic']");		
-		
-		
-		/*
+		$this->open("$init_url");
+
 		while(true)
 		{
 			if($this->isElementPresent("//input [@id='csvbutton']"))
 			{
 				break;
 			}
-			$currentPathname = $this->getEval("window.location.pathname");
-			$currentUrl = $this->getEval("window.location.href");
-			if($currentPathname != '/oauth/taobao/publish')
+			
+			if($this->isElementPresent("//div[@id='fast_login']/div/a/div"))
 			{
-				$currentUrl = 'http://www.go2.cn/product/publish/cicsq';
+				$this->click("//div[@id='fast_login']/div/a/div");
 			}
-			$this->open($currentUrl);
-			//file_put_contents("tesList.data",$currentPathname);
+			
+			$this->open("$init_url");
+			
 			$this->pause(10000);
 		}
-		*/
-		$this->pause(100000000);
+		
+		//$this->pause(100000000);
 		//----------------------------login end------------------------------------------
 		
 		//----------------------------chang jia loop,start.------------------------------------------

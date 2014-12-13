@@ -1,5 +1,15 @@
 <UserScriptConfig>
-	<Script basedir="reSetAlert" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="new alert" enabled="true" noframes="false" filename="reSetAlert.user.js" installTime="1415630370359" modified="1415887690503" name="new alert" namespace="new alert" runAt="document-start" updateMetaStatus="unknown" uuid="876fcff1-e30f-42a0-9cd7-b0273c953512" version="1" installurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir22dc4a634dd14de68681311e9abadda5/gm_scripts/reSetAlert/reSetAlert.user.js" updateurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir22dc4a634dd14de68681311e9abadda5/gm_scripts/reSetAlert/reSetAlert.user.js">
+	<Script basedir="reSetAlert" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="new alert" enabled="true" noframes="false" filename="reSetAlert.user.js" installTime="1415630370359" modified="1418432562730" name="new alert" namespace="new alert" runAt="document-start" updateMetaStatus="unknown" uuid="876fcff1-e30f-42a0-9cd7-b0273c953512" version="1" installurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir22dc4a634dd14de68681311e9abadda5/gm_scripts/reSetAlert/reSetAlert.user.js" updateurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir22dc4a634dd14de68681311e9abadda5/gm_scripts/reSetAlert/reSetAlert.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+		<UserInclude>*</UserInclude>
+	</Script>
+	<Script basedir="login_taobao" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="" enabled="true" noframes="false" filename="login_taobao.user.js" installTime="1418432632331" modified="1418432869942" name="login taobao" namespace="login taobao" runAt="document-end" updateMetaStatus="unknown" uuid="2391d279-98aa-479c-98b6-7c5e5cced68a" version="1" installurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir26ed4f295b0d4e1b92a02d10219b1f16/gm_scripts/login_taobao/login_taobao.user.js" updateurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir26ed4f295b0d4e1b92a02d10219b1f16/gm_scripts/login_taobao/login_taobao.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+		<UserInclude>*</UserInclude>
+	</Script>
+	<Script basedir="permission" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="" enabled="true" noframes="false" filename="permission.user.js" installTime="1418432772342" modified="1418432815825" name="permission" namespace="permission" runAt="document-end" updateMetaStatus="unknown" uuid="b02e19f6-e9c4-40fa-b405-b77b5e55c3a0" version="1" installurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir26ed4f295b0d4e1b92a02d10219b1f16/gm_scripts/permission/permission.user.js" updateurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir26ed4f295b0d4e1b92a02d10219b1f16/gm_scripts/permission/permission.user.js">
 		<Grant>none</Grant>
 		<Include>*</Include>
 		<UserInclude>*</UserInclude>

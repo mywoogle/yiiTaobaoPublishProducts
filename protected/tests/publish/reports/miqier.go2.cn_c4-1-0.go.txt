@@ -1,0 +1,9 @@
+
+http://www.go2.cn/product/ocegsk.go?_page=home&_pos=1&_cat=all&_type=txt------已经发布过了或者没有参数列表
+http://www.go2.cn/product/ocegss.go?_page=home&_pos=2&_cat=all&_type=txt------必填属性不完整------未知的发布失败原因
+http://www.go2.cn/product/ocegie.go?_page=home&_pos=3&_cat=all&_type=txt
+http://www.go2.cn/product/ocegsk.go?_page=home&_pos=1&_cat=all&_type=txt------已经发布过了或者没有参数列表
+http://www.go2.cn/product/ocegss.go?_page=home&_pos=2&_cat=all&_type=txt------必填属性不完整------未知的发布失败原因
+http://www.go2.cn/product/ocegie.go?_page=home&_pos=3&_cat=all&_type=txt
+http://www.go2.cn/product/ocegsk.go?_page=home&_pos=1&_cat=all&_type=txt------已经发布过了或者没有参数列表
+http://www.go2.cn/product/ocegss.go?_page=home&_pos=2&_cat=all&_type=txt
