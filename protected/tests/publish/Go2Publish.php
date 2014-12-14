@@ -4,29 +4,43 @@ class newTest extends WebTestCase
 	public function testSet()
 	{
 		//----------------------------login start------------------------------------------
-		//longin taobao
-		$this->open("https://login.taobao.com/member/login.jhtml?spm=1.7274553.1997563269.1.LEVuu1&f=top&redirectURL=http%3A%2F%2Fwww.taobao.com%2F");
-		$this->pause(20000);
 		
 		$init_url = 'http://www.go2.cn/product/publish/cicsq';
-		
-		$this->open("$init_url");
 
+		$this->open("$init_url");
+		
 		while(true)
 		{
+			//登录go2
+			if($this->isElementPresent("//div[@class='xplong']"))
+			{
+				//http://www.go2.cn/user/login
+				$this->open("http://www.go2.cn/user/login");
+				$this->pause(10000);
+			}
+			
+			//longin taobao
+			if($this->isElementPresent("//button [@id='J_SubmitStatic']"))
+			{
+				$this->open("https://login.taobao.com/member/login.jhtml?spm=1.7274553.1997563269.1.LEVuu1&f=top&redirectURL=http%3A%2F%2Fwww.taobao.com%2F");
+				$this->pause(10000);
+			}
+			
+			//进入授权页面
+			if($this->isElementPresent("//button [@id='sub']"))
+			{
+				$this->open("$init_url");
+				$this->pause(10000);
+			}
+			
+			//判断是否进入了发布页面
 			if($this->isElementPresent("//input [@id='csvbutton']"))
 			{
 				break;
-			}
-			
-			if($this->isElementPresent("//div[@id='fast_login']/div/a/div"))
+			}else
 			{
-				$this->click("//div[@id='fast_login']/div/a/div");
+				$this->open("$init_url");
 			}
-			
-			$this->open("$init_url");
-			
-			$this->pause(10000);
 		}
 		
 		//$this->pause(100000000);
@@ -141,7 +155,7 @@ Eof;
 						$shouTusIndexs = array();
 						for($i=1; ;$i++)
 						{
-							if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]") && $shouTusCountEnd<=$shouTusCount)
+							if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]") && $shouTusCountEnd<$shouTusCount)
 							{
 								foreach($shouTus as $shouTu)
 								{
@@ -157,19 +171,17 @@ Eof;
 								break;
 							}
 						}
-						file_put_contents("publish/reports/test.txt",implode("-----",$shouTusIndexs), FILE_APPEND );
-						$shouTusIndexsCount= count($shouTusIndexs);
 						foreach($shouTus as $shouTu)
 						{
 							//当首图都有的时候，才选择。
-							if($shouTusIndexsCount == $shouTusCount)
+							if($shouTusCountEnd == $shouTusCount)
 							{
 								$shouTusIndexTem = $shouTusIndexs[$shouTu];
 								$this->click("//div[@id='imglist']/ul[1]/li[$shouTusIndexTem]/table/tbody/tr/td/img");
 							}
 						}
 						
-						file_put_contents("publish/reports/test.txt","++++$shouTusIndexsCount+++++$shouTusCountEnd+++++$shouTusCount++++", FILE_APPEND );
+						//file_put_contents("publish/reports/test.txt","+++++++++$shouTusCountEnd+++++$shouTusCount++++", FILE_APPEND );
 						//$this->open("http://www.baidu.com/");
 						$this->pause(1000000);
 						//获取商家编码

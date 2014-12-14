@@ -1,0 +1,12 @@
+<UserScriptConfig>
+	<Script basedir="reSetAlert" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="new alert" enabled="true" noframes="false" filename="reSetAlert.user.js" installTime="1415630370359" modified="1418387955702" name="new alert" namespace="new alert" runAt="document-start" updateMetaStatus="unknown" uuid="876fcff1-e30f-42a0-9cd7-b0273c953512" version="1" installurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir22dc4a634dd14de68681311e9abadda5/gm_scripts/reSetAlert/reSetAlert.user.js" updateurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDir22dc4a634dd14de68681311e9abadda5/gm_scripts/reSetAlert/reSetAlert.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+		<UserInclude>*</UserInclude>
+	</Script>
+	<Script basedir="close" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="" enabled="true" noframes="false" filename="close.user.js" installTime="1418388102568" modified="1418388296005" name="close" namespace="close" runAt="document-end" updateMetaStatus="unknown" uuid="c9b87c1e-feb8-4a91-ae41-6cc4e25ab00b" version="1" installurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDirf57c8be782974ab3ad00090e17764099/gm_scripts/close/close.user.js" updateurl="file:///C:/Users/ADMINI~1/AppData/Local/Temp/customProfileDirf57c8be782974ab3ad00090e17764099/gm_scripts/close/close.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+		<UserInclude>*</UserInclude>
+	</Script>
+</UserScriptConfig>

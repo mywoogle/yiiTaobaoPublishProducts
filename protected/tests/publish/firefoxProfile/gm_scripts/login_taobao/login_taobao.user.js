@@ -8,7 +8,11 @@
 //document.getElementById("TPL_password_1").value = 'pengjj&735$one';
 //document.getElementById("J_SubmitQuick").click();
 //getElementsByTagName("a")
-setTimeout(b,3000);//再间隔5秒钟执行b循环
+setTimeout(b,10000);//再间隔5秒钟执行b循环
 function b(){
 	document.getElementById("J_SubmitQuick").click();
+}
+setTimeout(c,25000);//再间隔5秒钟执行b循环
+function c(){
+	document.getElementById("fast_login").getElementsByTagName("div").getElementsByTagName("a").getElementsByTagName("div").click();
 }
