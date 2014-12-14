@@ -576,6 +576,9 @@ Eof;
 						}else
 						{
 							file_put_contents("$listReport","------未知的发布失败原因", FILE_APPEND );
+							$nowFactory = Factory::model()->find('factory_flag=:factory_flag and factory_name=:factory_name and product_category=:product_category',array(':factory_flag'=>0,'factory_name'=>$factory_name,'product_category'=>$product_category));
+							$nowFactory->factory_num  = 1+$nowFactory->factory_num;
+							$nowFactory->save();
 						}
 
 						//----------------------------Confirmation has been successfully posted,end--------------
