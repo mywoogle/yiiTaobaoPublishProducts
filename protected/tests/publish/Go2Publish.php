@@ -4,7 +4,17 @@ class newTest extends WebTestCase
 	public function testSet()
 	{
 		//----------------------------login start------------------------------------------
-		
+		/*
+		注意$product_category的最后一位是排序方式。
+		如http://hjy.go2.cn/c4-1-3.go，这里面最后的3就是排序用的。
+		0:选择排序规则
+		1:最近更新
+		2:人气产品
+		3:价格由高到低
+		4:价格由低到高
+		5:最新发布
+		请在/index.php?r=factory/create这里添加$product_category时注意选择对应的排序方式。
+		*/
 		$init_url = 'http://www.go2.cn/product/publish/cicsq';
 		$max_time = 120;
 
