@@ -377,9 +377,12 @@ Eof;
 							$tem_images_new = array_keys($tem_images_new_value);
 							//$tem_a = array_flip($tem);
 							//$img_size_tem_new = array_flip($img_size_tem_new);
-							foreach($tem_images_new as $tem_images_new_item)
+							if(count($tem_images_new)>=10)
 							{
-								$this->click("//div[@id='bbmslist']/b[$tem_images_new_item]/table/tbody/tr/td/img");
+								foreach($tem_images_new as $tem_images_new_item)
+								{
+									$this->click("//div[@id='bbmslist']/b[$tem_images_new_item]/table/tbody/tr/td/img");
+								}
 							}
 							//$this->pause(20000000);
 							//选择店铺分类
