@@ -127,7 +127,7 @@ Eof;
 							$shouTuUrl = strtolower($shouTuUrl);
 							$shouTus[] = $shouTuUrl;
 						}
-						file_put_contents("publish/reports/test.txt",implode("\n",$shouTus), FILE_APPEND );
+						//file_put_contents("publish/reports/test.txt",implode("\n",$shouTus), FILE_APPEND );
 						while(true)
 						{
 							$this->open("http://www.baidu.com/");
@@ -171,288 +171,290 @@ Eof;
 								break;
 							}
 						}
-						foreach($shouTus as $shouTu)
+						
+						//当首图都有的时候，才选择。
+						if($shouTusCountEnd == $shouTusCount)
 						{
-							//当首图都有的时候，才选择。
-							if($shouTusCountEnd == $shouTusCount)
+							foreach($shouTus as $shouTu)
 							{
 								$shouTusIndexTem = $shouTusIndexs[$shouTu];
 								$this->click("//div[@id='imglist']/ul[1]/li[$shouTusIndexTem]/table/tbody/tr/td/img");
 							}
-						}
+							
+							//file_put_contents("publish/reports/test.txt","+++++++++$shouTusCountEnd+++++$shouTusCount++++", FILE_APPEND );
+							//$this->open("http://www.baidu.com/");
+							//$this->pause(1000000);
+							//获取商家编码
+							$sellerCode = $this->getValue("//ul[@id='shoesform']/li[20]/input");
+							//file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
+							//选择上架时间-
+							$this->click("//input[@value='instock']");
+							//输入宝贝名称-
+							$this->type("//input[@name='title']", "$sellerCode");
+							//选择运费模板
+							$this->select("postage_id","value=1271450970");
+							//选择颜色
+							$colors = $this->getText("//ul[@id='shoesform']/li[26]/code");
+							$colors = explode(";",$colors);
+							for($j=1;$j<count($colors);$j++)
+							{
+								$this->click("//ul[@id='shoesform']/li[27]/ul/li[$j]/input");
+								$this->type("//ul[@id='shoesform']/li[27]/ul/li[$j]/label/input", $colors[$j-1]);
+							}
+							//选择尺码
+							$chicuns = $this->getText("//ul[@id='shoesform']/li[25]/code");
+							if(preg_match("/^[\d,]+$/",$chicuns) == 0)
+							{
+								for($i=1; ;$i++)
+								{
+									if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$i]/input"))
+									{
+										$this->uncheck("//ul[@id='shoesform']/li[29]/ul/li[$i]/input");
+									}else{
+										break;
+									}
+								}
+							}
+							
+							$chicuns = explode(",",$chicuns);
+							for($j=1;$j<=count($chicuns);$j++)
+							{
+								$tem = intval($chicuns[$j-1])-32;
+								if($tem==1 || $tem>7){
+									if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input"))
+									{
+										$this->click("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input");
+									}
+								}
+							}
+							
+							//过滤产品详情里面的文字内容
+							$this->selectFrame("//iframe[@class='ke-edit-iframe']");
+							$temText = $this->getText("//body[@class='ke-content']");
+							
+							$finds=array(
+								'q',
+								'Q',
+								'电',
+								'话',
+								'地',
+								'址',
+								'厂',
+								'家',
+								"号",
+								'GO2',
+								'go2',
+								'代',
+								'传',
+								'真',
+								'联',
+								'系',
+								'手',
+								'机',
+								'品',
+								'牌',
+								'包装',
+								'鞋业',
+								'群',
+								'支付宝',
+								'商贸城',
+								'单',
+								'发',
+								'价'
+							);
+									
+							$temTextArry  = explode("\n", $temText);
+							$temTextEnd = array();
+							$temTextDel = array();
+							$temTextAll = array();
+							foreach ($temTextArry as $item) 
+							{
+								if (trim($item) != '') 
+								{
+									foreach ($finds as $find) 
+									{
+										if (strpos($item, $find) !== false)
+										{
+											if (!in_array($item,$temTextEnd))
+											{
+												$temTextDel[] = trim($item)."\n";
+											}
+										}
+									}
+									if (!in_array($item,$temTextEnd))
+									{
+										$temTextAll[] = trim($item)."\n";
+									}
+								}
+							}
+							$temTextAll = array_flip($temTextAll);
+							$temTextAll = array_flip($temTextAll);
+							$temTextDel = array_flip($temTextDel);
+							$temTextDel = array_flip($temTextDel);
+							$temTextEnd = array_diff($temTextAll, $temTextDel);
+							$temTextEndNew = array();
+							foreach($temTextEnd as $item)
+							{
+								if(strpos($item,'加'))
+								{
+									preg_match_all('|(\d+)|',$item,$addPrices);
+									foreach ($addPrices[0] as $addPrice)
+									{
+										$temFlag = '加'.$addPrice.'元';
+										if (strpos($item,$temFlag)) 
+										{
+											$newTemFlag = '加'.$addPrice*2 .'元，定做不退换，';
+											$item = str_replace($temFlag, $newTemFlag, $item);
+										}
+									}
+								}
 						
-						//file_put_contents("publish/reports/test.txt","+++++++++$shouTusCountEnd+++++$shouTusCount++++", FILE_APPEND );
-						//$this->open("http://www.baidu.com/");
-						$this->pause(1000000);
-						//获取商家编码
-						$sellerCode = $this->getValue("//ul[@id='shoesform']/li[20]/input");
-						//file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
-						//选择上架时间-
-						$this->click("//input[@value='instock']");
-						//输入宝贝名称-
-						$this->type("//input[@name='title']", "$sellerCode");
-						//选择运费模板
-						$this->select("postage_id","value=1271450970");
-						//选择颜色
-						$colors = $this->getText("//ul[@id='shoesform']/li[26]/code");
-						$colors = explode(";",$colors);
-						for($j=1;$j<count($colors);$j++)
-						{
-							$this->click("//ul[@id='shoesform']/li[27]/ul/li[$j]/input");
-							$this->type("//ul[@id='shoesform']/li[27]/ul/li[$j]/label/input", $colors[$j-1]);
-						}
-						//选择尺码
-						$chicuns = $this->getText("//ul[@id='shoesform']/li[25]/code");
-						if(preg_match("/^[\d,]+$/",$chicuns) == 0)
-						{
+								if(strpos($item,'＋'))
+								{
+									preg_match_all('|(\d+)|',$item,$addPrices);
+									foreach ($addPrices[0] as $addPrice)
+									{
+										$temFlag = '＋'.$addPrice.'元';
+										if (strpos($item,$temFlag)) 
+										{
+											$newTemFlag = '＋'.$addPrice*2 .'元，定做不退换，';
+											$item = str_replace($temFlag, $newTemFlag, $item);
+										}
+									}
+								}
+						
+								if (!in_array($item,$temTextEndNew))
+								{
+									$temTextEndNew[] = trim($item);
+								}
+							}
+							$typeContent = implode('<br>',$temTextEndNew); 
+							//过滤手机号码
+							$typeContent = preg_replace("/(?:1[3|4|5|8]d{1}|15[03689])d{8}$/","",$typeContent);
+							//过滤qq号码
+							$typeContent = preg_replace("/[1-9]{1}[0-9]{5,12}/","",$typeContent);
+							$this->type("//body[@class='ke-content']", "$typeContent");	
+
+							$this->selectFrame("relative=top");
+							
+							$tem_images = array();
+							$tem_images_new = array();
+							//选择详情图片
 							for($i=1; ;$i++)
 							{
-								if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$i]/input"))
+								if($this->isElementPresent("//div[@id='bbmslist']/b[$i]"))
 								{
-									$this->uncheck("//ul[@id='shoesform']/li[29]/ul/li[$i]/input");
+									$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
+									$img_url = str_replace('120x120','750x750',$img_url);
+									$img_size = get_headers($img_url);
+									$img_size_tem = 10240000;
+									if($img_size[0] == 'HTTP/1.1 200 OK')
+									{
+										foreach($img_size as $img_size_item)
+										{
+											if(strpos($img_size_item,'Content-Length: ') !== false)
+											{
+												$img_size_tem = floatval(str_replace('Content-Length: ','',$img_size_item));
+											}
+										}
+									}
+									if($img_size_tem < 512000)
+									{
+										$tem_images[$i] = $img_size_tem;
+										//$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
+										//file_put_contents("publish/reports/test.txt",$img_url."\n", FILE_APPEND );
+										//file_put_contents("publish/reports/test.txt",$img_size[0]."\n", FILE_APPEND );
+										//file_put_contents("publish/reports/test.txt",$img_size_tem."\n", FILE_APPEND );
+										//file_put_contents("publish/reports/test.txt",$tem_images[$i]."\n", FILE_APPEND );
+										
+									}
 								}else{
 									break;
 								}
 							}
-						}
-						
-						$chicuns = explode(",",$chicuns);
-						for($j=1;$j<=count($chicuns);$j++)
-						{
-							$tem = intval($chicuns[$j-1])-32;
-							if($tem==1 || $tem>7){
-								if($this->isElementPresent("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input"))
-								{
-									$this->click("//ul[@id='shoesform']/li[29]/ul/li[$tem]/input");
-								}
-							}
-						}
-						
-						//过滤产品详情里面的文字内容
-						$this->selectFrame("//iframe[@class='ke-edit-iframe']");
-						$temText = $this->getText("//body[@class='ke-content']");
-						
-						$finds=array(
-							'q',
-							'Q',
-							'电',
-							'话',
-							'地',
-							'址',
-							'厂',
-							'家',
-							"号",
-							'GO2',
-							'go2',
-							'代',
-							'传',
-							'真',
-							'联',
-							'系',
-							'手',
-							'机',
-							'品',
-							'牌',
-							'包装',
-							'鞋业',
-							'群',
-							'支付宝',
-							'商贸城',
-							'单',
-							'发',
-							'价'
-						);
-								
-						$temTextArry  = explode("\n", $temText);
-						$temTextEnd = array();
-						$temTextDel = array();
-						$temTextAll = array();
-						foreach ($temTextArry as $item) 
-						{
-							if (trim($item) != '') 
+							$tem_images_new_value = array_unique($tem_images);
+							$tem_images_new = array_keys($tem_images_new_value);
+							//$tem_a = array_flip($tem);
+							//$img_size_tem_new = array_flip($img_size_tem_new);
+							foreach($tem_images_new as $tem_images_new_item)
 							{
-								foreach ($finds as $find) 
-								{
-									if (strpos($item, $find) !== false)
-									{
-										if (!in_array($item,$temTextEnd))
-										{
-											$temTextDel[] = trim($item)."\n";
-										}
-									}
-								}
-								if (!in_array($item,$temTextEnd))
-								{
-									$temTextAll[] = trim($item)."\n";
-								}
+								$this->click("//div[@id='bbmslist']/b[$tem_images_new_item]/table/tbody/tr/td/img");
 							}
-						}
-						$temTextAll = array_flip($temTextAll);
-						$temTextAll = array_flip($temTextAll);
-						$temTextDel = array_flip($temTextDel);
-						$temTextDel = array_flip($temTextDel);
-						$temTextEnd = array_diff($temTextAll, $temTextDel);
-						$temTextEndNew = array();
-						foreach($temTextEnd as $item)
-						{
-							if(strpos($item,'加'))
-							{
-								preg_match_all('|(\d+)|',$item,$addPrices);
-								foreach ($addPrices[0] as $addPrice)
-								{
-									$temFlag = '加'.$addPrice.'元';
-									if (strpos($item,$temFlag)) 
-									{
-										$newTemFlag = '加'.$addPrice*2 .'元，定做不退换，';
-										$item = str_replace($temFlag, $newTemFlag, $item);
-									}
-								}
-							}
-					
-							if(strpos($item,'＋'))
-							{
-								preg_match_all('|(\d+)|',$item,$addPrices);
-								foreach ($addPrices[0] as $addPrice)
-								{
-									$temFlag = '＋'.$addPrice.'元';
-									if (strpos($item,$temFlag)) 
-									{
-										$newTemFlag = '＋'.$addPrice*2 .'元，定做不退换，';
-										$item = str_replace($temFlag, $newTemFlag, $item);
-									}
-								}
-							}
-					
-							if (!in_array($item,$temTextEndNew))
-							{
-								$temTextEndNew[] = trim($item);
-							}
-						}
-						$typeContent = implode('<br>',$temTextEndNew); 
-						//过滤手机号码
-						$typeContent = preg_replace("/(?:1[3|4|5|8]d{1}|15[03689])d{8}$/","",$typeContent);
-						//过滤qq号码
-						$typeContent = preg_replace("/[1-9]{1}[0-9]{5,12}/","",$typeContent);
-						$this->type("//body[@class='ke-content']", "$typeContent");	
-
-						$this->selectFrame("relative=top");
-						
-						$tem_images = array();
-						$tem_images_new = array();
-						//选择详情图片
-						for($i=1; ;$i++)
-						{
-							if($this->isElementPresent("//div[@id='bbmslist']/b[$i]"))
-							{
-								$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
-								$img_url = str_replace('120x120','750x750',$img_url);
-								$img_size = get_headers($img_url);
-								$img_size_tem = 10240000;
-								if($img_size[0] == 'HTTP/1.1 200 OK')
-								{
-									foreach($img_size as $img_size_item)
-									{
-										if(strpos($img_size_item,'Content-Length: ') !== false)
-										{
-											$img_size_tem = floatval(str_replace('Content-Length: ','',$img_size_item));
-										}
-									}
-								}
-								if($img_size_tem < 512000)
-								{
-									$tem_images[$i] = $img_size_tem;
-									//$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
-									//file_put_contents("publish/reports/test.txt",$img_url."\n", FILE_APPEND );
-									//file_put_contents("publish/reports/test.txt",$img_size[0]."\n", FILE_APPEND );
-									//file_put_contents("publish/reports/test.txt",$img_size_tem."\n", FILE_APPEND );
-									//file_put_contents("publish/reports/test.txt",$tem_images[$i]."\n", FILE_APPEND );
-									
-								}
-							}else{
-								break;
-							}
-						}
-						$tem_images_new_value = array_unique($tem_images);
-						$tem_images_new = array_keys($tem_images_new_value);
-						//$tem_a = array_flip($tem);
-						//$img_size_tem_new = array_flip($img_size_tem_new);
-						foreach($tem_images_new as $tem_images_new_item)
-						{
-							$this->click("//div[@id='bbmslist']/b[$tem_images_new_item]/table/tbody/tr/td/img");
-						}
-						//$this->pause(20000000);
-						//选择店铺分类
-						//选择小分类
-						$temProductFenLei = 0;
-						$temProductDaFenLei = 0;
-						for($i=1; ;$i++)
-						{
-							if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input") && $temProductFenLei == 0)
-							{
-								$temFenLei = $this->getText("//dl[@class='seller_cat']/dd[$i]/span");
-								$temDateFenLei = date('Y-m-d',time());
-								if($temFenLei == $temDateFenLei)
-								{
-									$this->click("//dl[@class='seller_cat']/dd[$i]/input");
-									$temProductFenLei++;
-								}
-							}else{
-								break;
-							}
-						}
-						//如果没找到小分类，就用分到“星期日上架”；
-						if($temProductFenLei == 0)
-						{
+							//$this->pause(20000000);
+							//选择店铺分类
+							//选择小分类
+							$temProductFenLei = 0;
+							$temProductDaFenLei = 0;
 							for($i=1; ;$i++)
 							{
-								if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input"))
+								if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input") && $temProductFenLei == 0)
 								{
 									$temFenLei = $this->getText("//dl[@class='seller_cat']/dd[$i]/span");
-									$temDateFenLei = '星期日上架';
+									$temDateFenLei = date('Y-m-d',time());
 									if($temFenLei == $temDateFenLei)
 									{
 										$this->click("//dl[@class='seller_cat']/dd[$i]/input");
+										$temProductFenLei++;
 									}
 								}else{
 									break;
 								}
 							}
-						}
-						
-						//选择大分类
-						for($i=1; ;$i++)
-						{
-							if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input") && $temProductDaFenLei==0)
+							//如果没找到小分类，就用分到“星期日上架”；
+							if($temProductFenLei == 0)
 							{
-								$temFenLei = $this->getText("//dl[@class='seller_cat']/dt[$i]/span");
-								$temDaFenLei = '最新靴子';
-								if($temFenLei == $temDaFenLei)
+								for($i=1; ;$i++)
 								{
-									$this->click("//dl[@class='seller_cat']/dt[$i]/input");
-									$temProductDaFenLei++;
+									if($this->isElementPresent("//dl[@class='seller_cat']/dd[$i]/input"))
+									{
+										$temFenLei = $this->getText("//dl[@class='seller_cat']/dd[$i]/span");
+										$temDateFenLei = '星期日上架';
+										if($temFenLei == $temDateFenLei)
+										{
+											$this->click("//dl[@class='seller_cat']/dd[$i]/input");
+										}
+									}else{
+										break;
+									}
 								}
-							}else{
-								break;
 							}
-						}
-						//如果没找到大分类，就用分到“靴子精选3”；
-						if($temProductDaFenLei == 0)
-						{
+							
+							//选择大分类
 							for($i=1; ;$i++)
 							{
-								if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input"))
+								if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input") && $temProductDaFenLei==0)
 								{
 									$temFenLei = $this->getText("//dl[@class='seller_cat']/dt[$i]/span");
-									$temDaFenLei = '靴子精选3';
+									$temDaFenLei = '最新靴子';
 									if($temFenLei == $temDaFenLei)
 									{
 										$this->click("//dl[@class='seller_cat']/dt[$i]/input");
+										$temProductDaFenLei++;
 									}
 								}else{
 									break;
 								}
 							}
+							//如果没找到大分类，就用分到“靴子精选3”；
+							if($temProductDaFenLei == 0)
+							{
+								for($i=1; ;$i++)
+								{
+									if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input"))
+									{
+										$temFenLei = $this->getText("//dl[@class='seller_cat']/dt[$i]/span");
+										$temDaFenLei = '靴子精选3';
+										if($temFenLei == $temDaFenLei)
+										{
+											$this->click("//dl[@class='seller_cat']/dt[$i]/input");
+										}
+									}else{
+										break;
+									}
+								}
+							}
 						}
+
 
 						//提交发布
 						$this->click("//input [@id='csvbutton']");
