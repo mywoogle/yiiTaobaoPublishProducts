@@ -110,8 +110,10 @@ Eof;
 						{
 							$shouTuUrlTem = $this->getAttribute("//div[@id='smallimg']/a[$i]/img/@src");
 							$shouTuUrl = str_replace('50x50','120x120',$shouTuUrlTem);
+							$shouTuUrl = strtolower($shouTuUrl);
 							$shouTus[] = $shouTuUrl;
 						}
+						file_put_contents("publish/reports/test.txt",implode("\n",$shouTus), FILE_APPEND );
 						while(true)
 						{
 							$this->open("http://www.baidu.com/");
@@ -139,11 +141,12 @@ Eof;
 						$shouTusIndexs = array();
 						for($i=1; ;$i++)
 						{
-							if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]") && $shouTusCountEnd<5)
+							if($this->isElementPresent("//div[@id='imglist']/ul[1]/li[$i]") && $shouTusCountEnd<=$shouTusCount)
 							{
 								foreach($shouTus as $shouTu)
 								{
 									$temTargetImgUrl = $this->getAttribute("//div[@id='imglist']/ul[1]/li[$i]/table/tbody/tr/td/img/@src");
+									$temTargetImgUrl = strtolower($temTargetImgUrl);
 									if($temTargetImgUrl == $shouTu)
 									{
 										$shouTusCountEnd++;
@@ -154,16 +157,21 @@ Eof;
 								break;
 							}
 						}
+						file_put_contents("publish/reports/test.txt",implode("-----",$shouTusIndexs), FILE_APPEND );
+						$shouTusIndexsCount= count($shouTusIndexs);
 						foreach($shouTus as $shouTu)
 						{
 							//当首图都有的时候，才选择。
-							if($shouTusCountEnd == 5)
+							if($shouTusIndexsCount == $shouTusCount)
 							{
 								$shouTusIndexTem = $shouTusIndexs[$shouTu];
 								$this->click("//div[@id='imglist']/ul[1]/li[$shouTusIndexTem]/table/tbody/tr/td/img");
 							}
 						}
 						
+						file_put_contents("publish/reports/test.txt","++++$shouTusIndexsCount+++++$shouTusCountEnd+++++$shouTusCount++++", FILE_APPEND );
+						//$this->open("http://www.baidu.com/");
+						$this->pause(1000000);
 						//获取商家编码
 						$sellerCode = $this->getValue("//ul[@id='shoesform']/li[20]/input");
 						//file_put_contents("publish/reports/test.txt",$sellerCode, FILE_APPEND );
