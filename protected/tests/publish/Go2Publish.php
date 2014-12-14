@@ -73,7 +73,7 @@ class newTest extends WebTestCase
 			$product_category = $factory->product_category;
 			$this->open("http://$factory_name.go2.cn/$product_category-$sort.go");
 			//必须在这里替换报告名
-			$listReport = "publish/reports/$factory_name.go2.cn_$product_category.go.txt";
+			$listReport = "publish/reports/$factory_name.go2.cn_$product_category-$sort.go.txt";
 			$productsCount = 0;
 			for($i=1; ;$i++)
 			{
