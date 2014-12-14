@@ -6,6 +6,7 @@ class newTest extends WebTestCase
 		//----------------------------login start------------------------------------------
 		
 		$init_url = 'http://www.go2.cn/product/publish/cicsq';
+		$max_time = 120;
 
 		$this->open("$init_url");
 		
@@ -465,10 +466,10 @@ Eof;
 						$giveUp = false;
 						$success = false;
 						$target_taobao_id = '';
-
+						$this->setSpeed("1000");
 						while($giveUp == false && $success == false)
 						{
-							$this->pause(20000);
+							$this->pause(10000);
 							if($this->isTextPresent("按照错误提示"))
 							{
 								//必填属性不完整
@@ -482,6 +483,12 @@ Eof;
 							}elseif($this->isTextPresent("正在向淘宝发布本商品"))
 							{
 								//继续等待
+								$tem_time = $this->getText("//td[@class='message-content-txt']/p/span");
+								if(600-floatval($tem_time)>$max_time)
+								{
+									$giveUp = true;
+									file_put_contents("$listReport","------已经等待了 $max_time 秒", FILE_APPEND );
+								}
 							}else
 							{
 								//上传完成
@@ -501,6 +508,7 @@ Eof;
 								}
 							}
 						}
+						$this->setSpeed("0");
 						
 						//----------------------------upload end------------------------------------------
 						
