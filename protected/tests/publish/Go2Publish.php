@@ -4,6 +4,10 @@ class newTest extends WebTestCase
 	public function testSet()
 	{
 		//----------------------------login start------------------------------------------
+		//longin taobao
+		$this->open("https://login.taobao.com/member/login.jhtml?spm=1.7274553.1997563269.1.LEVuu1&f=top&redirectURL=http%3A%2F%2Fwww.taobao.com%2F");
+		$this->pause(20000);
+		
 		$init_url = 'http://www.go2.cn/product/publish/cicsq';
 		
 		$this->open("$init_url");

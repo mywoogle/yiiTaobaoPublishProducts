@@ -97,3 +97,9 @@ user_pref("signon.rememberSignons", false);
 user_pref("toolkit.networkmanager.disable", true);
 user_pref("toolkit.startup.last_success", 1415887693);
 user_pref("toolkit.telemetry.previousBuildID", "20141105223254");
+user_pref("plugin.state.npalissologin", 2);
+user_pref("plugin.state.npalisecctrl", 2);
+user_pref("plugin.state.npalipaydhc", 2);
+user_pref("plugin.state.npalidcp", 2);
+user_pref("plugin.state.npaliedit", 2);
+

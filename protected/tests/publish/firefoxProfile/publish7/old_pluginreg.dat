@@ -5,38 +5,6 @@ Version|0.17|$
 Arch|x86-msvc|$
 
 [PLUGINS]
-npxbdcntb.dll|$
-C:\Program Files\baidu\BaiduPinyin\2.13.2.74\npxbdcntb.dll|$
-1.38.0.0|$
-1417920781228|0|0|0|$
-BaiduSetUp Plugin|$
-BaiduSetUp Plugin|$
-1
-0|application/baiducnff-activex|ActiveX|ocx|$
-np360MMPlugIn.dll|$
-D:\Program Files\360\360safe\MobileMgr\np360MMPlugIn.dll|$
-2.4.0.1105|$
-1417162412000|0|0|0|$
-360MMPlugin|$
-360MMPlugin|$
-1
-0|application/x360mmplugin|360MMPlugin.dll|dll|$
-npAliSecCtrl.dll|$
-C:\Program Files\alipay\aliedit\4.6.0.3481\npAliSecCtrl.dll|$
-2.0.1.0|$
-1416362856000|0|0|0|$
-Alipay Security Control|$
-Alipay Security Control 3|$
-1
-0|application/x-alisecctrl-plugin|npAliSecCtrl.dll|*|$
-npAlipaydhc.dll|$
-C:\Program Files\alipay\aliedit\4.6.0.3481\npAlipaydhc.dll|$
-1.0.6.0|$
-1416362852000|0|0|0|$
-Alipay Internet Health Control|$
-Alipay Security Payment Client Suit|$
-1
-0|application/x-aliinethealth-plugin|npAliInetHealth.dll|*|$
 NPSWF32_15_0_0_189.dll|$
 C:\windows\system32\Macromed\Flash\NPSWF32_15_0_0_189.dll|$
 15.0.0.189|$
@@ -99,6 +67,14 @@ NPRuntime Script Plug-in Library for Java(TM) Deploy|$
 Java Deployment Toolkit 7.0.710.14|$
 1
 0|application/java-deployment-toolkit|||$
+npxbdcntb.dll|$
+C:\Program Files\baidu\BaiduPinyin\2.13.2.9\npxbdcntb.dll|$
+1.38.0.0|$
+1413968356523|0|0|0|$
+BaiduSetUp Plugin|$
+BaiduSetUp Plugin|$
+1
+0|application/baiducnff-activex|ActiveX|ocx|$
 npWebStrom.dll|$
 d:\Program Files\Baofeng\StormPlayer\webplayer\npWebStrom.dll|$
 5.41.925.2423|$
@@ -126,6 +102,22 @@ Google Update|$
 2
 0|application/x-vnd.google.update3webcontrol.3|||$
 1|application/x-vnd.google.oneclickctrl.9|||$
+npAliSecCtrl.dll|$
+C:\Program Files\alipay\aliedit\4.4.0.3419\npAliSecCtrl.dll|$
+2.0.1.0|$
+1411887266000|0|0|0|$
+Alipay Security Control|$
+Alipay Security Control 3|$
+1
+0|application/x-alisecctrl-plugin|npAliSecCtrl.dll|*|$
+npAlipaydhc.dll|$
+C:\Program Files\alipay\aliedit\4.4.0.3419\npAlipaydhc.dll|$
+1.0.6.0|$
+1411887264000|0|0|0|$
+Alipay Internet Health Control|$
+Alipay Security Payment Client Suit|$
+1
+0|application/x-aliinethealth-plugin|npAliInetHealth.dll|*|$
 npalicdo.dll|$
 C:\Users\Administrator\AppData\Roaming\alipay\cf\npalicdo.dll|$
 1.0.0.4|$
@@ -175,7 +167,7 @@ XiGua Yingshi Plugin|$
 1
 0|application/xgyingshi-activex|ActiveX|ocx|$
 npalidcp.dll|$
-C:\Program Files\alipay\aliedit\4.6.0.3481\npalidcp.dll|$
+C:\Program Files\alipay\aliedit\4.4.0.3419\npalidcp.dll|$
 1.0.0.1|$
 1404391014000|0|0|0|$
 npalidcp|$
@@ -183,21 +175,21 @@ Alipay webmod control|$
 1
 0|application/alidcp|npalidcp| |$
 npaliedit.dll|$
-C:\Program Files\alipay\aliedit\4.6.0.3481\npaliedit.dll|$
+C:\Program Files\alipay\aliedit\4.4.0.3419\npaliedit.dll|$
 1.3.0.2|$
 1404391014000|0|0|0|$
 npaliedit|$
 Alipay security control|$
 1
 0|application/aliedit|npaliedit| |$
-npaxlogin.dll|$
-D:\Program Files\360\360safe\Utils\npaxlogin.dll|$
-1.0.0.1007|$
-1398162484000|0|0|0|$
-360安全卫士 快速登录|$
-360安全卫士 快速登录|$
+np360MMPlugIn.dll|$
+D:\Program Files\360\360safe\mobilemgr\np360MMPlugIn.dll|$
+2.4.0.1100|$
+1398335656000|0|0|0|$
+360MMPlugin|$
+360MMPlugin|$
 1
-0|application/mozilla-npqihooquicklogin|||$
+0|application/x360mmplugin|360MMPlugin.dll|dll|$
 npQzoneMusic.dll|$
 C:\Program Files\Tencent\QQMusic\QzoneMusic\npQzoneMusic.dll|$
 9.50.3269.904|$
@@ -239,6 +231,14 @@ Tencent FTN plug-in|$
 Tencent FTN plug-in|$
 1
 0|application/txftn-webkit|nptxftn||$
+npxbdsetup.dll|$
+C:\windows\Downloaded Program Files\1532959\npxbdsetup.dll|$
+1.38.0.0|$
+1355131946000|0|0|0|$
+BaiduSetUp Plugin|$
+BaiduSetUp Plugin|$
+1
+0|application/baidusetup-activex|ActiveX|ocx|$
 NPComBrg701.dll|$
 C:\windows\system32\itruscert\NPComBrg701.dll|$
 1.0.2011.701|$
@@ -254,9 +254,9 @@ iTrusChina iTrusPTA,XEnroll,iEnroll,hwPTA,UKeyInstalls Firefox Plugin|$
 5|application/hwepass2001.installepass2001|HwEpass2001||$
 
 [INVALID]
+C:\Program Files\alipay\aliedit\4.4.0.3419\npAliSecCtrl64.dll|$
+1411887266000|$
+C:\Program Files\alipay\aliedit\4.4.0.3419\npAlipaydhc64.dll|$
+1411887264000|$
 C:\Program Files\xigua\npxgaxr.dll|$
 1404825290536|$
-C:\Program Files\alipay\aliedit\4.6.0.3481\npAliSecCtrl64.dll|$
-1416362856000|$
-C:\Program Files\alipay\aliedit\4.6.0.3481\npAlipaydhc64.dll|$
-1416362854000|$
