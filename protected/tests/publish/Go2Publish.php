@@ -115,10 +115,18 @@ class newTest extends WebTestCase
 Eof;
 					$this->runScript($js);
 					$this->click("//a [@id='myProduct']");
-					$this->waitForElementPresent ("//dd[@id='productbtn']/a[1]");
-					$this->waitForElementPresent ("//ul[@id='propsul']/li[1]");					
-					$new_text = $this->getText("//dd[@id='productbtn']/a[1]");
-					$new_required = $this->isElementPresent("//ul[@id='propsul']/li[1]");
+					$new_text = $new_required = '';
+					for($i=1;$i<=30;$i++)
+					{
+						if($this->isElementPresent("//ul[@id='propsul']/li[1]") && $this->isElementPresent("//dd[@id='productbtn']/a[1]"))
+						{
+							$i = 31;
+							$new_text = $this->getText("//dd[@id='productbtn']/a[1]");
+							$new_required = $this->isElementPresent("//ul[@id='propsul']/li[1]");
+						}
+						$this->pause(1000);
+					}
+					
 					if(($new_text == "发布到淘宝") && $new_required)
 					{
 						//$this->open($temPublish);
@@ -390,6 +398,7 @@ Eof;
 							$tem_images_new = array_keys($tem_images_new_value);
 							//$tem_a = array_flip($tem);
 							//$img_size_tem_new = array_flip($img_size_tem_new);
+							file_put_contents("publish/reports/test.txt","------------------\n".implode("\n",$tem_images_new)."\n---------------", FILE_APPEND );
 							if(count($tem_images_new)>=10)
 							{
 								foreach($tem_images_new as $tem_images_new_item)
@@ -541,8 +550,19 @@ Eof;
 Eof;
 						$this->runScript($js);
 						$this->click("//a [@id='myProduct']");
-						$this->waitForElementPresent ("//dd[@id='productbtn']/a[1]");
-						$temTex = $this->getText("//dd[@id='productbtn']/a[1]");
+						//$this->waitForElementPresent ("//dd[@id='productbtn']/a[1]");
+						
+						$temTex = '';
+						for($i=1;$i<=30;$i++)
+						{
+							if($this->isElementPresent("//dd[@id='productbtn']/a[1]"))
+							{
+								$i = 31;
+								$temTex = $this->getText("//dd[@id='productbtn']/a[1]");
+							}
+							$this->pause(1000);
+						}
+						
 						if($temTex == "已发布到淘宝")
 						{
 							file_put_contents("$listReport","------确实发布成功了", FILE_APPEND );
