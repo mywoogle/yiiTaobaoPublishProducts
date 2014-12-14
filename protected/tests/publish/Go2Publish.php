@@ -84,8 +84,8 @@ class newTest extends WebTestCase
 					break;
 				}
 			}
-
-			if($factory->factory_num < $productsCount)
+				file_put_contents("publish/reports/test.txt",$factory->factory_num."++++$productsCount++++++++++++++++++", FILE_APPEND );
+			if($factory->factory_num <= $productsCount)
 			{
 				$productFlag = 0;
 				$productsCountGod = 0;
@@ -95,6 +95,7 @@ class newTest extends WebTestCase
 					$productsList[] = $tem_Product;
 				}
 				$productsListCount = count($productsList);
+				file_put_contents("publish/reports/test.txt","\n".$factory->factory_num."++++$productsCount+++++$productsListCount+++++++++++++", FILE_APPEND );
 				foreach($productsList as $product)
 				{
 					$productFlag++;
@@ -581,19 +582,10 @@ Eof;
 							$myTarget->source_taobao_keyword1 = '等待修改';
 							$myTarget->source_taobao_keyword2 = '等待修改';
 							$myTarget->source_taobao_keyword3 = '等待修改';
-							$myTarget->save();
-							
-							$nowFactory = Factory::model()->find('factory_flag=:factory_flag and factory_name=:factory_name and product_category=:product_category',array(':factory_flag'=>0,'factory_name'=>$factory_name,'product_category'=>$product_category));
-							$nowFactory->factory_num  = 1+$nowFactory->factory_num;
-							$nowFactory->save();
-							
-							
+							$myTarget->save();							
 						}else
 						{
 							file_put_contents("$listReport","------未知的发布失败原因", FILE_APPEND );
-							$nowFactory = Factory::model()->find('factory_flag=:factory_flag and factory_name=:factory_name and product_category=:product_category',array(':factory_flag'=>0,'factory_name'=>$factory_name,'product_category'=>$product_category));
-							$nowFactory->factory_num  = 1+$nowFactory->factory_num;
-							$nowFactory->save();
 						}
 
 						//----------------------------Confirmation has been successfully posted,end--------------
@@ -605,12 +597,21 @@ Eof;
 					//暂停10s发布下一个产品
 					$this->pause(10000);
 					
+					file_put_contents("$listReport","------未知的发布失败原因", FILE_APPEND );
+					$nowFactory = Factory::model()->find('factory_flag=:factory_flag and factory_name=:factory_name and product_category=:product_category',array(':factory_flag'=>0,'factory_name'=>$factory_name,'product_category'=>$product_category));
+					$nowFactory->factory_num  = $nowFactory->factory_num < $productsCount ? 1+$nowFactory->factory_num : $productsCount;
+					$nowFactory->save();					
 				}
+				$nowFactory = Factory::model()->find('factory_flag=:factory_flag and factory_name=:factory_name and product_category=:product_category',array(':factory_flag'=>0,'factory_name'=>$factory_name,'product_category'=>$product_category));
+				if($productsCount == $nowFactory->factory_num)
+				{
+					$nowFactory = Factory::model()->find('factory_flag=:factory_flag and factory_name=:factory_name and product_category=:product_category',array(':factory_flag'=>0,'factory_name'=>$factory_name,'product_category'=>$product_category));
+					$nowFactory->factory_flag  = 1;
+					$nowFactory->save();
+				}				
 			}
 			
-			$nowFactory = Factory::model()->find('factory_flag=:factory_flag and factory_name=:factory_name and product_category=:product_category',array(':factory_flag'=>0,'factory_name'=>$factory_name,'product_category'=>$product_category));
-			$nowFactory->factory_flag  = 1;
-			$nowFactory->save();
+
 			file_put_contents("$listReport","\n------发布进度：$productFlag/$productsListCount ------ 确实发布成功：$productsCountGod/$productFlag ------", FILE_APPEND );
 			
 			//----------------------------list end------------------------------------------			
