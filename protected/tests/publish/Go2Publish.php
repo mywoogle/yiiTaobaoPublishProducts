@@ -13,8 +13,10 @@ class newTest extends WebTestCase
 		3:价格由高到低
 		4:价格由低到高
 		5:最新发布
-		请在/index.php?r=factory/create这里添加$product_category时注意选择对应的排序方式。
+		请在/index.php?r=factory/create这里添加$product_category时不添加最后一位和“-”。
+		如http://hjy.go2.cn/c4-1-3.go，需要在product_category处添“c4-1”。
 		*/
+		$sort = 3;//价格由高到低排序
 		$init_url = 'http://www.go2.cn/product/publish/cicsq';
 		$max_time = 120;
 
@@ -69,7 +71,7 @@ class newTest extends WebTestCase
 			//在这里替换发布列表
 			$factory_name = $factory->factory_name;
 			$product_category = $factory->product_category;
-			$this->open("http://$factory_name.go2.cn/$product_category.go");
+			$this->open("http://$factory_name.go2.cn/$product_category-$sort.go");
 			//必须在这里替换报告名
 			$listReport = "publish/reports/$factory_name.go2.cn_$product_category.go.txt";
 			$productsCount = 0;
