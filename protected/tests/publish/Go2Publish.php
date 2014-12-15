@@ -391,6 +391,7 @@ Eof;
 										//$tem_images[$i] = $widthTem;
 										//挑选图片完，马上剔除重复图片。
 										$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
+										file_put_contents("publish/reports/test.txt","\n==================$img_url===================\n", FILE_APPEND );
 										$img_size = get_headers($img_url);
 										$img_size_tem = 10240000;
 										if(strpos($img_size[0],'200 OK') !== false)
