@@ -19,6 +19,7 @@ class newTest extends WebTestCase
 		$sort = 3;//价格由高到低排序
 		$init_url = 'http://www.go2.cn/product/publish/cicsq';
 		$max_time = 120;
+		$forbug = true;
 
 		$this->open("$init_url");
 		
@@ -416,16 +417,25 @@ Eof;
 							//剔除图片结束
 							//$tem_a = array_flip($tem);
 							//$img_size_tem_new = array_flip($img_size_tem_new);
-							file_put_contents("publish/reports/test.txt","------------------\n", FILE_APPEND );
+							if($forbug)
+							{
+								file_put_contents("publish/reports/test.txt","-------".count($tem_images_new_value)."-----------\n", FILE_APPEND );
+							|
 							if(count($tem_images_new_value)>=10)
 							{
 								foreach($tem_images_new_value as $key=>$tem_images_new_value_item)
 								{
 									$this->click("//div[@id='bbmslist']/b[$key]/table/tbody/tr/td/img");
-									file_put_contents("publish/reports/test.txt","\n $key : $tem_images_new_value_item", FILE_APPEND );
+									if($forbug)
+									{
+										file_put_contents("publish/reports/test.txt","\n $key : $tem_images_new_value_item", FILE_APPEND );
+									}
 								}
 							}
-							file_put_contents("publish/reports/test.txt","\n------------------", FILE_APPEND );
+							if($forbug)
+							{
+								file_put_contents("publish/reports/test.txt","\n------------------", FILE_APPEND );
+							}
 							//$this->pause(20000000);
 							//选择店铺分类
 							//选择小分类
