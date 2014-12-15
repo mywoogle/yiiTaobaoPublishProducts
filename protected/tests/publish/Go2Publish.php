@@ -366,28 +366,44 @@ Eof;
 							{
 								if($this->isElementPresent("//div[@id='bbmslist']/b[$i]"))
 								{
-									$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
-									$img_url = str_replace('120x120','750x750',$img_url);
-									$img_size = get_headers($img_url);
-									$img_size_tem = 10240000;
-									if($img_size[0] == 'HTTP/1.1 200 OK')
+									$this->assignId("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img","shoutu-$i");
+									for($j=0;$j<15;$j++)
 									{
-										foreach($img_size as $img_size_item)
+										$js0 = <<<Eof
+												window.document.getElementById("shoutu-$i").complete;
+Eof;
+										$completeTem = $this->getEval($js0);
+										if($completeTem)
 										{
-											if(strpos($img_size_item,'Content-Length: ') !== false)
-											{
-												$img_size_tem = floatval(str_replace('Content-Length: ','',$img_size_item));
-											}
+											$j=15;
+										}else
+										{
+											$this->pause(1000);
 										}
 									}
-									if($img_size_tem < 512000)
+									
+									$js = <<<Eof
+											window.document.getElementById("shoutu-$i").width;
+Eof;
+									$widthTem = $this->getEval($js);
+									if($widthTem > 30)
 									{
-										$tem_images[$i] = $img_size_tem;
-										//$this->click("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img");
-										//file_put_contents("publish/reports/test.txt",$img_url."\n", FILE_APPEND );
-										//file_put_contents("publish/reports/test.txt",$img_size[0]."\n", FILE_APPEND );
-										//file_put_contents("publish/reports/test.txt",$img_size_tem."\n", FILE_APPEND );
-										//file_put_contents("publish/reports/test.txt",$tem_images[$i]."\n", FILE_APPEND );
+										//$tem_images[$i] = $widthTem;
+										//挑选图片完，马上剔除重复图片。
+										$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
+										$img_size = get_headers($img_url);
+										$img_size_tem = 10240000;
+										if(strpos($img_size[0],'200 OK') !== false)
+										{
+											foreach($img_size as $img_size_item)
+											{
+												if(strpos($img_size_item,'Content-Length: ') !== false)
+												{
+													$img_size_tem = floatval(str_replace('Content-Length: ','',$img_size_item));
+												}
+											}
+										}
+										$tem_images[$i] = $img_size_tem != 10240000 ? $img_size_tem : rand(10000000,99999999);
 										
 									}
 								}else{
@@ -396,6 +412,7 @@ Eof;
 							}
 							$tem_images_new_value = array_unique($tem_images);
 							$tem_images_new = array_keys($tem_images_new_value);
+							//剔除图片结束
 							//$tem_a = array_flip($tem);
 							//$img_size_tem_new = array_flip($img_size_tem_new);
 							file_put_contents("publish/reports/test.txt","------------------\n".implode("\n",$tem_images_new)."\n---------------", FILE_APPEND );
