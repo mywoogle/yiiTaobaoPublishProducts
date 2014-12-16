@@ -401,12 +401,13 @@ Eof;
 												{
 													if(strpos($img_size[0],'200 OK') !== false)
 													{
-														$img_size_tem = floatval($img_size['Content-Length']);
+														$img_size_tem = floatval($img_size['Content-Length'])== 0 ? $img_size_tem : floatval($img_size['Content-Length']);
 														$k = 30;
 													}
 												}
-												$tem_images[$i] = $img_size_tem != 10240000 ? $img_size_tem : rand(10000000,99999999);
+												
 											}
+											$tem_images[$i] = $img_size_tem != 10240000 ? $img_size_tem : rand(10000000,99999999);
 											error_reporting(E_ALL);
 											
 											/*
@@ -455,7 +456,7 @@ Eof;
 							}
 							if($forbug)
 							{
-								file_put_contents("publish/reports/test.txt","\n-----$imags_xiangqing_count-------------", FILE_APPEND );
+								file_put_contents("publish/reports/test.txt","\n-----$imags_xiangqing_count-------------\n", FILE_APPEND );
 							}
 							//$this->pause(20000000);
 							//选择店铺分类
@@ -556,7 +557,7 @@ Eof;
 								//已经等待了10min
 								$giveUp = true;
 								file_put_contents("$listReport","------已经等待了10min", FILE_APPEND );
-							}elseif($this->isTextPresent("正在向淘宝发布本商品"))
+							}elseif($this->isTextPresent("发布到淘宝"))
 							{
 								//继续等待
 								if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input"))
