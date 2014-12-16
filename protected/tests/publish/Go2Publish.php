@@ -368,7 +368,7 @@ Eof;
 								if($this->isElementPresent("//div[@id='bbmslist']/b[$i]"))
 								{
 									$this->assignId("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img","shoutu-$i");
-									for($j=0;$j<15;$j++)
+									for($j=0;$j<30;$j++)
 									{
 										$js0 = <<<Eof
 												window.document.getElementById("shoutu-$i").complete;
@@ -376,37 +376,53 @@ Eof;
 										$completeTem = $this->getEval($js0);
 										if($completeTem)
 										{
-											$j=15;
+											$j=30;
 										}else
 										{
 											$this->pause(1000);
 										}
-									}
-									
-									$js = <<<Eof
-											window.document.getElementById("shoutu-$i").width;
+
+										$js = <<<Eof
+												window.document.getElementById("shoutu-$i").width;
 Eof;
-									$widthTem = $this->getEval($js);
-									if($widthTem > 30)
-									{
-										//$tem_images[$i] = $widthTem;
-										//挑选图片完，马上剔除重复图片。
-										$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
-										file_put_contents("publish/reports/test.txt","\n==================$img_url===================\n", FILE_APPEND );
-										$img_size = get_headers($img_url);
-										$img_size_tem = 10240000;
-										if(strpos($img_size[0],'200 OK') !== false)
+										$widthTem = $this->getEval($js);
+										if($widthTem > 30)
 										{
-											foreach($img_size as $img_size_item)
+											//$tem_images[$i] = $widthTem;
+											//挑选图片完，马上剔除重复图片。
+											$img_url = $this->getAttribute("//div[@id='bbmslist']/b[$i]/table/tbody/tr/td/img/@src");
+											error_reporting(0);
+											for($k=0;$k<30;$k++)
 											{
-												if(strpos($img_size_item,'Content-Length: ') !== false)
+												$img_size = get_headers($img_url,1);
+												$img_size_tem = 10240000;
+												
+												if($img_size !== false)
 												{
-													$img_size_tem = floatval(str_replace('Content-Length: ','',$img_size_item));
+													if(strpos($img_size[0],'200 OK') !== false)
+													{
+														$img_size_tem = floatval($img_size['Content-Length']);
+														$k = 30;
+													}
+												}
+												$tem_images[$i] = $img_size_tem != 10240000 ? $img_size_tem : rand(10000000,99999999);
+											}
+											error_reporting(E_ALL);
+											
+											/*
+											if(strpos($img_size[0],'200 OK') !== false)
+											{
+												foreach($img_size as $img_size_item)
+												{
+													if(strpos($img_size_item,'Content-Length: ') !== false)
+													{
+														$img_size_tem = floatval(str_replace('Content-Length: ','',$img_size_item));
+													}
 												}
 											}
+											$tem_images[$i] = $img_size_tem != 10240000 ? $img_size_tem : rand(10000000,99999999);
+											*/
 										}
-										$tem_images[$i] = $img_size_tem != 10240000 ? $img_size_tem : rand(10000000,99999999);
-										
 									}
 								}else{
 									break;
@@ -419,22 +435,27 @@ Eof;
 							//$img_size_tem_new = array_flip($img_size_tem_new);
 							if($forbug)
 							{
-								file_put_contents("publish/reports/test.txt","-------".count($tem_images_new_value)."-----------\n", FILE_APPEND );
-							|
+								file_put_contents("publish/reports/test.txt","-------".count($tem_images_new_value)."---$product--------\n", FILE_APPEND );
+							}
+							$imags_xiangqing_count = 1;
 							if(count($tem_images_new_value)>=10)
 							{
 								foreach($tem_images_new_value as $key=>$tem_images_new_value_item)
 								{
-									$this->click("//div[@id='bbmslist']/b[$key]/table/tbody/tr/td/img");
-									if($forbug)
+									if($imags_xiangqing_count <= 50)
 									{
-										file_put_contents("publish/reports/test.txt","\n $key : $tem_images_new_value_item", FILE_APPEND );
+										$this->click("//div[@id='bbmslist']/b[$key]/table/tbody/tr/td/img");
+										if($forbug)
+										{
+											file_put_contents("publish/reports/test.txt","\n $key : $tem_images_new_value_item", FILE_APPEND );
+										}	
+										$imags_xiangqing_count++;
 									}
 								}
 							}
 							if($forbug)
 							{
-								file_put_contents("publish/reports/test.txt","\n------------------", FILE_APPEND );
+								file_put_contents("publish/reports/test.txt","\n-----$imags_xiangqing_count-------------", FILE_APPEND );
 							}
 							//$this->pause(20000000);
 							//选择店铺分类
@@ -538,11 +559,14 @@ Eof;
 							}elseif($this->isTextPresent("正在向淘宝发布本商品"))
 							{
 								//继续等待
-								$tem_time = $this->getText("//td[@class='message-content-txt']/p/span");
-								if(600-floatval($tem_time)>$max_time)
+								if($this->isElementPresent("//dl[@class='seller_cat']/dt[$i]/input"))
 								{
-									$giveUp = true;
-									file_put_contents("$listReport","------已经等待了 $max_time 秒", FILE_APPEND );
+									$tem_time = $this->getText("//td[@class='message-content-txt']/p/span");
+									if(600-floatval($tem_time)>$max_time)
+									{
+										$giveUp = true;
+										file_put_contents("$listReport","------已经等待了 $max_time 秒", FILE_APPEND );
+									}
 								}
 							}else
 							{
